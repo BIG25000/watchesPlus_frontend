@@ -7,3 +7,53 @@
   margin: 0;
   padding: 0;
 }
+
+.speech {
+  /* (A1) FONT & COLORS */
+  font-size: 1rem;
+  color: black;
+  background: white;
+
+  /* (A2) DIMENSIONS */
+  padding: 8px;
+  border-radius: 8px;
+  max-width: 600px;
+}
+
+.speech::after {
+  display: block;
+  width: 0;
+  content: "";
+  border: 8px solid transparent;
+}
+
+.speech.message::after {
+  border-left-color: white;
+  border-right: 0;
+}
+
+.speech {
+  position: relative;
+  /* margin: px; */
+}
+
+.speech::after {
+  position: absolute;
+}
+
+.speech.message::after {
+  right: -8px;
+  top: calc(50% - 8px);
+}
+
+.hide {
+  display: none;
+}
+
+.show:hover+.hide {
+  display: block;
+}
+
+/* .side2 {
+  background-color: blue;
+} */
