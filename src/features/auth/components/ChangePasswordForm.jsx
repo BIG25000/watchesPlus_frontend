@@ -1,8 +1,11 @@
 import React, { useState } from "react";
-import useAuth from "../../../hooks/useAuth";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import { User, Lock } from "lucide-react";
+
 import validateChangePassword from "../validations/validate-changePassword";
 import Input from "../../../components/Input";
-import { toast } from "react-toastify";
+import useAuth from "../../../hooks/useAuth";
 
 const initial = {
   email: "",
@@ -11,8 +14,8 @@ const initial = {
 };
 export default function ChangePasswordForm() {
   const [input, setInput] = useState(initial);
-
   const { changePassword } = useAuth();
+  const navigate = useNavigate();
   const hdlChangeInput = (e) => {
     setInput({ ...input, [e.target.name]: e.target.value });
   };
@@ -31,6 +34,7 @@ export default function ChangePasswordForm() {
         }
       }
       await changePassword(input);
+      navigate("/auth/login");
     } catch (error) {
       toast.error(error.message);
     }
@@ -47,24 +51,30 @@ export default function ChangePasswordForm() {
         name="email"
         value={input.email}
         onChange={hdlChangeInput}
-      />
+      >
+        <User />
+      </Input>
       <Input
         type="password"
         placeholder="New password"
         name="password"
         value={input.password}
         onChange={hdlChangeInput}
-      />
+      >
+        <Lock />
+      </Input>
       <Input
         type="password"
-        placeholder="Confirm password"
+        placeholder="Confirm new password"
         name="confirmPassword"
         value={input.confirmPassword}
         onChange={hdlChangeInput}
-      />
+      >
+        <Lock />
+      </Input>
       <button
         type="submit"
-        className="bg-black text-white px-4 py-3 rounded-full my-4"
+        className="bg-black text-white px-4 py-3 rounded-full my-4 w-[350px] h-[45px]"
       >
         Change password
       </button>

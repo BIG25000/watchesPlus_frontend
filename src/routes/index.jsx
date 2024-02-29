@@ -1,23 +1,24 @@
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import ForgotPasswordPage from "../pages/ForgotPasswordPage";
+import OuterPage from "../layouts/OuterPage";
 
 const router = createBrowserRouter([
   {
-    path: "/auth",
-    element: <Outlet />,
+    path: "/",
+    element: <OuterPage />,
     children: [
       {
-        path: "/auth/register",
+        path: "auth/register",
         element: <RegisterPage />,
       },
       {
-        path: "/auth/login",
+        path: "auth/login",
         element: <LoginPage />,
       },
       {
-        path: "/auth/forgot-password",
+        path: "auth/forgot-password",
         element: <ForgotPasswordPage />,
       },
     ],
