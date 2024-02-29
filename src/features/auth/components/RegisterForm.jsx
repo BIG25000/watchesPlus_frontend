@@ -3,6 +3,7 @@ import validateRegister from "../validations/validate-register";
 import useAuth from "../../../hooks/useAuth";
 import Input from "../../../components/Input";
 import { toast } from "react-toastify";
+import { User, Mail, Lock } from "lucide-react";
 
 const initial = {
   firstName: "",
@@ -53,38 +54,48 @@ export default function RegisterForm() {
         name="firstName"
         value={input.firstName}
         onChange={hdlChangeInput}
-      />
+      >
+        <User />
+      </Input>
       <Input
         type="text"
         placeholder="Last name"
         name="lastName"
         value={input.lastName}
         onChange={hdlChangeInput}
-      />
+      >
+        <User />
+      </Input>
       <Input
         type="text"
         placeholder="Email"
         name="email"
         value={input.email}
         onChange={hdlChangeInput}
-      />
+      >
+        <Mail />
+      </Input>
       <Input
         type="password"
         placeholder="Password"
         name="password"
         value={input.password}
         onChange={hdlChangeInput}
-      />
+      >
+        <Lock />
+      </Input>
       <Input
         type="password"
         placeholder="Confirm password"
         name="confirmPassword"
         value={input.confirmPassword}
         onChange={hdlChangeInput}
-      />
+      >
+        <Lock />
+      </Input>
       <button
         type="submit"
-        className="bg-black text-white px-4 py-3 rounded-full my-4"
+        className="bg-black text-white px-4 py-3 rounded-full my-4 w-[350px] h-[45px]"
       >
         Register
       </button>

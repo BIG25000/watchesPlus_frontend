@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import ForgotPasswordPage from "../pages/ForgotPasswordPage";
@@ -7,7 +7,7 @@ import LiveChat from "../pages/LiveChat";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Outlet />,
+    element: <OuterPage />,
     children: [
       {
         path: "auth/register",
