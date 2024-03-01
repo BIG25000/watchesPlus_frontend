@@ -16,7 +16,8 @@ export default function AuthContextProvider({ children }) {
       setToken(res.data.accessToken);
       toast.success(res.data.message);
     } catch (error) {
-      toast.error(error.message);
+      console.log(error.response.data.message)
+      toast.error(error.response.data.message);
     }
   };
   const login = async (input) => {
@@ -34,6 +35,7 @@ export default function AuthContextProvider({ children }) {
       const res = await authAPI.changePassword(user);
       toast.success(res.data.message);
     } catch (error) {
+      console.log(error.response)
       toast.error(error.message);
     }
   };
