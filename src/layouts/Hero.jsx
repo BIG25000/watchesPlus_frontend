@@ -16,8 +16,8 @@ export default function Hero() {
             <div className="flex flex-col gap-2">
                 {/* รอ map ของ user */}
                 <span>My sell listing</span>
-                <div className="flex justify-between items-center bg-gray-200 p-1">
-                    <div className="flex">
+                <div className="flex justify-between items-center bg-black text-white p-2">
+                    <div className="flex gap-2">
                         <img className="w-20" src="https://plus.unsplash.com/premium_photo-1661347900107-eee09e9ae234?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
                         <div className="flex flex-col">
                             <span>Model</span>
@@ -27,10 +27,10 @@ export default function Hero() {
                     <div></div>
                     <div>Listed on</div>
                     <div>Price</div>
-                    <Button>Remove</Button>
+                    <Button bg='remove'>Remove</Button>
                 </div>
-                <div className="flex justify-between items-center bg-gray-200 p-1">
-                    <div className="flex">
+                <div className="flex justify-between items-center bg-black text-white p-2">
+                    <div className="flex gap-2">
                         <img className="w-20" src="https://plus.unsplash.com/premium_photo-1661347900107-eee09e9ae234?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
                         <div className="flex flex-col">
                             <span>Model</span>
@@ -40,14 +40,15 @@ export default function Hero() {
                     <div></div>
                     <div>Listed on</div>
                     <div>Price</div>
-                    <Button>Remove</Button>
+                    <Button bg='remove'>Remove</Button>
                 </div>
+
             </div>
             <div className="flex flex-col gap-2">
                 {/* รอ map ของ user */}
                 <div>My buy orders</div>
-                <div className="flex justify-between items-center bg-egg p-1">
-                    <div className="flex">
+                <div className="flex justify-between items-center bg-black text-white p-2">
+                    <div className="flex gap-2">
                         <img className="w-20" src="https://plus.unsplash.com/premium_photo-1661347900107-eee09e9ae234?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
                         <div className="flex flex-col">
                             <span>Model</span>
@@ -57,10 +58,10 @@ export default function Hero() {
                     <div></div>
                     <div>Listed on</div>
                     <div>Price</div>
-                    <Button>Remove</Button>
+                    <Button bg='remove'>Remove</Button>
                 </div>
-                <div className="flex justify-between items-center bg-egg p-1">
-                    <div className="flex">
+                <div className="flex justify-between items-center bg-black text-white p-2">
+                    <div className="flex gap-2">
                         <img className="w-20" src="https://plus.unsplash.com/premium_photo-1661347900107-eee09e9ae234?q=80&w=2069&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
                         <div className="flex flex-col">
                             <span>Model</span>
@@ -70,7 +71,7 @@ export default function Hero() {
                     <div></div>
                     <div>Listed on</div>
                     <div>Price</div>
-                    <Button>Remove</Button>
+                    <Button bg='remove'>Remove</Button>
                 </div>
             </div>
         </div>
