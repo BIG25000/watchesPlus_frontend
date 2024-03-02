@@ -1,6 +1,6 @@
 import { useState } from "react";
-import MyActiveListing from "../components/MyActiveListing";
-import MyMarketHistory from "../components/MyMarketHistory";
+import MyActiveListing from "../features/product/components/MyActiveListing";
+import MyMarketHistory from "../features/product/components/MyMarketHistory";
 import Button from "../components/Button";
 
 export default function Hero() {
