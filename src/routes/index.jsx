@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import ForgotPasswordPage from "../pages/ForgotPasswordPage";
-import LiveChat from "../pages/LiveChat";
+import OuterPage from "../layouts/OuterPage";
 
 const router = createBrowserRouter([
   {
@@ -20,10 +20,6 @@ const router = createBrowserRouter([
       {
         path: "auth/forgot-password",
         element: <ForgotPasswordPage />,
-      },
-      {
-        path: "livechat",
-        element: <LiveChat />,
       },
     ],
   },
