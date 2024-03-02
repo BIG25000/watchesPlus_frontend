@@ -7,3 +7,7 @@
   margin: 0;
   padding: 0;
 }
+
+.navbar {
+  background-image: linear-gradient(to top, #725936, #634e2f, #544329, #463822, #392e1c, #312818, #292215, #221c11, #1d180e, #19140a, #140f05, #0d0901);
+}

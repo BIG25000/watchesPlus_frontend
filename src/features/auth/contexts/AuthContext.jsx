@@ -1,6 +1,7 @@
 import { useState, createContext } from "react";
-import * as authAPI from "../../../apis/auth";
 import { toast } from "react-toastify";
+
+import * as authAPI from "../../../apis/auth";
 import { setToken } from "../../../utils/local-storage";
 
 export const AuthContext = createContext();
@@ -15,7 +16,8 @@ export default function AuthContextProvider({ children }) {
       setToken(res.data.accessToken);
       toast.success(res.data.message);
     } catch (error) {
-      toast.error(error.message);
+      console.log(error.response.data.message)
+      toast.error(error.response.data.message);
     }
   };
   const login = async (input) => {
@@ -31,9 +33,10 @@ export default function AuthContextProvider({ children }) {
   const changePassword = async (user) => {
     try {
       const res = await authAPI.changePassword(user);
-      return res;
-    } catch (err) {
-      return err;
+      toast.success(res.data.message);
+    } catch (error) {
+      console.log(error.response)
+      toast.error(error.message);
     }
   };
   return (

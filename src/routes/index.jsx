@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import ForgotPasswordPage from "../pages/ForgotPasswordPage";
@@ -12,23 +12,96 @@ import CreateProductForm from "../features/admins/products/CreateProductForm";
 import ProductIdForm from "../features/admins/products/ProductIdForm";
 import UserIdForm from "../features/admins/users/UserIdForm";
 import EditProductForm from "../features/admins/products/EditProductForm";
+import OuterPage from "../layouts/OuterPage";
+import HomePage from "../pages/HomePage";
+import Container from "../layouts/Container";
+import ProductDetailPage from "../pages/ProductDetailPage";
+import { Outlet } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: "",
     element: <Outlet />,
     children: [
       {
-        path: "/auth/register",
-        element: <RegisterPage />,
+        path: "/",
+        element: <Container />,
+        children: [
+          {
+            path: "",
+            element: <HomePage />, //hompage
+          },
+          {
+            path: "search",
+            element: <>SearchPage</>, //search + all watches
+          },
+          {
+            path: "profile",
+            element: <Outlet />, //search + all watches
+            children: [
+              {
+                path: "",
+                element: <>ProfilePage</>,
+              },
+              {
+                path: "wishlist",
+                element: <>WishlistPage</>,
+              },
+              {
+                path: "history",
+                element: <>HistoryPage</>,
+              },
+              {
+                path: "inventory",
+                element: <>InventoryPage</>,
+                children: [
+                  {
+                    path: ":inventoryId",
+                    element: <>Watch in InventoryId</>,
+                  },
+                ],
+              },
+              {
+                path: "wallet",
+                element: <>WalletPage</>,
+              },
+            ],
+          },
+          {
+            path: "watch",
+            element: <Outlet />,
+            children: [
+              {
+                path: ":watchId",
+                element: <ProductDetailPage />,
+              },
+            ],
+          },
+        ],
       },
       {
-        path: "/auth/login",
-        element: <LoginPage />,
+        path: "/register",
+        element: (
+          <OuterPage>
+            <RegisterPage />
+          </OuterPage>
+        ),
       },
       {
-        path: "/auth/forgot-password",
-        element: <ForgotPasswordPage />,
+        path: "/login",
+        element: (
+          <OuterPage>
+            <LoginPage />
+          </OuterPage>
+        ),
+      },
+      {
+        path: "/forgot-password",
+        element: (
+          <OuterPage>
+            <ForgotPasswordPage />
+          </OuterPage>
+        ),
       },
     ],
   },
