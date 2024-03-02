@@ -1,6 +1,6 @@
-import { CircleUserRound, Inbox, Wallet, LogOut } from "lucide-react"
 import { useState } from "react"
 import DropdownItem from "../components/DropdownItem"
+import { dropdownList } from '../constants/Navbar'
 
 export default function DropdownNavbar() {
     const [open, setOpen] = useState(false)
@@ -8,33 +8,6 @@ export default function DropdownNavbar() {
     const handleToggleDropdown = () => {
         setOpen(!open)
     }
-
-    const dropdownList = [
-        {
-            id: 1,
-            icon: <CircleUserRound />,
-            name: 'Profile',
-            link: '/profile'
-        },
-        {
-            id: 2,
-            icon: <Inbox />,
-            name: 'Inventory',
-            link: '/profile/inventory'
-        },
-        {
-            id: 3,
-            icon: <Wallet />,
-            name: 'Wallet',
-            link: '/profile/wallet'
-        },
-        {
-            id: 4,
-            icon: <LogOut />,
-            name: 'Logout',
-            link: '/'
-        },
-    ]
 
     return (
         <div className="relative">
