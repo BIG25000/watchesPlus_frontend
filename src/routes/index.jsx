@@ -94,6 +94,15 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/homepage",
+    element: (
+      <>
+        <Navbar />
+        <HomePage />
+      </>
+    ),
+  },
 ]);
 
 export default function Router() {
