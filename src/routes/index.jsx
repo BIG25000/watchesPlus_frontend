@@ -3,25 +3,35 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import ForgotPasswordPage from "../pages/ForgotPasswordPage";
 import OuterPage from "../layouts/OuterPage";
+import ProfilePage from "../pages/ProfilePage";
+import { Outlet } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <OuterPage />,
+    element: <Outlet />,
     children: [
       {
-        path: "auth/register",
-        element: <RegisterPage />,
+        path: "register",
+        element: (
+          <OuterPage>
+            <RegisterPage />
+          </OuterPage>
+        ),
       },
       {
-        path: "auth/login",
+        path: "login",
         element: <LoginPage />,
       },
       {
-        path: "auth/forgot-password",
+        path: "forgot-password",
         element: <ForgotPasswordPage />,
       },
     ],
+  },
+  {
+    path: "/profile",
+    element: <ProfilePage />,
   },
 ]);
 
