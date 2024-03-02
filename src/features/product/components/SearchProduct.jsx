@@ -1,7 +1,7 @@
 import CardProduct from './CardProduct'
 import SelectionForm from './SelectionForm'
 import { sortBrand, sortProduct } from '../../../constants/sort'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 export default function SearchProduct() {
     const [selectProduct, setSelectProduct] = useState(null)
