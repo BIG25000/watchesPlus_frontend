@@ -7,6 +7,7 @@ import HomePage from "../pages/HomePage";
 import Container from "../layouts/Container";
 import ProductDetailPage from "../pages/ProductDetailPage";
 import { Outlet } from "react-router-dom";
+import SearchProductPage from "../pages/SearchProductPage";
 
 const router = createBrowserRouter([
   {
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
           },
           {
             path: "search",
-            element: <>SearchPage</>, //search + all watches
+            element: <SearchProductPage />, //search + all watches
           },
           {
             path: "profile",
