@@ -1,7 +1,7 @@
 import React from "react";
 import Title from "../../../components/Title";
-import OrderContainer from "../../../components/OrderContainer";
-import OrderList from "../../../components/OrderList";
+import OrderContainer from "./OrderContainer";
+import OrderList from "./OrderList";
 
 export default function DetailProduct() {
   return (

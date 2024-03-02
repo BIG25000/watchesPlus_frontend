@@ -1,6 +1,6 @@
 import React from 'react'
-import Avatar from './Avatar'
-import { baht } from '../constants/baht'
+import Avatar from '../../../components/Avatar'
+import { baht } from '../../../constants/baht'
 
 export default function OrderList() {
   return (

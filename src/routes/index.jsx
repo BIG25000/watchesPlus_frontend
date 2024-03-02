@@ -3,7 +3,8 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import ForgotPasswordPage from "../pages/ForgotPasswordPage";
 import OuterPage from "../layouts/OuterPage";
-import Wrapper from "../layouts/Wrapper";
+import HomePage from "../pages/HomePage";
+import Container from "../layouts/Container";
 import ProductDetailPage from "../pages/ProductDetailPage";
 import { Outlet } from "react-router-dom";
 
@@ -14,11 +15,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Wrapper />,
+        element: <Container />,
         children: [
           {
             path: "",
-            element: <>HomePage</>, //hompage
+            element: <HomePage />, //hompage
           },
           {
             path: "search",
@@ -26,35 +27,35 @@ const router = createBrowserRouter([
           },
           {
             path: "profile",
-            element: <Outlet/>, //search + all watches
-            children :[
+            element: <Outlet />, //search + all watches
+            children: [
               {
-                path :'',
-                element : <>ProfilePage</> 
+                path: "",
+                element: <>ProfilePage</>,
               },
               {
-                path :'wishlist',
-                element : <>WishlistPage</> 
+                path: "wishlist",
+                element: <>WishlistPage</>,
               },
               {
-                path :'history',
-                element : <>HistoryPage</> 
+                path: "history",
+                element: <>HistoryPage</>,
               },
               {
-                path :'inventory',
-                element : <>InventoryPage</> ,
-                children : [
+                path: "inventory",
+                element: <>InventoryPage</>,
+                children: [
                   {
-                    path : ':inventoryId',
-                    element: <>Watch in InventoryId</>
-                  }
-                ]
+                    path: ":inventoryId",
+                    element: <>Watch in InventoryId</>,
+                  },
+                ],
               },
               {
-                path :'wallet',
-                element : <>WalletPage</>
+                path: "wallet",
+                element: <>WalletPage</>,
               },
-            ]
+            ],
           },
           {
             path: "watch",
@@ -93,15 +94,6 @@ const router = createBrowserRouter([
         ),
       },
     ],
-  },
-  {
-    path: "/homepage",
-    element: (
-      <>
-        <Navbar />
-        <HomePage />
-      </>
-    ),
   },
 ]);
 

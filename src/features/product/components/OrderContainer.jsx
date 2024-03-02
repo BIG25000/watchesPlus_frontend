@@ -1,5 +1,5 @@
 import React from "react";
-import { baht } from "../constants/baht";
+import { baht } from "../../../constants/baht";
 import BuyModal from "./BuyModal";
 import SellModal from "./SellModal";
 
