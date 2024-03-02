@@ -39,6 +39,7 @@ export default function RegisterForm() {
       }
       await register(input);
     } catch (error) {
+      console.log(error.response)
       toast.error(error.message);
     }
   };
