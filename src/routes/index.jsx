@@ -3,6 +3,8 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import ForgotPasswordPage from "../pages/ForgotPasswordPage";
 import OuterPage from "../layouts/OuterPage";
+import Navbar from "../layouts/Navbar";
+import HomePage from "../pages/HomePage";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,15 @@ const router = createBrowserRouter([
         element: <ForgotPasswordPage />,
       },
     ],
+  },
+  {
+    path: "/homepage",
+    element: (
+      <>
+        <Navbar />
+        <HomePage />
+      </>
+    ),
   },
 ]);
 
