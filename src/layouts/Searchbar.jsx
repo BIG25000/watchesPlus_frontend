@@ -3,9 +3,11 @@ import { useState, useEffect, useRef } from 'react'
 
 import Input from "../components/Input";
 import { allWatches } from '../apis/watches'
+import { useNavigate } from "react-router-dom";
 
 export default function Searchbar() {
     const searchEl = useRef()
+    const navigate = useNavigate()
     const [filterData, setFilterData] = useState([])
     const [search, setSearch] = useState([])
 
@@ -35,6 +37,11 @@ export default function Searchbar() {
             setSearch([])
         }
     }
+
+    const handleItemClick = (item) => {
+        setSearch([])
+        navigate(`/search?keyword=${item.modelName}`)
+    }
     return (
         <div className='relative' ref={searchEl}>
             <Input
@@ -50,7 +57,12 @@ export default function Searchbar() {
                     {search.map((item, index) => {
                         if (index < 5) {
                             return (
-                                <div key={item.id} role="button" className="p-1 bg-brown hover:bg-amber-500 border-b-[1px] border-black border rounded">
+                                <div
+                                    key={item.id}
+                                    role="button"
+                                    className="p-1 bg-brown hover:bg-amber-500 border-b-[1px] border-black border rounded"
+                                    onClick={() => handleItemClick(item)}
+                                >
                                     {item.modelName}
                                 </div>
                             )
@@ -58,6 +70,6 @@ export default function Searchbar() {
                     })}
                 </div>
             }
-        </div>
+        </div >
     )
 }

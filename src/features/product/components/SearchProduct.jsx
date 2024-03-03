@@ -2,10 +2,20 @@ import CardProduct from './CardProduct'
 import SelectionForm from './SelectionForm'
 import { sortBrand, sortProduct } from '../../../constants/sort'
 import { useState, useEffect } from 'react'
+import { allWatches } from '../../../apis/watches'
 
 export default function SearchProduct() {
     const [selectProduct, setSelectProduct] = useState(null)
     const [selectBrand, setSelectBrand] = useState(null)
+    const [products, setProducts] = useState([])
+
+    useEffect(() => {
+        async function fetchDate() {
+            const response = await allWatches()
+            setProducts(response.data.data)
+        }
+        fetchDate()
+    }, [])
 
     const handleSelectSortProduct = (e) => {
         setSelectProduct(e.target.value)
@@ -22,11 +32,7 @@ export default function SearchProduct() {
                 <SelectionForm sort={sortBrand} onChange={handleSelectSortBrand} />
             </div>
             <div className='flex flex-wrap gap-4'>
-                <CardProduct />
-                <CardProduct />
-                <CardProduct />
-                <CardProduct />
-                <CardProduct />
+                {products.map(product => <CardProduct data={product} />)}
             </div>
         </div>
     )
