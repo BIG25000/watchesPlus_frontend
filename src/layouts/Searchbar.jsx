@@ -53,21 +53,17 @@ export default function Searchbar() {
                 <Search />
             </ Input>
             {search &&
-                <div className="absolute flex flex-col  w-full top-12 text-black shadow">
-                    {search.map((item, index) => {
-                        if (index < 5) {
-                            return (
-                                <div
-                                    key={item.id}
-                                    role="button"
-                                    className="p-1 bg-brown hover:bg-amber-500 border-b-[1px] border-black border rounded"
-                                    onClick={() => handleItemClick(item)}
-                                >
-                                    {item.modelName}
-                                </div>
-                            )
-                        }
-                    })}
+                <div className="absolute flex flex-col max-h-40 overflow-y-scroll w-full top-12 text-black shadow rounded">
+                    {search.map((item, index) => (
+                        <div
+                            key={item.id}
+                            role="button"
+                            className="py-1 px-3 bg-egg hover:bg-amber-500 border-b-[1px] border-black"
+                            onClick={() => handleItemClick(item)}
+                        >
+                            {item.modelName}
+                        </div>
+                    ))}
                 </div>
             }
         </div >
