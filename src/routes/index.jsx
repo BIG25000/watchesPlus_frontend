@@ -21,6 +21,8 @@ import ProductDetailPage from "../pages/ProductDetailPage";
 import WalletPage from "../pages/WalletPage";
 import ShippingPage from "../pages/admins/ShippingPage";
 import BrandPage from "../pages/admins/BrandPage";
+import BrandAdminContextProvider from "../features/admins/brands/contexts/BrandAdminContext";
+import WatchAdminContextProvider from "../features/admins/products/contexts/WatchAdminContext";
 
 const router = createBrowserRouter([
   {
@@ -132,11 +134,23 @@ const router = createBrowserRouter([
       },
       {
         path: "products/create",
-        element: <CreateProductForm />,
+        element: (
+          <WatchAdminContextProvider>
+            <BrandAdminContextProvider>
+              <CreateProductForm />
+            </BrandAdminContextProvider>
+          </WatchAdminContextProvider>
+        ),
       },
       {
-        path: "products/edit/:productId",
-        element: <EditProductForm />,
+        path: "products/edit/:watchId",
+        element: (
+          <WatchAdminContextProvider>
+            <BrandAdminContextProvider>
+              <EditProductForm />
+            </BrandAdminContextProvider>
+          </WatchAdminContextProvider>
+        ),
       },
       {
         path: "products/:productId",

@@ -7,15 +7,16 @@ function EditBrandForm({ id }) {
   const [input, setInput] = useState({});
   const { editBrand, brands } = brandAdmin();
 
+  const filterBrands = brands.filter((e) => e.id == id)[0];
+
   const handleFormSubmit = async (e) => {
     try {
       e.preventDefault();
-      console.log(id);
-      console.log(`editBrand${id}`);
-      console.log("*******", input);
+      // console.log(id);
+      // console.log(`editBrand${id}`);
+      // console.log("*******", input);
 
       await editBrand(input, id);
-      toast.success("edit brand success");
     } catch (err) {
       console.log(err);
     }
@@ -33,13 +34,10 @@ function EditBrandForm({ id }) {
         <div className="grid grid-cols-3 items-center gap-2">
           <div className="col-span-2">
             <label className="form-control w-full max-w-xs">
-              <div className="label">
-                <span className="label-text">Name</span>
-                <span className="label-text">{id}</span>
-              </div>
+              <div className="label"></div>
               <input
                 type="text"
-                placeholder="name"
+                placeholder={filterBrands.name}
                 name="name"
                 value={input.name}
                 className="input input-bordered w-full max-w-xs"
@@ -50,8 +48,18 @@ function EditBrandForm({ id }) {
           </div>
         </div>
         <div className="flex justify-center gap-3">
-          <button className="btn w-full" type="submit">
+          <button className="btn" type="submit">
             Edit Brand
+          </button>
+          <button
+            className="btn"
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              document.getElementById(`editBrand${id}`).close();
+            }}
+          >
+            cancal
           </button>
         </div>
       </form>

@@ -1,5 +1,4 @@
 import React from "react";
-import { watches } from "./ProductForm";
 
 function ProductIdForm() {
   return (

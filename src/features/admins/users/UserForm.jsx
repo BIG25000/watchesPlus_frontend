@@ -4,122 +4,12 @@ import { Navigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Modal from "../../../components/admins/Modal";
 import BlockForm from "./BlockForm";
-
-const users = [
-  {
-    id: 1,
-    firstname: "John",
-    lastname: "Doe",
-    display_name: "John D",
-    email: "john.doe@example.com",
-    mobile: "1234567890",
-    status: "ACTIVE",
-    authentication_method: "NORMAL",
-    profile_image: "https://source.unsplash.com/80x80?face",
-  },
-  {
-    id: 2,
-    firstname: "Alice",
-    lastname: "Smith",
-    display_name: "Alice S",
-    email: "alice.smith@example.com",
-    mobile: "9876543210",
-    status: "ACTIVE",
-    authentication_method: "Google",
-    profile_image: "https://source.unsplash.com/80x80?face",
-  },
-  {
-    id: 3,
-    firstname: "Bob",
-    lastname: "Johnson",
-    display_name: "Bob J",
-    email: "bob.johnson@example.com",
-    mobile: "5551234567",
-    status: "BLOCK",
-    authentication_method: "Facebook",
-    profile_image: "https://source.unsplash.com/80x80?face",
-  },
-  {
-    id: 4,
-    firstname: "Emily",
-    lastname: "Brown",
-    display_name: "Emily B",
-    email: "emily.brown@example.com",
-    mobile: "6669876543",
-    status: "ACTIVE",
-    authentication_method: "ADMIN",
-    profile_image: "https://source.unsplash.com/80x80?face",
-  },
-  {
-    id: 5,
-    firstname: "Michael",
-    lastname: "Johnson",
-    display_name: "Michael J",
-    email: "michael.johnson@example.com",
-    mobile: "7776543210",
-    status: "ACTIVE",
-    authentication_method: "Google",
-    profile_image: "https://source.unsplash.com/80x80?face",
-  },
-  {
-    id: 6,
-    firstname: "Sarah",
-    lastname: "Miller",
-    display_name: "Sarah M",
-    email: "sarah.miller@example.com",
-    mobile: "8881234567",
-    status: "ACTIVE",
-    authentication_method: "NORMAL",
-    profile_image: "https://source.unsplash.com/80x80?face",
-  },
-  {
-    id: 7,
-    firstname: "David",
-    lastname: "Wilson",
-    display_name: "David W",
-    email: "david.wilson@example.com",
-    mobile: "9999876543",
-    status: "BLOCK",
-    authentication_method: "Facebook",
-    profile_image: "https://source.unsplash.com/80x80?face",
-  },
-  {
-    id: 8,
-    firstname: "Emma",
-    lastname: "Jones",
-    display_name: "Emma J",
-    email: "emma.jones@example.com",
-    mobile: "4444567890",
-    status: "ACTIVE",
-    authentication_method: "ADMIN",
-    profile_image: "https://source.unsplash.com/80x80?face",
-  },
-  {
-    id: 9,
-    firstname: "Daniel",
-    lastname: "Davis",
-    display_name: "Daniel D",
-    email: "daniel.davis@example.com",
-    mobile: "3336543210",
-    status: "ACTIVE",
-    authentication_method: "Google",
-    profile_image: "https://source.unsplash.com/80x80?face",
-  },
-  {
-    id: 10,
-    firstname: "Olivia",
-    lastname: "Wilson",
-    display_name: "Olivia W",
-    email: "olivia.wilson@example.com",
-    mobile: "2221234567",
-    status: "BLOCK",
-    authentication_method: "NORMAL",
-    profile_image: "https://source.unsplash.com/80x80?face",
-  },
-];
+import userAdmin from "./hooks/userAdmin";
 
 function UserForm() {
   const navigate = useNavigate();
+  const { users } = userAdmin();
+  console.log(users);
   return (
     <div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
       <div className="flex justify-between items-center">

@@ -1,4 +1,4 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 import { toast } from "react-toastify";
 
 import * as authAPI from "../../../apis/auth";
@@ -16,7 +16,7 @@ export default function AuthContextProvider({ children }) {
       setToken(res.data.accessToken);
       toast.success(res.data.message);
     } catch (error) {
-      console.log(error.response.data.message)
+      console.log(error.response.data.message);
       toast.error(error.response.data.message);
     }
   };
@@ -35,7 +35,7 @@ export default function AuthContextProvider({ children }) {
       const res = await authAPI.changePassword(user);
       toast.success(res.data.message);
     } catch (error) {
-      console.log(error.response)
+      console.log(error.response);
       toast.error(error.message);
     }
   };

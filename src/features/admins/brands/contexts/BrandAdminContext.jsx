@@ -3,6 +3,7 @@ import { createContext } from "react";
 import * as brandApi from "../../../../apis/admins/brand";
 import { useEffect } from "react";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export const BrandAdminContext = createContext();
 
@@ -18,7 +19,9 @@ function BrandAdminContextProvider({ children }) {
 
   const createBrand = async (name) => {
     try {
-      await brandApi.createBrand(name);
+      const result = await brandApi.createBrand(name);
+      setBrands((res) => [...res, result.data.data]);
+      toast.success("create brand success");
     } catch (error) {
       console.log(error);
     }
@@ -27,6 +30,9 @@ function BrandAdminContextProvider({ children }) {
   const editBrand = async (name, id) => {
     try {
       await brandApi.editBrand(name, id);
+      const res = await brandApi.getAllBrand();
+      setBrands(res.data.data);
+      toast.success("edit brand success");
     } catch (error) {
       console.log(error);
     }
@@ -35,6 +41,9 @@ function BrandAdminContextProvider({ children }) {
   const deleteBrand = async (id) => {
     try {
       await brandApi.deleteBrand(id);
+      const res = await brandApi.getAllBrand();
+      setBrands(res.data.data);
+      toast.success("delete brand success");
     } catch (error) {
       console.log(error);
     }
