@@ -1,6 +1,5 @@
 import React from "react";
 
-
 export default function OuterPage({ children }) {
   return (
     <div className="h-screen w-screen bg-cover bg-center bg-[url('../src/assets/outer-bg.jpeg')]">

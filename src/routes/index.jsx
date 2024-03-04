@@ -13,10 +13,12 @@ import ProductIdForm from "../features/admins/products/ProductIdForm";
 import UserIdForm from "../features/admins/users/UserIdForm";
 import EditProductForm from "../features/admins/products/EditProductForm";
 import OuterPage from "../layouts/OuterPage";
+import ProfilePage from "../pages/ProfilePage";
+import { Outlet } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import Container from "../layouts/Container";
 import ProductDetailPage from "../pages/ProductDetailPage";
-import { Outlet } from "react-router-dom";
+import WalletPage from "../pages/WalletPage";
 import ShippingPage from "../pages/admins/ShippingPage";
 import BrandPage from "../pages/admins/BrandPage";
 
@@ -43,7 +45,7 @@ const router = createBrowserRouter([
             children: [
               {
                 path: "",
-                element: <>ProfilePage</>,
+                element: <ProfilePage />,
               },
               {
                 path: "wishlist",
@@ -65,7 +67,7 @@ const router = createBrowserRouter([
               },
               {
                 path: "wallet",
-                element: <>WalletPage</>,
+                element: <WalletPage />,
               },
             ],
           },
@@ -106,6 +108,10 @@ const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "/profile",
+    element: <ProfilePage />,
   },
   // ************************************************************************ ADMIN *****************
   {
