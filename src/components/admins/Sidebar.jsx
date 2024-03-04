@@ -28,7 +28,9 @@ export default function Sidebar() {
         <div className="bg-neutral-900 w-60 p-3 flex flex-col h-full bg-opacity-60">
           <div className="flex items-center gap-2 px-1 py-3 ">
             <Watch />
-            <span className="text-neutral-200 text-lg">WATCHESPLUS+</span>
+            <Link to="" className="text-neutral-200 text-lg">
+              WATCHESPLUS+
+            </Link>
           </div>
           <div className="py-8 flex flex-1 flex-col gap-0.5">
             {DASHBOARD_SIDEBAR_LINKS.map((link) => (

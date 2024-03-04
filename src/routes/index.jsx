@@ -17,6 +17,8 @@ import HomePage from "../pages/HomePage";
 import Container from "../layouts/Container";
 import ProductDetailPage from "../pages/ProductDetailPage";
 import { Outlet } from "react-router-dom";
+import ShippingPage from "../pages/admins/ShippingPage";
+import BrandPage from "../pages/admins/BrandPage";
 
 const router = createBrowserRouter([
   {
@@ -115,6 +117,10 @@ const router = createBrowserRouter([
         element: <HomePageInAdmin />,
       },
       {
+        path: "brand",
+        element: <BrandPage />,
+      },
+      {
         path: "products",
         element: <ProductPage />,
       },
@@ -123,7 +129,7 @@ const router = createBrowserRouter([
         element: <CreateProductForm />,
       },
       {
-        path: "products/edit",
+        path: "products/edit/:productId",
         element: <EditProductForm />,
       },
       {
@@ -131,7 +137,7 @@ const router = createBrowserRouter([
         element: <ProductIdForm />,
       },
       {
-        path: "transactions",
+        path: "inventory",
         element: <TransactionPage />,
       },
       {
@@ -141,6 +147,10 @@ const router = createBrowserRouter([
       {
         path: "users/:userId",
         element: <UserIdForm />,
+      },
+      {
+        path: "shipping",
+        element: <ShippingPage />,
       },
     ],
     // ************************************************************************ ADMIN *****************

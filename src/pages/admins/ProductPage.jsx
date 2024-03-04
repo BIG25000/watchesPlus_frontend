@@ -1,11 +1,14 @@
 import React from "react";
 import ProductForm from "../../features/admins/products/ProductForm";
+import WatchAdminContextProvider from "../../features/admins/products/contexts/WatchAdminContext";
 
 function ProductPage() {
   return (
-    <div className="flex flex-col gap-4">
-      <ProductForm />
-    </div>
+    <WatchAdminContextProvider>
+      <div className="flex flex-col gap-4">
+        <ProductForm />
+      </div>
+    </WatchAdminContextProvider>
   );
 }
 

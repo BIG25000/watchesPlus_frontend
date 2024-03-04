@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom";
 import { Link } from "react-router-dom";
+import Modal from "../../../components/admins/Modal";
+import BlockForm from "./BlockForm";
 
 const users = [
   {
@@ -138,9 +140,10 @@ function UserForm() {
             </thead>
             <tbody>
               {users.map((el) => (
-                <tr key={el.id} onClick={() => navigate(`${el.id}`)}>
+                // onClick={() => navigate(`${el.id}`)}
+                <tr key={el.id}>
                   <th>{el.id}</th>
-                  <td>
+                  <td onClick={() => navigate(`${el.id}`)} role="button">
                     <div className="flex items-center gap-3">
                       <div className="avatar">
                         <div
@@ -171,12 +174,14 @@ function UserForm() {
                   </td>
                   <td>
                     <div className="flex gap-3 ">
-                      <button
-                        className="btn btn-sm bg-gray-400 text-black"
-                        onClick={(e) => e.stopPropagation()}
+                      <Modal
+                        title="block"
+                        id={`block${el.id}`}
+                        // id="blockform"
+                        button="btn btn-sm bg-gray-400 text-black"
                       >
-                        Block
-                      </button>
+                        <BlockForm data={el.id} />
+                      </Modal>
                       <button
                         className="btn btn-sm bg-gray-400 text-black"
                         onClick={(e) => e.stopPropagation()}
