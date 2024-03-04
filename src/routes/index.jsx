@@ -8,6 +8,7 @@ import { Outlet } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import Container from "../layouts/Container";
 import ProductDetailPage from "../pages/ProductDetailPage";
+import WalletPage from "../pages/WalletPage";
 
 const router = createBrowserRouter([
   {
@@ -32,7 +33,7 @@ const router = createBrowserRouter([
             children: [
               {
                 path: "",
-                element: <>ProfilePage</>,
+                element: <ProfilePage />,
               },
               {
                 path: "wishlist",
@@ -54,7 +55,7 @@ const router = createBrowserRouter([
               },
               {
                 path: "wallet",
-                element: <>WalletPage</>,
+                element: <WalletPage />,
               },
             ],
           },

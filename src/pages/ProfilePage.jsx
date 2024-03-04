@@ -1,5 +1,5 @@
 import React from "react";
-import Wallet from "../features/user/components/Wallet";
+import Wallet from "../features/wallet/components/Wallet";
 
 export default function ProfilePage() {
   return (
@@ -29,7 +29,6 @@ export default function ProfilePage() {
           </div>
         </div>
       </div>
-      <Wallet />
     </div>
   );
 }

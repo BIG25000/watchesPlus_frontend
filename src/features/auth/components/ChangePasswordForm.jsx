@@ -34,7 +34,7 @@ export default function ChangePasswordForm() {
         }
       }
       await changePassword(input);
-      navigate("/auth/login");
+      await navigate("/auth/login");
     } catch (error) {
       toast.error(error.message);
     }
