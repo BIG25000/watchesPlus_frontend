@@ -10,5 +10,5 @@ export default {
       egg: "#F6F2EE",
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 };
