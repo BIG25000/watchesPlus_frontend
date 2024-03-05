@@ -6,7 +6,7 @@ import LiveChat from "../pages/LiveChat";
 import ChatContextProvider from "../features/livechat/contexts/ChatContext";
 import SearchContextProvider from "../features/search/context/SearchContext";
 
-export default function Wrapper() {
+export default function Container() {
   return (
     <>
       <SearchContextProvider>

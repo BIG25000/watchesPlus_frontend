@@ -7,25 +7,22 @@ export const SearchContext = createContext()
 
 export default function SearchContextProvider({ children }) {
     const navigate = useNavigate()
+    const [searchElement, setSearchElement] = useState('')
     const [filterData, setFilterData] = useState([])
     const [search, setSearch] = useState([])
     const [querySearch, setQuerySearch] = useState(window.location.search)
     const [selectProduct, setSelectProduct] = useState(null)
     const [selectBrand, setSelectBrand] = useState(null)
     const [products, setProducts] = useState([])
-    const [rerender, setRerender] = useState(false)
 
     async function fetchData() {
         const query = window.location.search
-        console.log(query);
         setQuerySearch(query)
-        console.log('***********', querySearch);
 
         const response = await allWatches()
         setFilterData(response.data.data)
 
         if (querySearch !== '') {
-            console.log('have query string');
             const response = await searchWatches(querySearch)
             setProducts(response.data.data)
         } else {
@@ -39,6 +36,7 @@ export default function SearchContextProvider({ children }) {
     }, [querySearch])
 
     const handleFilter = (value) => {
+        setSearchElement(value)
         const result = filterData.filter(model => model.modelName.toLowerCase().includes(value))
         setSearch(result)
         if (value === '') {
@@ -48,6 +46,7 @@ export default function SearchContextProvider({ children }) {
 
     const handleItemClick = (item) => {
         setSearch([])
+        setSearchElement('')
         navigate(`/search?keyword=${item.modelName}`)
         setQuerySearch(window.location.search)
     }
@@ -61,7 +60,7 @@ export default function SearchContextProvider({ children }) {
     }
     return (
         <SearchContext.Provider
-            value={{ search, setSearch, handleFilter, handleItemClick, selectProduct, selectBrand, products, handleSelectProduct, handleSelectBrand }}
+            value={{ searchElement, setSearchElement, search, setSearch, handleFilter, handleItemClick, selectProduct, selectBrand, products, handleSelectProduct, handleSelectBrand }}
         >
             {children}
         </SearchContext.Provider>
