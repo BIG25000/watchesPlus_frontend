@@ -1,8 +1,10 @@
-import { useState , useRef , useEffect } from "react"
+import { useState, useRef, useEffect } from "react"
 import DropdownItem from "./DropdownItem"
 import { dropdownList } from '../constants/Navbar'
+import useAuth from "../hooks/useAuth"
 
 export default function DropdownNavbar() {
+    const { logout } = useAuth()
     const dropdownEl = useRef(null);
     const [open, setOpen] = useState(false)
 
@@ -17,7 +19,7 @@ export default function DropdownNavbar() {
                 }
             }
             document.addEventListener('mouseup', handleClickOutside);
-            
+
             return () => document.removeEventListener('mouseup', handleClickOutside);
         }
     }, [open]);
@@ -29,7 +31,10 @@ export default function DropdownNavbar() {
             </div>
             {open && (
                 <div className="border-2 border-brown bg-black absolute right-0 top-14 w-44 rounded-md shadow">
-                    {dropdownList.map(el => <DropdownItem key={el.id} icon={el.icon} name={el.name} link={el.link} />)}
+                    {dropdownList.map(el => el.id === dropdownList.length
+                        ? <DropdownItem key={el.id} icon={el.icon} name={el.name} link={el.link} onClick={logout} />
+                        : <DropdownItem key={el.id} icon={el.icon} name={el.name} link={el.link} />
+                    )}
                 </div>
             )}
         </div>
