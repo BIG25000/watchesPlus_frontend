@@ -7,7 +7,7 @@ export default function Wrapper() {
   return (
     <>
       <Navbar />
-        <Outlet/>
+      <Outlet />
       <Footer />
     </>
   );

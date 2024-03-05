@@ -3,11 +3,14 @@ import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import ForgotPasswordPage from "../pages/ForgotPasswordPage";
 import OuterPage from "../layouts/OuterPage";
+import ProfilePage from "../pages/ProfilePage";
+import { Outlet } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import Container from "../layouts/Container";
 import ProductDetailPage from "../pages/ProductDetailPage";
-import { Outlet } from "react-router-dom";
 import ProfileHistoryPage from "../pages/ProfileHistoryPage";
+import SearchProductPage from "../pages/SearchProductPage";
+import WalletPage from "../pages/WalletPage";
 
 const router = createBrowserRouter([
   {
@@ -24,7 +27,7 @@ const router = createBrowserRouter([
           },
           {
             path: "search",
-            element: <>SearchPage</>, //search + all watches
+            element: <SearchProductPage />, //search + all watches
           },
           {
             path: "profile",
@@ -32,7 +35,7 @@ const router = createBrowserRouter([
             children: [
               {
                 path: "",
-                element: <>ProfilePage</>,
+                element: <ProfilePage />,
               },
               {
                 path: "wishlist",
@@ -54,7 +57,7 @@ const router = createBrowserRouter([
               },
               {
                 path: "wallet",
-                element: <>WalletPage</>,
+                element: <WalletPage />,
               },
             ],
           },
@@ -95,6 +98,10 @@ const router = createBrowserRouter([
         ),
       },
     ],
+  },
+  {
+    path: "/profile",
+    element: <ProfilePage />,
   },
 ]);
 

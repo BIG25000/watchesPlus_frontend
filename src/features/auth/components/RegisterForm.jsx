@@ -4,6 +4,7 @@ import useAuth from "../../../hooks/useAuth";
 import Input from "../../../components/Input";
 import { toast } from "react-toastify";
 import { User, Mail, Lock } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const initial = {
   firstName: "",
@@ -14,6 +15,7 @@ const initial = {
 };
 export default function RegisterForm() {
   const [input, setInput] = useState(initial);
+  const navigate = useNavigate();
 
   const { register } = useAuth();
   const hdlChangeInput = (e) => {
@@ -38,8 +40,9 @@ export default function RegisterForm() {
         }
       }
       await register(input);
+      await navigate("/login");
     } catch (error) {
-      console.log(error.response)
+      console.log(error.response);
       toast.error(error.message);
     }
   };

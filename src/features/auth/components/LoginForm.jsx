@@ -5,6 +5,7 @@ import Input from "../../../components/Input";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
 import { User, Lock } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const initial = {
   email: "",
@@ -12,6 +13,7 @@ const initial = {
 };
 export default function LoginForm() {
   const [input, setInput] = useState(initial);
+  const navigate = useNavigate();
 
   const { login } = useAuth();
   const hdlChangeInput = (e) => {
@@ -30,6 +32,7 @@ export default function LoginForm() {
         }
       }
       await login(input);
+      await navigate("/");
     } catch (error) {
       toast.error(error.message);
     }

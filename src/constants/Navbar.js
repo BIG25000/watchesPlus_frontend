@@ -21,6 +21,6 @@ export const dropdownList = [
         id: 4,
         icon: 'LogOut',
         name: 'Logout',
-        link: '/'
+        link: '/',
     },
 ]
