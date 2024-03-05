@@ -1,9 +1,8 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useEffect } from "react";
 import { toast } from "react-toastify";
 
 import * as authAPI from "../../../apis/auth";
 import { setToken, removeToken, getToken } from "../../../utils/local-storage";
-import { useEffect } from "react";
 
 export const AuthContext = createContext();
 
