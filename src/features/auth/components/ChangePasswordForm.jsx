@@ -42,7 +42,7 @@ export default function ChangePasswordForm() {
   return (
     <form
       onSubmit={hdlSubmit}
-      className="flex flex-col w-full h-full gap-6 items-center justify-center text-white"
+      className="flex flex-col w-full gap-6 items-center justify-center text-white"
     >
       <span className="text-xl">Please enter your email and new password</span>
       <Input

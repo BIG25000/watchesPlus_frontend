@@ -11,6 +11,7 @@ import ProductDetailPage from "../pages/ProductDetailPage";
 import ProfileHistoryPage from "../pages/ProfileHistoryPage";
 import SearchProductPage from "../pages/SearchProductPage";
 import WalletPage from "../pages/WalletPage";
+import RedirectIfAuthenticated from "../features/auth/components/RedirectIfAuthenticated";
 
 const router = createBrowserRouter([
   {
@@ -76,17 +77,21 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: (
-          <OuterPage>
-            <RegisterPage />
-          </OuterPage>
+          <RedirectIfAuthenticated>
+            <OuterPage>
+              <RegisterPage />
+            </OuterPage>
+          </RedirectIfAuthenticated>
         ),
       },
       {
         path: "/login",
         element: (
-          <OuterPage>
-            <LoginPage />
-          </OuterPage>
+          <RedirectIfAuthenticated>
+            <OuterPage>
+              <LoginPage />
+            </OuterPage>
+          </RedirectIfAuthenticated>
         ),
       },
       {

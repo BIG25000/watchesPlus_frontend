@@ -17,7 +17,6 @@ export default function AuthContextProvider({ children }) {
       setToken(res.data.accessToken);
       toast.success(res.data.message);
     } catch (error) {
-      console.log(error.response.data.message);
       toast.error(error.response.data.message);
     }
   };
@@ -28,7 +27,7 @@ export default function AuthContextProvider({ children }) {
       setToken(res.data.accessToken);
       toast.success(res.data.message);
     } catch (error) {
-      toast.error(error.message);
+      toast.error(error.response.data.message);
     }
   };
   const changePassword = async (user) => {
@@ -36,8 +35,7 @@ export default function AuthContextProvider({ children }) {
       const res = await authAPI.changePassword(user);
       toast.success(res.data.message);
     } catch (error) {
-      console.log(error.response);
-      toast.error(error.message);
+      toast.error(error.response.data.message);
     }
   };
   const logout = async () => {
@@ -53,7 +51,7 @@ export default function AuthContextProvider({ children }) {
   //
   const fetchAuthUser = async () => {
     const res = await authAPI.getMe();
-    setAuthUser(res.data);
+    setAuthUser(res.data.user);
   };
 
   useEffect(() => {
