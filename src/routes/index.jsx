@@ -8,6 +8,7 @@ import { Outlet } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import Container from "../layouts/Container";
 import ProductDetailPage from "../pages/ProductDetailPage";
+import ProfileHistoryPage from "../pages/ProfileHistoryPage";
 import SearchProductPage from "../pages/SearchProductPage";
 import WalletPage from "../pages/WalletPage";
 
@@ -42,7 +43,7 @@ const router = createBrowserRouter([
               },
               {
                 path: "history",
-                element: <>HistoryPage</>,
+                element: <ProfileHistoryPage />,
               },
               {
                 path: "inventory",
