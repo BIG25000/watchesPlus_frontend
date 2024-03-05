@@ -14,7 +14,6 @@ function CreateBrandForm() {
       console.log("*******", input);
 
       await createBrand(input);
-      toast.success("create brand success");
     } catch (err) {
       console.log(err);
     }

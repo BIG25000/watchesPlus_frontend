@@ -1,11 +1,10 @@
 import React from "react";
 import userAdmin from "./hooks/userAdmin";
 
-function BlockForm({ id }) {
-  const { updateStatusUser, users } = userAdmin();
+function UnblockForm({ id }) {
+  const { updateStatusUser2, users } = userAdmin();
 
   const filterUser = users.filter((e) => e.id == id)[0];
-
   return (
     <>
       <form>
@@ -20,8 +19,8 @@ function BlockForm({ id }) {
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              updateStatusUser(id);
-              document.getElementById(`block${id}`).close();
+              updateStatusUser2(id);
+              document.getElementById(`unblock${id}`).close();
             }}
           >
             confirm
@@ -31,7 +30,7 @@ function BlockForm({ id }) {
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              document.getElementById(`block${id}`).close();
+              document.getElementById(`unblock${id}`).close();
             }}
           >
             no
@@ -42,4 +41,4 @@ function BlockForm({ id }) {
   );
 }
 
-export default BlockForm;
+export default UnblockForm;

@@ -13,10 +13,7 @@ function WatchAdminContextProvider({ children }) {
   useEffect(() => {
     watchApi
       .getAllWatch()
-      .then((res) => {
-        setWatches(res.data.data);
-        console.log(res.data.data);
-      })
+      .then((res) => setWatches(res.data.data))
       .catch((err) => console.log(err));
   }, []);
 

@@ -26,6 +26,7 @@ import BrandPage from "../pages/admins/BrandPage";
 import BrandAdminContextProvider from "../features/admins/brands/contexts/BrandAdminContext";
 import WatchAdminContextProvider from "../features/admins/products/contexts/WatchAdminContext";
 import UserIdPage from "../pages/admins/UserIdPage";
+import UserAdminContextProvider from "../features/admins/users/contexts/UserAdminContext";
 
 const router = createBrowserRouter([
   {
@@ -175,7 +176,11 @@ const router = createBrowserRouter([
       },
       {
         path: "users/:userId",
-        element: <UserIdPage />,
+        element: (
+          <UserAdminContextProvider>
+            <UserIdPage />
+          </UserAdminContextProvider>
+        ),
       },
       {
         path: "shipping",
