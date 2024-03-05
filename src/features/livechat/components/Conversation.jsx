@@ -17,8 +17,8 @@ export default function Conversation({
             <div className="flex flex-col items-end">
               <div className="my-1">
                 <span>
-                  {/* {senderFirstName} {senderLastName} */}
-                  sender
+                  {senderFirstName} {senderLastName}
+                  {/* sender */}
                 </span>
               </div>
               <div className="py-1.5 px-2.5 rounded-xl bg-blue-400 flex items-center justify-center max-w-[13vw]">
@@ -40,7 +40,7 @@ export default function Conversation({
             </div>
             <div>
               <span className="my-1">
-                {/* {senderFirstName} {senderLastName} */}
+                {senderFirstName} {senderLastName}
                 sender
               </span>
               <div className="py-1.5 px-2.5 rounded-xl bg-gray-200 flex items-center justify-center max-w-[13vw]">

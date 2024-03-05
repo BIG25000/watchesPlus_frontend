@@ -53,7 +53,8 @@ export default function AuthContextProvider({ children }) {
   //
   const fetchAuthUser = async () => {
     const res = await authAPI.getMe();
-    setAuthUser(res.data);
+    setAuthUser(res.data.user);
+    // console.log(res.data);
   };
 
   useEffect(() => {

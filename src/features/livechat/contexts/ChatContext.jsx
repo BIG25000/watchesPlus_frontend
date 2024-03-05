@@ -13,6 +13,7 @@ export default function ChatContextProvider({ children }) {
 
   const { authUser } = useAuth();
   // console.log(authUser.user);
+  console.log(conversation);
   useEffect(() => {
     socket.on("received", (msg) => {
       console.log(msg, "---------------------------");
