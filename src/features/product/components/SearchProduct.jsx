@@ -2,21 +2,30 @@ import CardProduct from './CardProduct'
 import SelectionForm from './SelectionForm'
 import { selectionBrand, selectionProduct } from '../../../constants/selection'
 import { useState, useEffect } from 'react'
-import { allWatches } from '../../../apis/watches'
+import { allWatches, searchWatches } from '../../../apis/watches'
 
 export default function SearchProduct() {
+    const [querySearch, setQuerySearch] = useState('')
     const [selectProduct, setSelectProduct] = useState(null)
     const [selectBrand, setSelectBrand] = useState(null)
     const [products, setProducts] = useState([])
 
     useEffect(() => {
         async function fetchDate() {
-            const response = await allWatches()
-            setProducts(response.data.data)
+            setQuerySearch(window.location.search)
+            if (querySearch !== '') {
+                const response = await searchWatches(querySearch)
+                setProducts(response.data.data)
+            } else {
+                const response = await allWatches()
+                setProducts(response.data.data)
+            }
         }
         fetchDate()
+        console.log('******************************');
     }, [])
-
+    console.log(querySearch);
+    // console.log('array product ==>', products);
     const handleSelectProduct = (e) => {
         setSelectProduct(e.target.value)
     }
