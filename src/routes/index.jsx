@@ -23,6 +23,7 @@ import ShippingPage from "../pages/admins/ShippingPage";
 import BrandPage from "../pages/admins/BrandPage";
 import BrandAdminContextProvider from "../features/admins/brands/contexts/BrandAdminContext";
 import WatchAdminContextProvider from "../features/admins/products/contexts/WatchAdminContext";
+import UserIdPage from "../pages/admins/UserIdPage";
 
 const router = createBrowserRouter([
   {
@@ -153,8 +154,14 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "products/:productId",
-        element: <ProductIdForm />,
+        path: "products/:watchId",
+        element: (
+          <WatchAdminContextProvider>
+            <BrandAdminContextProvider>
+              <ProductIdForm />,
+            </BrandAdminContextProvider>
+          </WatchAdminContextProvider>
+        ),
       },
       {
         path: "inventory",
@@ -166,7 +173,7 @@ const router = createBrowserRouter([
       },
       {
         path: "users/:userId",
-        element: <UserIdForm />,
+        element: <UserIdPage />,
       },
       {
         path: "shipping",

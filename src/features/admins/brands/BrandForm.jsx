@@ -13,7 +13,6 @@ function BrandForm() {
 
   return (
     <div>
-      {" "}
       <div className="flex justify-between items-center">
         <strong className="text-gray-700 font-medium">Brands</strong>
         <Modal
@@ -27,7 +26,6 @@ function BrandForm() {
       <div className="border-x border-gray-200 rounded-sm mt-3">
         <div className="overflow-x-auto">
           <table className="table w-full ">
-            {/* head */}
             <thead>
               <tr className="bg-gray-700 text-white">
                 <th>id</th>

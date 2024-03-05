@@ -39,16 +39,16 @@ function UserForm() {
                         <div
                           className="h-10 w-10 rounded-full bg-sky-500 bg-cover bg-no-repeat bg-center"
                           style={{
-                            backgroundImage: `url(${el.profile_image})`,
+                            backgroundImage: `url(${el.profileImage})`,
                           }}
                         ></div>
                       </div>
                       <div>
                         <div className="font-bold">
-                          {el.firstname} {el.lastname}
+                          {el.firstName} {el.lastName}
                         </div>
                         <div className="text-sm opacity-50">
-                          {el.display_name}
+                          {el.displayName}
                         </div>
                       </div>
                     </div>
