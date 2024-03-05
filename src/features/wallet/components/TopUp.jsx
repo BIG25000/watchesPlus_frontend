@@ -6,13 +6,14 @@ import Input from "../../../components/Input";
 import { WalletIcon } from "lucide-react";
 import Button from "../../../components/Button";
 import useWallet from "../../../hooks/useWallet";
+import { toast } from "react-toastify";
 
 let OmiseCard;
 
 export default function TopUp() {
   const [amount, setAmount] = useState(0);
 
-  const { getWallet } = useWallet();
+  const { getWallet, getWalletTransaction } = useWallet();
 
   const hdlChange = (e) => {
     setAmount(e.target.value * 100);
@@ -43,13 +44,13 @@ export default function TopUp() {
       amount,
       onCreateTokenSuccess: async (nonce) => {
         /* Handler on token or source creation.  Use this to submit form or send ajax request to server */
-        console.log(nonce);
         const response = await walletAPI.topUp({ token: nonce, amount });
-        console.log(response);
+        toast.success(response.data.message);
+        getWallet();
+        getWalletTransaction();
       },
       onFormClosed: () => {
         /* Handler on form closure. */
-        getWallet();
       },
     });
   };
@@ -60,7 +61,7 @@ export default function TopUp() {
     hdlOmiseToken();
   };
   return (
-    <div className="bg-brown text-white p-4 rounded-lg flex flex-col gap-4">
+    <div className="bg-black text-white p-4 rounded-lg flex flex-col gap-4">
       <span className="text-2xl font-bold flex justify-between items-baseline">
         Top-up
         <small className="text-xs font-light">Fee 3.65% and VAT fee 7%</small>
@@ -68,6 +69,14 @@ export default function TopUp() {
       <Input onChange={hdlChange} placeholder="amount" type="number">
         <WalletIcon />
       </Input>
+      <span>
+        You will receive{" "}
+        {Math.round(
+          amount / 100 -
+            ((amount / 100) * 0.0365 + (amount / 100) * 0.0365 * 0.07)
+        )}{" "}
+        THB
+      </span>
       <Script url="https://cdn.omise.co/omise.js" onLoad={handleLoadScript} />
       <form className="flex flex-col gap-4">
         <Button
