@@ -6,3 +6,5 @@ export const login = (body) => myAPI.post("/auth/login", body);
 
 export const changePassword = (body) =>
   myAPI.patch("/auth/change-password", body);
+
+export const getMe = () => myAPI.get("/auth/getMe");
