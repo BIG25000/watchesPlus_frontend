@@ -2,7 +2,7 @@ import { useState, createContext } from "react";
 import { toast } from "react-toastify";
 
 import * as authAPI from "../../../apis/auth";
-import { setToken } from "../../../utils/local-storage";
+import { setToken, removeToken } from "../../../utils/local-storage";
 
 export const AuthContext = createContext();
 
@@ -39,8 +39,16 @@ export default function AuthContextProvider({ children }) {
       toast.error(error.message);
     }
   };
+  const logout = async () => {
+    try {
+      removeToken()
+      toast.success('logout')
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
   return (
-    <AuthContext.Provider value={{ authUser, register, login, changePassword }}>
+    <AuthContext.Provider value={{ authUser, register, login, changePassword, logout }}>
       {children}
     </AuthContext.Provider>
   );
