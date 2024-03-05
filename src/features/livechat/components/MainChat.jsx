@@ -16,14 +16,14 @@ export default function MainChat({ setOpen }) {
     getConversationContext();
   }, []);
 
-  const receiver = conversation.filter(
-    (el) => authUser && authUser?.user.id === el?.senderId
-  );
+  // const receiver = conversation.filter(
+  //   (el) => authUser && authUser?.user.id === el?.senderId
+  // );
 
   // console.log(receiver[0].receiver.firstName, "+++++++++++");
 
-  const receiverFirstName = receiver[0].receiver.firstName;
-  const receiverLastName = receiver[0].receiver.lastName;
+  // const receiverFirstName = receiver?.[0].receiver?.firstName;
+  // const receiverLastName = receiver?.[0].receiver?.lastName;
 
   return (
     <div className="">
@@ -31,8 +31,8 @@ export default function MainChat({ setOpen }) {
         {/* Header */}
         <MainChatHeader
           setOpen={setOpen}
-          receiverFirstName={receiverFirstName}
-          receiverlastName={receiverLastName}
+          // receiverFirstName={receiverFirstName}
+          // receiverlastName={receiverLastName}
         />
 
         {/* LIVE CHAT */}
