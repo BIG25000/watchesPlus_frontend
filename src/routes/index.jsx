@@ -8,7 +8,6 @@ import { Outlet } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import Container from "../layouts/Container";
 import ProductDetailPage from "../pages/ProductDetailPage";
-import { Outlet } from "react-router-dom";
 import SearchProductPage from "../pages/SearchProductPage";
 import WalletPage from "../pages/WalletPage";
 
