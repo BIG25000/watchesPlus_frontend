@@ -43,7 +43,8 @@ export default function AuthContextProvider({ children }) {
   const logout = async () => {
     try {
       removeToken();
-      toast.success("logout");
+      setAuthUser(null);
+      toast.success("Logout");
     } catch (error) {
       toast.error(error.message);
     }
