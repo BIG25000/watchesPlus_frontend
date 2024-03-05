@@ -7,6 +7,9 @@ import HomePage from "../pages/HomePage";
 import Container from "../layouts/Container";
 import ProductDetailPage from "../pages/ProductDetailPage";
 import { Outlet } from "react-router-dom";
+import WishListPage from "../pages/WishlistPage";
+
+
 
 const router = createBrowserRouter([
   {
@@ -93,6 +96,10 @@ const router = createBrowserRouter([
           </OuterPage>
         ),
       },
+      {
+        path: "/auth/wishlist",
+        element: <WishListPage/>
+      }
     ],
   },
 ]);
