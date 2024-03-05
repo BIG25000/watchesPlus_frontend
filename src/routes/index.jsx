@@ -26,6 +26,7 @@ import BrandPage from "../pages/admins/BrandPage";
 import BrandAdminContextProvider from "../features/admins/brands/contexts/BrandAdminContext";
 import WatchAdminContextProvider from "../features/admins/products/contexts/WatchAdminContext";
 import UserIdPage from "../pages/admins/UserIdPage";
+import RedirectIfAuthenticated from "../features/auth/components/RedirectIfAuthenticated";
 
 const router = createBrowserRouter([
   {
@@ -91,17 +92,21 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: (
-          <OuterPage>
-            <RegisterPage />
-          </OuterPage>
+          <RedirectIfAuthenticated>
+            <OuterPage>
+              <RegisterPage />
+            </OuterPage>
+          </RedirectIfAuthenticated>
         ),
       },
       {
         path: "/login",
         element: (
-          <OuterPage>
-            <LoginPage />
-          </OuterPage>
+          <RedirectIfAuthenticated>
+            <OuterPage>
+              <LoginPage />
+            </OuterPage>
+          </RedirectIfAuthenticated>
         ),
       },
       {
