@@ -12,7 +12,7 @@ export default function CardProduct({ data }) {
     }
     return (
         <div className="w-72 h-96 flex flex-col bg-black shadow cursor-pointer" >
-            <div className="relative h-60 bg-egg flex justify-center items-center" onClick={() => navigate('/watch/:watchId')}>
+            <div className="relative h-60 bg-egg flex justify-center items-center" onClick={() => navigate(`/watch/${data.id}`)}>
                 <img className="h-full" src={data?.watchImage} />
                 <div className="absolute right-2 top-2 " onClick={handleClickLike} role="button">
                     {isLike ? <Heart color="#ff0000" fill="red" /> : <Heart color="#ff0000" />}

@@ -2,8 +2,13 @@ import React from "react";
 import Title from "../../../components/Title";
 import OrderContainer from "./OrderContainer";
 import OrderList from "./OrderList";
+import { useParams } from "react-router-dom";
+import { useState } from "react";
 
 export default function DetailProduct() {
+  const {watchId} = useParams()
+  const [data, setData] = useState()
+  console.log(watchId)
   return (
     <div className="min-h-screen bg-white">
       <div className="mx-auto w-[1200px]  min-h-screen  flex flex-col gap-10 py-12 ">
