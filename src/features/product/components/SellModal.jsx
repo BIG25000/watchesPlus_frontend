@@ -7,16 +7,16 @@ export default function SellModal(props) {
       <div className="modal-box flex flex-col gap-6 min-h-96  max-w-4xl">
         <h3 className="font-bold text-lg ">
           Sell-Omega Speedmaster Professional Moonwatch
-        </h3> 
+        </h3>
         <div className="flex flex-col gap-4 text-start" >
           <h1>My Inventory</h1>
-          <InventoryList/>
-          <InventoryList/>
-          <InventoryList/>
+          <InventoryList />
+          <InventoryList />
+          <InventoryList />
         </div>
         <div className="grid grid-cols-2 ">
           <div className="w-36  flex gap-8">
-            
+
           </div>
           <div className="flex flex-col gap-4">
             <div className="flex h-8 gap-4 justify-between" >
@@ -34,7 +34,7 @@ export default function SellModal(props) {
           </div>
         </div>
         <div className="flex justify-end">
-            <button className="btn btn-success">PLACE ORDER</button>
+          <button className="btn btn-success">PLACE ORDER</button>
         </div>
       </div>
       <form method="dialog" className="modal-backdrop">

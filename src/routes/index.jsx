@@ -18,6 +18,8 @@ import { Outlet } from "react-router-dom";
 import HomePage from "../pages/HomePage";
 import Container from "../layouts/Container";
 import ProductDetailPage from "../pages/ProductDetailPage";
+import ProfileHistoryPage from "../pages/ProfileHistoryPage";
+import SearchProductPage from "../pages/SearchProductPage";
 import WalletPage from "../pages/WalletPage";
 import ShippingPage from "../pages/admins/ShippingPage";
 import BrandPage from "../pages/admins/BrandPage";
@@ -40,7 +42,7 @@ const router = createBrowserRouter([
           },
           {
             path: "search",
-            element: <>SearchPage</>, //search + all watches
+            element: <SearchProductPage />, //search + all watches
           },
           {
             path: "profile",
@@ -56,7 +58,7 @@ const router = createBrowserRouter([
               },
               {
                 path: "history",
-                element: <>HistoryPage</>,
+                element: <ProfileHistoryPage />,
               },
               {
                 path: "inventory",
