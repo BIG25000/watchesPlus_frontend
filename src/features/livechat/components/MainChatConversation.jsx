@@ -3,7 +3,7 @@ import Conversation from "./Conversation";
 import useChat from "../../../hooks/useChat";
 import useAuth from "../../../hooks/useAuth";
 
-export default function MainChatConversation({}) {
+export default function MainChatConversation() {
   const { conversation } = useChat();
   const { authUser } = useAuth();
   console.log(conversation, "////////////////////////////////");
