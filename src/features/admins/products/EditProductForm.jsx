@@ -1,6 +1,4 @@
-import React from "react";
-import { useRef } from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import brandAdmin from "../brands/hooks/brandAdmin";
 import watchAdmin from "../products/hooks/watchAdmin";

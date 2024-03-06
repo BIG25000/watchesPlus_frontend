@@ -31,8 +31,17 @@ export default function LoginForm() {
           return toast.error(validateErr.password);
         }
       }
-      await login(input);
-      await navigate("/");
+
+      console.log(input, "**********");
+
+      const role = await login(input);
+
+      if (role === "ADMIN") {
+        navigate("/admin");
+      }
+      if (role === "USER") {
+        navigate("/");
+      }
     } catch (error) {
       toast.error(error.message);
     }

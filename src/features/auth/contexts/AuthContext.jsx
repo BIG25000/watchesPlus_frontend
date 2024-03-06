@@ -3,6 +3,7 @@ import { toast } from "react-toastify";
 
 import * as authAPI from "../../../apis/auth";
 import { setToken, removeToken, getToken } from "../../../utils/local-storage";
+import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
@@ -26,6 +27,7 @@ export default function AuthContextProvider({ children }) {
       setAuthUser(res.data.user);
       setToken(res.data.accessToken);
       toast.success(res.data.message);
+      return res.data.user.role;
     } catch (error) {
       toast.error(error.message);
     }

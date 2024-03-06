@@ -65,14 +65,23 @@ function UserForm() {
                   </td>
                   <td>
                     <div className="flex gap-3 ">
-                      <Modal
-                        title="block"
-                        id={`block${el.id}`}
-                        // id="blockform"
-                        button="btn btn-sm bg-gray-400 text-black"
-                      >
-                        <BlockForm id={el.id} />
-                      </Modal>
+                      {!(el.status === "INACTIVE") ? (
+                        <Modal
+                          title="block"
+                          id={`block${el.id}`}
+                          button="btn btn-sm bg-gray-400 text-black"
+                        >
+                          <BlockForm id={el.id} />
+                        </Modal>
+                      ) : (
+                        <button
+                          className="btn btn-sm bg-gray-400 text-black"
+                          disabled="disabled"
+                        >
+                          block
+                        </button>
+                      )}
+
                       <Modal
                         title="unblock"
                         id={`unblock${el.id}`}

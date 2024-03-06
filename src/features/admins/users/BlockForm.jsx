@@ -2,9 +2,9 @@ import React from "react";
 import userAdmin from "./hooks/userAdmin";
 
 function BlockForm({ id }) {
-  const { updateStatusUser, users } = userAdmin();
+  const { updateStatusBlock, users } = userAdmin();
 
-  const filterUser = users.filter((e) => e.id == id)[0];
+  const filterUser = users?.filter((e) => e.id == id)[0];
 
   return (
     <>
@@ -19,8 +19,7 @@ function BlockForm({ id }) {
             className="btn "
             onClick={(e) => {
               e.preventDefault();
-              e.stopPropagation();
-              updateStatusUser(id);
+              updateStatusBlock(id);
               document.getElementById(`block${id}`).close();
             }}
           >
@@ -30,7 +29,7 @@ function BlockForm({ id }) {
             className="underline"
             onClick={(e) => {
               e.preventDefault();
-              e.stopPropagation();
+
               document.getElementById(`block${id}`).close();
             }}
           >

@@ -5,8 +5,11 @@ import classNames from "classnames";
 import { MessageCircleMore } from "lucide-react";
 import { Bell } from "lucide-react";
 import { Search } from "lucide-react";
+import useAuth from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
 
 function HeaderAdmin() {
+  const { logout } = useAuth();
   return (
     <div className="bg-white h-16 px-4 flex items-center border-b border-gray-200 justify-between">
       <div className="relative">
@@ -137,18 +140,20 @@ function HeaderAdmin() {
                   </div>
                 )}
               </Menu.Item>
-              <Menu.Item>
-                {({ active }) => (
-                  <div
-                    className={classNames(
-                      active && "bg-gray-100",
-                      "active:bg-gray-200 rounded-sm px-4 py-2 text-gray-700 cursor-pointer focus:bg-gray-200"
-                    )}
-                  >
-                    Sign out
-                  </div>
-                )}
-              </Menu.Item>
+              <Link to="/" onClick={logout}>
+                <Menu.Item>
+                  {({ active }) => (
+                    <div
+                      className={classNames(
+                        active && "bg-gray-100",
+                        "active:bg-gray-200 rounded-sm px-4 py-2 text-gray-700 cursor-pointer focus:bg-gray-200"
+                      )}
+                    >
+                      Sign out
+                    </div>
+                  )}
+                </Menu.Item>
+              </Link>
             </Menu.Items>
           </Transition>
         </Menu>

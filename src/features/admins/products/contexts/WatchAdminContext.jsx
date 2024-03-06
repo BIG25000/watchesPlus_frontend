@@ -38,8 +38,14 @@ function WatchAdminContextProvider({ children }) {
   const deleteWatch = async (id) => {
     try {
       await watchApi.deleteWatch(id);
-      const res = await watchApi.getAllWatch();
-      setWatches(res.data.data);
+
+      // const res = await watchApi.getAllWatch();
+      // setWatches(res.data.data);
+
+      // const res = await watchApi.getAllWatch();
+
+      setWatches(watches.filter((el) => el.id != id)); //ไม่ต้องเฟตอันนี้
+
       toast.success("delete brand success");
     } catch (error) {
       console.log(error);

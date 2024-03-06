@@ -15,21 +15,29 @@ function UserAdminContextProvider({ children }) {
       .catch((err) => console.log(err));
   }, []);
 
-  const updateStatusUser = async (id) => {
+  const updateStatusBlock = async (id) => {
     try {
-      const res = await userApi.updateStatusUser(id);
-      const findindex = users.findIndex((el) => el.id === res.data.users.id);
-      const newUsers = users.with(findindex, res.data.users);
+      const res = await userApi.updateStatusBlock(id);
+
+      // const findindex = users.findIndex((el) => el.id === res.data.users.id);
+      // const newUsers = users.with(findindex, res.data.users);
+
+      const newUsers = users.map((el) =>
+        el.id == res.data.users.id ? res.data.users : el
+      );
+
       setUsers(newUsers);
+
+      // setUsers(res.data.users.id); ถ้าคืนเป็น Id ค่าปกติที่ไม่ใช่ Array แตก
       toast.success("block user success");
     } catch (error) {
       console.log(error);
     }
   };
 
-  const updateStatusUser2 = async (id) => {
+  const updateStatusUnblock = async (id) => {
     try {
-      const res = await userApi.updateStatusUser2(id);
+      const res = await userApi.updateStatusUnblock(id);
       const findindex = users.findIndex((el) => el.id === res.data.users.id);
       const newUsers = users.with(findindex, res.data.users);
       setUsers(newUsers);
@@ -41,7 +49,7 @@ function UserAdminContextProvider({ children }) {
 
   return (
     <UserAdminContext.Provider
-      value={{ users, updateStatusUser, updateStatusUser2 }}
+      value={{ users, updateStatusBlock, updateStatusUnblock }}
     >
       {children}
     </UserAdminContext.Provider>

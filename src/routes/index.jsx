@@ -27,6 +27,7 @@ import BrandAdminContextProvider from "../features/admins/brands/contexts/BrandA
 import WatchAdminContextProvider from "../features/admins/products/contexts/WatchAdminContext";
 import UserIdPage from "../pages/admins/UserIdPage";
 import UserAdminContextProvider from "../features/admins/users/contexts/UserAdminContext";
+import InventoryAdminContextProvider from "../features/admins/transactions/contexts/InventoryAdminContext";
 
 const router = createBrowserRouter([
   {
@@ -168,7 +169,11 @@ const router = createBrowserRouter([
       },
       {
         path: "inventory",
-        element: <TransactionPage />,
+        element: (
+          <InventoryAdminContextProvider>
+            <TransactionPage />
+          </InventoryAdminContextProvider>
+        ),
       },
       {
         path: "users",

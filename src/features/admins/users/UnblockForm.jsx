@@ -2,7 +2,7 @@ import React from "react";
 import userAdmin from "./hooks/userAdmin";
 
 function UnblockForm({ id }) {
-  const { updateStatusUser2, users } = userAdmin();
+  const { updateStatusUnblock, users } = userAdmin();
 
   const filterUser = users.filter((e) => e.id == id)[0];
   return (
@@ -19,7 +19,7 @@ function UnblockForm({ id }) {
             onClick={(e) => {
               e.preventDefault();
               e.stopPropagation();
-              updateStatusUser2(id);
+              updateStatusUnblock(id);
               document.getElementById(`unblock${id}`).close();
             }}
           >
