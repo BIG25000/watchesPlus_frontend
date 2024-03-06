@@ -6,7 +6,7 @@ import Input from "../components/Input";
 
 export default function Searchbar() {
     const searchEl = useRef()
-    const { searchElement, search, setSearch, handleFilter, handleItemClick } = useSearch()
+    const { searchElement, search, setSearch, handleFilter, handleItemClick, handleEnterSearch } = useSearch()
 
     useEffect(() => {
         if (search) {
@@ -29,7 +29,7 @@ export default function Searchbar() {
                 name="search"
                 value={searchElement}
                 onChange={e => handleFilter(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' ? console.log('enter ja') : ''}
+                onKeyDown={e => e.key === 'Enter' ? handleEnterSearch(e.target.value) : ''}
             >
                 <Search />
             </ Input>
