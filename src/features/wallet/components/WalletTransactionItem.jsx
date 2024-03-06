@@ -19,7 +19,11 @@ export default function WalletTransactionItem({ el }) {
         {el.price}
       </div>
       <div className="flex-1">{el.type}</div>
-      <div>Omise</div>
+      {el.type === "DEPOSIT" || el.type === "WITHDRAW" ? (
+        <div>Credit card</div>
+      ) : (
+        <div>Wallet</div>
+      )}
     </li>
   );
 }
