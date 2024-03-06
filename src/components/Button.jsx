@@ -10,8 +10,9 @@ const colorClass = {
   white: "text-white",
 };
 
-export default function Button({ bg, color, onClick, type, children, id }) {
+export default function Button({ bg, color, onClick, type, children, id , width }) {
   let finalClassName = `
+    w-${width}
     ${bg ? bgClass[bg] : ""}
     ${color ? colorClass[color] : ""}
     px-4 py-2 rounded-md font-semibold

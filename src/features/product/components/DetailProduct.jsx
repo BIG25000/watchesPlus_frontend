@@ -14,7 +14,7 @@ export default function DetailProduct() {
       <div className="mx-auto w-[1200px]  min-h-screen  flex flex-col gap-10 py-12 ">
         <div className="flex gap-10">
           <div className="flex flex-col items-center justify-center">
-            <img src="https://cdn.pixabay.com/photo/2014/07/31/23/00/wristwatch-407096_1280.jpg" />
+            <img  className="rounded-2xl" src="https://cdn.pixabay.com/photo/2014/07/31/23/00/wristwatch-407096_1280.jpg" />
           </div>
           <div className="flex flex-col px-6 gap-10">
             <Title>Omega Speedmaster Professional Moonwatch</Title>

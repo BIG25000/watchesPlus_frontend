@@ -3,7 +3,8 @@ import React from "react";
 export default function BuyModal(props) {
   return (
     <dialog id="buy" className="modal">
-      <div className="modal-box flex flex-col gap-6 min-h-96  max-w-4xl">
+      <div className="modal-box flex flex-col gap-6 min-h-96  max-w-4xl relative">
+        <div className="absolute right-5 top-3 text-xl font-bold cursor-pointer" onClick={()=>document.getElementById('buy').close()}>X</div>
         <h3 className="font-bold text-lg">
           Buy-Omega Speedmaster Professional Moonwatch
         </h3>

@@ -2,11 +2,12 @@ import React from "react";
 import { baht } from "../../../constants/baht";
 import BuyModal from "./BuyModal";
 import SellModal from "./SellModal";
+import Button from "../../../components/Button";
 
 export default function OrderContainer(props) {
     const { children , id } = props
   return (
-    <div className="border-solid border-2 border-black text-center px-6 py-4 " >
+    <div className="border-solid border-2 border-black text-center px-6 py-4 rounded-2xl" >
       {/* header */}
       <div className="text-lg flex flex-col gap-8 items-center">
         <div className="flex gap-2">
@@ -15,7 +16,7 @@ export default function OrderContainer(props) {
           <span>เริ่มต้น</span>
           <span className="font-bold">{baht + "235.98"}</span>
         </div>
-        <button className="btn btn-success w-48 text-2xl " onClick={()=>document.getElementById(id).showModal()}>{children}...</button>
+        <Button onClick={()=>document.getElementById(id).showModal()} bg="green" color="white" width="48">{children}...</Button>
       </div>
       {/* body */}
       <div>

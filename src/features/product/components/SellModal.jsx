@@ -4,7 +4,8 @@ import InventoryList from "./InventoryList";
 export default function SellModal(props) {
   return (
     <dialog id="sell" className="modal">
-      <div className="modal-box flex flex-col gap-6 min-h-96  max-w-4xl">
+      <div className="modal-box flex flex-col gap-6 min-h-96  max-w-4xl relative">
+      <div className="absolute right-5 top-3 text-xl font-bold cursor-pointer" onClick={()=>document.getElementById('sell').close()}>X</div>
         <h3 className="font-bold text-lg ">
           Sell-Omega Speedmaster Professional Moonwatch
         </h3>
