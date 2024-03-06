@@ -20,7 +20,7 @@ export default function WalletTransaction() {
           <span className="flex-1">Date</span>
           <span className="flex-1">Amount</span>
           <span className="flex-1">Type</span>
-          <span className="">Via</span>
+          <span className=" w-20">Via</span>
         </div>
         {walletTransaction.reverse().map((el) => (
           <WalletTransactionItem key={el.id} el={el} />
