@@ -19,10 +19,10 @@ export default function CardProduct({ data }) {
                 </div>
             </div>
             <div className="flex flex-col justify-between h-40 p-4 text-white">
-                <div className="font-light">Brand: {data?.brandId}</div>
-                <div className="flex flex-col">
+                <div className="font-mono">{data?.brand.name}</div>
+                <div className="flex flex-col gap-1">
                     <div className="flex text-2xl font-semibold">{data?.modelName}</div>
-                    <div className="font-light">500 Baht</div>
+                    <div className="font-mono text-gray-500 text-xs">{data?.description}</div>
                 </div>
             </div>
         </div>

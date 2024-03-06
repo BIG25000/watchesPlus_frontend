@@ -29,7 +29,7 @@ import RedirectIfAuthenticated from "../features/auth/components/RedirectIfAuthe
 import ProductContextProvider from "../features/product/contexts/ProductContext";
 import Container from "../layouts/Container";
 
-
+import ProfileContextProvider from "../features/profile/contexts/ProfileContext";
 
 const router = createBrowserRouter([
   {
@@ -39,20 +39,22 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: (
-          <ProductContextProvider>
-            <Container />
-          </ProductContextProvider>
+          <ProfileContextProvider>
+            <ProductContextProvider>
+              <Container />
+            </ProductContextProvider>
+          </ProfileContextProvider>
         ),
         children: [
           {
             path: "",
-            element: <HomePage/>,
-            lazy : () => import('../pages/HomePage')
+            element: <HomePage />,
+            lazy: () => import("../pages/HomePage"),
           },
           {
             path: "search",
             element: <SearchProductPage />, //search + all watches
-            lazy : () => import('../pages/SearchProductPage')
+            lazy: () => import("../pages/SearchProductPage"),
           },
           {
             path: "profile",
@@ -61,7 +63,7 @@ const router = createBrowserRouter([
               {
                 path: "",
                 element: <ProfilePage />,
-                lazy : ()=> import('../pages/User/ProfilePage')
+                lazy: () => import("../pages/User/ProfilePage"),
               },
               {
                 path: "wishlist",
@@ -70,7 +72,7 @@ const router = createBrowserRouter([
               {
                 path: "history",
                 element: <ProfileHistoryPage />,
-                lazy: ()=>import('../pages/User/ProfileHistoryPage')
+                lazy: () => import("../pages/User/ProfileHistoryPage"),
               },
               {
                 path: "inventory",
@@ -85,7 +87,7 @@ const router = createBrowserRouter([
               {
                 path: "wallet",
                 element: <WalletPage />,
-                lazy: ()=>import('../pages/User/WalletPage')
+                lazy: () => import("../pages/User/WalletPage"),
               },
             ],
           },
@@ -96,7 +98,7 @@ const router = createBrowserRouter([
               {
                 path: ":watchId",
                 element: <ProductDetailPage />,
-                lazy : () => import('../pages/User/ProductDetailPage'),
+                lazy: () => import("../pages/User/ProductDetailPage"),
               },
             ],
           },
