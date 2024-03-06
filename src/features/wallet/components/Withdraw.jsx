@@ -33,7 +33,7 @@ export default function Withdraw() {
         <Input onChange={hdlChange} placeholder="amount" type="number">
           <WalletIcon />
         </Input>
-        <span>You will receive {amount - 30}</span>
+        {amount == 0 ? "" : <span>You will receive {amount - 30}</span>}
         <Button type="submit" bg="green">
           Withdraw
         </Button>
