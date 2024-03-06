@@ -1,4 +1,5 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import React from "react";
 import LoginPage from "../pages/LoginPage";
 import RegisterPage from "../pages/RegisterPage";
 import ForgotPasswordPage from "../pages/ForgotPasswordPage";
@@ -13,14 +14,12 @@ import ProductIdForm from "../features/admins/products/ProductIdForm";
 import UserIdForm from "../features/admins/users/UserIdForm";
 import EditProductForm from "../features/admins/products/EditProductForm";
 import OuterPage from "../layouts/OuterPage";
-import ProfilePage from "../pages/ProfilePage";
-import { Outlet } from "react-router-dom";
+import ProfilePage from "../pages/User/ProfilePage";
 import HomePage from "../pages/HomePage";
-import Container from "../layouts/Container";
-import ProductDetailPage from "../pages/ProductDetailPage";
-import ProfileHistoryPage from "../pages/ProfileHistoryPage";
+import ProductDetailPage from "../pages/User/ProductDetailPage";
+import ProfileHistoryPage from "../pages/User/ProfileHistoryPage";
 import SearchProductPage from "../pages/SearchProductPage";
-import WalletPage from "../pages/WalletPage";
+import WalletPage from "../pages/User/WalletPage";
 import ShippingPage from "../pages/admins/ShippingPage";
 import BrandPage from "../pages/admins/BrandPage";
 import BrandAdminContextProvider from "../features/admins/brands/contexts/BrandAdminContext";
@@ -28,6 +27,9 @@ import WatchAdminContextProvider from "../features/admins/products/contexts/Watc
 import UserIdPage from "../pages/admins/UserIdPage";
 import RedirectIfAuthenticated from "../features/auth/components/RedirectIfAuthenticated";
 import ProductContextProvider from "../features/product/contexts/ProductContext";
+import Container from "../layouts/Container";
+
+
 
 const router = createBrowserRouter([
   {
@@ -44,11 +46,13 @@ const router = createBrowserRouter([
         children: [
           {
             path: "",
-            element: <HomePage />, //hompage
+            element: <HomePage/>,
+            lazy : () => import('../pages/HomePage')
           },
           {
             path: "search",
             element: <SearchProductPage />, //search + all watches
+            lazy : () => import('../pages/SearchProductPage')
           },
           {
             path: "profile",
@@ -57,6 +61,7 @@ const router = createBrowserRouter([
               {
                 path: "",
                 element: <ProfilePage />,
+                lazy : ()=> import('../pages/User/ProfilePage')
               },
               {
                 path: "wishlist",
@@ -65,6 +70,7 @@ const router = createBrowserRouter([
               {
                 path: "history",
                 element: <ProfileHistoryPage />,
+                lazy: ()=>import('../pages/User/ProfileHistoryPage')
               },
               {
                 path: "inventory",
@@ -79,6 +85,7 @@ const router = createBrowserRouter([
               {
                 path: "wallet",
                 element: <WalletPage />,
+                lazy: ()=>import('../pages/User/WalletPage')
               },
             ],
           },
@@ -89,6 +96,7 @@ const router = createBrowserRouter([
               {
                 path: ":watchId",
                 element: <ProductDetailPage />,
+                lazy : () => import('../pages/User/ProductDetailPage'),
               },
             ],
           },
@@ -123,10 +131,6 @@ const router = createBrowserRouter([
         ),
       },
     ],
-  },
-  {
-    path: "/profile",
-    element: <ProfilePage />,
   },
   // ************************************************************************ ADMIN *****************
   {
@@ -197,5 +201,9 @@ const router = createBrowserRouter([
 ]);
 
 export default function Router() {
-  return <RouterProvider router={router} />;
+  return (
+    // <Suspense fallback={<Loading />}>
+    <RouterProvider router={router} />
+    // </Suspense>
+  );
 }
