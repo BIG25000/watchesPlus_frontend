@@ -3,6 +3,7 @@ const bgClass = {
   red: "bg-red-500 hover:bg-red-600",
   green: "bg-green-500 hover:bg-green-600",
   remove: "hover:bg-egg hover:text-black",
+  black: "bg-black hover:bg-gray-700",
 };
 
 const colorClass = {
