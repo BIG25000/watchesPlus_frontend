@@ -69,14 +69,18 @@ export default function TopUp() {
       <Input onChange={hdlChange} placeholder="amount" type="number">
         <WalletIcon />
       </Input>
-      <span>
-        You will receive{" "}
-        {Math.round(
-          amount / 100 -
-            ((amount / 100) * 0.0365 + (amount / 100) * 0.0365 * 0.07)
-        )}{" "}
-        THB
-      </span>
+      {amount == 0 ? (
+        ""
+      ) : (
+        <span>
+          You will receive{" "}
+          {Math.round(
+            amount / 100 -
+              ((amount / 100) * 0.0365 + (amount / 100) * 0.0365 * 0.07)
+          )}{" "}
+          THB
+        </span>
+      )}
       <Script url="https://cdn.omise.co/omise.js" onLoad={handleLoadScript} />
       <form className="flex flex-col gap-4">
         <Button
