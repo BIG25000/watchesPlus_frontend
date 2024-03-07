@@ -3,7 +3,7 @@ import MyActiveListing from "../features/product/components/MyActiveListing";
 import MyMarketHistory from "../features/product/components/MyMarketHistory";
 import Button from "../components/Button";
 
-export default function Hero() {
+export default function MyMarket() {
     const [toggle, setToggle] = useState(false)
 
     const handleToggleMyActiveListingToMyMarketHistory = () => {
