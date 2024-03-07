@@ -2,6 +2,7 @@ import { useState, createContext } from "react";
 
 import * as profileAPI from "../../../apis/profile";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 export const ProfileContext = createContext();
 
@@ -19,6 +20,10 @@ export default function ProfileContextProvider({ children }) {
     toast.success(res.data.message);
     return res;
   };
+
+  useEffect(() => {
+    getProfileInfo();
+  }, []);
 
   return (
     <ProfileContext.Provider
