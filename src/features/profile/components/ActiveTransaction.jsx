@@ -21,7 +21,7 @@ export default function ActiveTransaction() {
             </div>
             <div className='text-xl font-bold  rounded-full p-4'>Buy order</div>
             <ul className="w-full border border-t-0 border-l-0 border-r-0 border-b">
-                <div className="w-full flex font-bold p-4">
+                <div className="w-full flex font-bold p-4 bg-egg">
                     <span className="flex-1">Item</span>
                     <span className="w-32 flex items-center justify-center">Brand</span>
                     <span className="w-32 flex items-center justify-center">Price</span>
@@ -34,7 +34,7 @@ export default function ActiveTransaction() {
             </ul>
             <div className='text-xl font-bold rounded-full p-4'>Sale order</div>
             <ul className="w-full border border-t-0 border-l-0 border-r-0 border-b">
-                <div className="w-full flex font-bold p-4">
+                <div className="w-full flex font-bold p-4 bg-egg">
                     <span className="flex-1">Item</span>
                     <span className="w-32 flex items-center justify-center">Brand</span>
                     <span className="w-32 flex items-center justify-center">Price</span>

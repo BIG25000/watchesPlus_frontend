@@ -18,7 +18,7 @@ export default function HistoryTransaction() {
       </div>
       <div className='text-xl font-bold  rounded-full p-4'>Buy order</div>
       <ul className="w-full border border-t-0 border-l-0 border-r-0 border-b">
-        <div className="w-full flex font-bold p-4">
+        <div className="w-full flex font-bold p-4 bg-egg">
           <span className="flex-1">Item</span>
           <span className="w-36 flex items-center justify-center">Brand</span>
           <span className="w-36 flex items-center justify-center">Buy</span>
@@ -30,7 +30,7 @@ export default function HistoryTransaction() {
       </ul>
       <div className='text-xl font-bold  rounded-full p-4'>Sale order</div>
       <ul className="w-full border border-t-0 border-l-0 border-r-0 border-b">
-        <div className="w-full flex font-bold p-4">
+        <div className="w-full flex font-bold p-4 bg-egg">
           <span className="flex-1">Item</span>
           <span className="w-36 flex items-center justify-center">Brand</span>
           <span className="w-36 flex items-center justify-center">Buy</span>
