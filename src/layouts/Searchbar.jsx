@@ -1,23 +1,14 @@
+import { useRef, useEffect } from 'react'
 import { Search } from "lucide-react";
-import { useState, useEffect, useRef } from 'react'
 
+import useSearch from '../hooks/useSearch'
 import Input from "../components/Input";
-import { allWatches } from '../apis/watches'
-import { useNavigate } from "react-router-dom";
 
 export default function Searchbar() {
     const searchEl = useRef()
-    const navigate = useNavigate()
-    const [filterData, setFilterData] = useState([])
-    const [search, setSearch] = useState([])
+    const { searchElement, search, setSearch, handleFilter, handleItemClick, handleEnterSearch } = useSearch()
 
     useEffect(() => {
-        async function fetchData() {
-            const response = await allWatches()
-            setFilterData(response.data.data)
-        }
-        fetchData();
-
         if (search) {
             const handleClickOutside = e => {
                 if (searchEl.current && !searchEl.current.contains(e.target)) {
@@ -30,29 +21,20 @@ export default function Searchbar() {
         }
     }, [])
 
-    const handleFilter = (value) => {
-        const result = filterData.filter(model => model.modelName.toLowerCase().includes(value))
-        setSearch(result)
-        if (value === '') {
-            setSearch([])
-        }
-    }
-
-    const handleItemClick = (item) => {
-        setSearch([])
-        navigate(`/search?keyword=${item.modelName}`)
-    }
     return (
         <div className='relative' ref={searchEl}>
             <Input
                 type="text"
                 placeholder="Search"
                 name="search"
+                value={searchElement}
                 onChange={e => handleFilter(e.target.value)}
+                onKeyDown={e => e.key === 'Enter' ? handleEnterSearch(e.target.value) : ''}
             >
                 <Search />
             </ Input>
-            {search &&
+            {
+                search &&
                 <div className="absolute flex flex-col max-h-40 overflow-y-scroll w-full top-12 text-black shadow rounded">
                     {search.map((item, index) => (
                         <div

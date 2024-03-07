@@ -49,7 +49,7 @@ export default function RegisterForm() {
   return (
     <form
       onSubmit={hdlSubmit}
-      className="flex flex-col w-full h-full gap-6 items-center justify-center text-white"
+      className="flex flex-col w-full gap-6 items-center justify-center text-white"
     >
       <span className="text-xl">Please enter your name,email and password</span>
       <Input

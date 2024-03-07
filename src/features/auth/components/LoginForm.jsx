@@ -71,7 +71,7 @@ export default function LoginForm() {
         >
           <Lock />
         </Input>
-        <Link to="/auth/forgot-password" className="w-full flex justify-end">
+        <Link to="/forgot-password" className="w-full flex justify-end">
           <span className="text-xs font-light">Forgot password?</span>
         </Link>
         <button
@@ -83,7 +83,7 @@ export default function LoginForm() {
       </form>
       <div className="flex justify-center items-center">
         <span className="text-xs font-light">Not a member yet? </span>
-        <Link to="/auth/register" className="text-xs font-light text-white">
+        <Link to="/register" className="text-xs font-light text-white">
           Register?
         </Link>
       </div>

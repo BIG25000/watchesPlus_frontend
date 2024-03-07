@@ -26,6 +26,8 @@ import BrandPage from "../pages/admins/BrandPage";
 import BrandAdminContextProvider from "../features/admins/brands/contexts/BrandAdminContext";
 import WatchAdminContextProvider from "../features/admins/products/contexts/WatchAdminContext";
 import UserIdPage from "../pages/admins/UserIdPage";
+import RedirectIfAuthenticated from "../features/auth/components/RedirectIfAuthenticated";
+import ProfileContextProvider from "../features/profile/contexts/ProfileContext";
 import UserAdminContextProvider from "../features/admins/users/contexts/UserAdminContext";
 import InventoryAdminContextProvider from "../features/admins/transactions/contexts/InventoryAdminContext";
 
@@ -36,7 +38,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Container />,
+        element: (
+          <ProfileContextProvider>
+            <Container />
+          </ProfileContextProvider>
+        ),
         children: [
           {
             path: "",
@@ -93,17 +99,21 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: (
-          <OuterPage>
-            <RegisterPage />
-          </OuterPage>
+          <RedirectIfAuthenticated>
+            <OuterPage>
+              <RegisterPage />
+            </OuterPage>
+          </RedirectIfAuthenticated>
         ),
       },
       {
         path: "/login",
         element: (
-          <OuterPage>
-            <LoginPage />
-          </OuterPage>
+          <RedirectIfAuthenticated>
+            <OuterPage>
+              <LoginPage />
+            </OuterPage>
+          </RedirectIfAuthenticated>
         ),
       },
       {

@@ -1,38 +1,30 @@
 import CardProduct from './CardProduct'
 import SelectionForm from './SelectionForm'
-import { sortBrand, sortProduct } from '../../../constants/sort'
-import { useState, useEffect } from 'react'
-import { allWatches } from '../../../apis/watches'
+import { selectionBrand, selectionProduct } from '../../../constants/selection'
+import useSearch from '../../../hooks/useSearch'
+import Icon from '../../../components/Icon'
 
 export default function SearchProduct() {
-    const [selectProduct, setSelectProduct] = useState(null)
-    const [selectBrand, setSelectBrand] = useState(null)
-    const [products, setProducts] = useState([])
-
-    useEffect(() => {
-        async function fetchDate() {
-            const response = await allWatches()
-            setProducts(response.data.data)
-        }
-        fetchDate()
-    }, [])
-
-    const handleSelectSortProduct = (e) => {
-        setSelectProduct(e.target.value)
-    }
-
-    const handleSelectSortBrand = (e) => {
-        setSelectBrand(e.target.value)
-    }
+    const { showSearch, querySearch, products, selectBrand, handleSelectBrand } = useSearch()
     return (
         <div className=" mx-auto w-[1200px] min-h-56 flex flex-col gap-4 mt-4 mb-8">
-            <div className="text-2xl font-bold">WatchesPlus - Product</div>
+            <div className="text-2xl font-bold">WatchesPlus - Gallery</div>
+            {showSearch || querySearch ? <p>Search keyword: '{showSearch}'</p> : ''}
             <div className='flex gap-4 justify-end'>
-                <SelectionForm sort={sortProduct} onChange={handleSelectSortProduct} />
-                <SelectionForm sort={sortBrand} onChange={handleSelectSortBrand} />
+                <SelectionForm items={selectionBrand} onClick={handleSelectBrand} />
             </div>
             <div className='flex flex-wrap gap-4'>
-                {products.map(product => <CardProduct data={product} />)}
+                {products.length > 0
+                    ? selectBrand !== null && selectBrand !== 'All brand'
+                        ? (products.filter(product => product.brand.name === selectBrand).map(product => <CardProduct data={product} key={product.id} />))
+                        : products.map(product => <CardProduct data={product} key={product.id} />)
+                    : (
+                        <div className='w-full flex flex-col justify-center items-center'>
+                            <Icon name='FileSearch' size='100' />
+                            <div>No results found</div>
+                            <div>Try different or more general keywords</div>
+                        </div>
+                    )}
             </div>
         </div>
     )
