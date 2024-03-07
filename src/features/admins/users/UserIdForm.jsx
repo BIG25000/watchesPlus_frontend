@@ -33,25 +33,13 @@ function UserIdForm() {
           <div className="text-center">Role : {filterUsers?.role}</div>
           <div className="text-center">Status : {filterUsers?.status}</div>
 
-          <div className="flex gap-10 mt-5">
-            <Link
-              // to={`/admin/products/edit/${watchId}`}
-              className="btn btn-sm"
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
-            >
-              EDIT
+          <div className="flex gap-10 mt-5 justify-center">
+            <Link to="/admin/users" className="text-black underline">
+              Back users
             </Link>
-
-            <Modal
-              title="delete"
-              // id={`deleteWatch${watchId}`}
-              // id="editBrand"
-              button="btn btn-sm bg-gray-400 text-black"
-            >
-              {/* <DeleteWatchForm id={watchId} /> */}
-            </Modal>
+            <Link to="/admin/inventory" className="text-black underline">
+              Back inventory
+            </Link>
           </div>
         </div>
       </div>

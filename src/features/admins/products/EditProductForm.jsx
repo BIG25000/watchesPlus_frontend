@@ -227,7 +227,7 @@ function EditProductForm() {
                 <textarea
                   placeholder={filterWatches?.description}
                   rows="3"
-                  className="textarea textarea-bordered textarea-lg w-full max-w-xs"
+                  className="textarea textarea-bordered textarea-lg w-full max-w-xs resize-none"
                   name="description"
                   onChange={handleChangeInput}
                 />
@@ -280,7 +280,7 @@ function EditProductForm() {
             </div>
           </div>
           <div className="flex gap-10">
-            <button className="btn bg-greenOne text-egg  mt-5" type="submit">
+            <button className="btn bg-black text-egg  mt-5" type="submit">
               Edit Product
             </button>
             <Link

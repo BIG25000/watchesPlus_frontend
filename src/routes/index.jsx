@@ -30,6 +30,7 @@ import RedirectIfAuthenticated from "../features/auth/components/RedirectIfAuthe
 import ProfileContextProvider from "../features/profile/contexts/ProfileContext";
 import UserAdminContextProvider from "../features/admins/users/contexts/UserAdminContext";
 import InventoryAdminContextProvider from "../features/admins/transactions/contexts/InventoryAdminContext";
+import MessagePage from "../pages/admins/MessagePage";
 
 const router = createBrowserRouter([
   {
@@ -200,6 +201,10 @@ const router = createBrowserRouter([
       {
         path: "shipping",
         element: <ShippingPage />,
+      },
+      {
+        path: "message",
+        element: <MessagePage />,
       },
     ],
     // ************************************************************************ ADMIN *****************

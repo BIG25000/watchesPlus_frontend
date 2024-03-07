@@ -3,10 +3,12 @@ import VerifyForm from "./VerifyForm";
 import Modal from "../../../components/admins/Modal";
 import inventoryAdmin from "./hooks/inventoryAdmin";
 import FailverifyForm from "./FailverifyForm";
+import { useNavigate } from "react-router-dom";
 
 function TransactionForm() {
   const { inventorys } = inventoryAdmin();
-
+  const navigate = useNavigate();
+  console.log(inventorys, "in---------------------");
   return (
     <div>
       <div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
@@ -30,7 +32,10 @@ function TransactionForm() {
                 {inventorys.map((el) => (
                   <tr>
                     <th>{el.id}</th>
-                    <td>
+                    <td
+                      onClick={() => navigate(`/admin/users/${el.user.id}`)}
+                      role="button"
+                    >
                       <div className="flex items-center gap-3">
                         <div className="avatar">
                           <div

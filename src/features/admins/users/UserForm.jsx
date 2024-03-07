@@ -81,15 +81,23 @@ function UserForm() {
                           block
                         </button>
                       )}
-
-                      <Modal
-                        title="unblock"
-                        id={`unblock${el.id}`}
-                        // id="blockform"
-                        button="btn btn-sm bg-gray-400 text-black"
-                      >
-                        <UnblockForm id={el.id} />
-                      </Modal>
+                      {el.status === "INACTIVE" ? (
+                        <Modal
+                          title="unblock"
+                          id={`unblock${el.id}`}
+                          // id="blockform"
+                          button="btn btn-sm bg-gray-400 text-black"
+                        >
+                          <UnblockForm id={el.id} />
+                        </Modal>
+                      ) : (
+                        <button
+                          className="btn btn-sm bg-gray-400 text-black"
+                          disabled="disabled"
+                        >
+                          unblock
+                        </button>
+                      )}
                     </div>
                   </td>
                 </tr>

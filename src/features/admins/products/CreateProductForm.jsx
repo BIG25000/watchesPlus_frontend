@@ -220,7 +220,7 @@ function CreateProductForm() {
                 <textarea
                   placeholder="The iconic dive watch from Rolex."
                   rows="3"
-                  className="textarea textarea-bordered textarea-lg w-full max-w-xs"
+                  className="textarea textarea-bordered textarea-lg w-full max-w-xs resize-none"
                   name="description"
                   onChange={handleChangeInput}
                 />
@@ -273,12 +273,12 @@ function CreateProductForm() {
             </div>
           </div>
           <div className="flex gap-10">
-            <button className="btn bg-greenOne text-egg  mt-5" type="submit">
+            <button className="btn bg-black text-egg  mt-5" type="submit">
               Create Product
             </button>
             <Link
               to="/admin/products"
-              className="bg-greenOne text-black mt-5 flex items-center underline"
+              className="b text-black mt-5 flex items-center underline"
             >
               Back
             </Link>
