@@ -13,7 +13,7 @@ export default function VideoCarousel() {
   const handleSlideChange = (index) => {};
 
   return (
-    <div className="App">
+    <div>
       <Carousel
         selectedItem={currentSlide - 1}
         showArrows={true}
@@ -51,7 +51,7 @@ function VideoCustom(props) {
   const videoOptions = {
     playerVars: {
       autoplay: 0,
-      controls: 1,
+      controls: 0,
       rel: 0,
       showinfo: 0,
       mute: 1,
