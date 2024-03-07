@@ -1,13 +1,18 @@
 import { Heart } from "lucide-react"
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
+import useAuth from "../../../hooks/useAuth"
 
 export default function CardProduct({ data }) {
     const navigate = useNavigate()
+    const { authUser } = useAuth()
     const [isLike, setIsLike] = useState(false)
 
     const handleClickLike = (e) => {
         e.stopPropagation();
+        if (!authUser) {
+            navigate('/login')
+        }
         setIsLike(!isLike)
     }
     return (
