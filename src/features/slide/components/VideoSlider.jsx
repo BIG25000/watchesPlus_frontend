@@ -24,6 +24,7 @@ export default function VideoCarousel() {
       >
         {videoIds.map((videoId, index) => (
           <VideoCustom
+            key={index}
             videoId={videoId}
             setCurrentSlide={setCurrentSlide}
             totalSlide={videoIds.length}
