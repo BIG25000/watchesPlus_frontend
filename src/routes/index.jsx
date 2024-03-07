@@ -122,10 +122,6 @@ const router = createBrowserRouter([
           </OuterPage>
         ),
       },
-      {
-        path: "/auth/wishlist",
-        element: <WishListPage/>
-      }
     ],
   },
   {
