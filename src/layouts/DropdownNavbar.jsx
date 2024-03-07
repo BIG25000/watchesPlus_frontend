@@ -2,9 +2,14 @@ import { useState, useRef, useEffect } from "react";
 import DropdownItem from "./DropdownItem";
 import { dropdownList } from "../constants/Navbar";
 import useAuth from "../hooks/useAuth";
+import useProfile from "../hooks/useProfile";
 
 export default function DropdownNavbar() {
   const { logout } = useAuth();
+  const {
+    profileInfo: { profileImage },
+  } = useProfile();
+
   const dropdownEl = useRef(null);
   const [open, setOpen] = useState(false);
 
@@ -27,10 +32,7 @@ export default function DropdownNavbar() {
   return (
     <div className="relative" ref={dropdownEl}>
       <div role="button" onClick={handleToggleDropdown}>
-        <img
-          className="w-12 h-12 rounded-full"
-          src="https://images.unsplash.com/photo-1708986662906-2f3030e2dab2?q=80&w=1911&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-        />
+        <img className="w-12 h-12 rounded-full" src={profileImage} />
       </div>
       {open && (
         <div className="border-2 border-brown bg-black absolute right-0 top-14 w-44 rounded-md shadow">
