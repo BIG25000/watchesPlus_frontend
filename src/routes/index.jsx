@@ -27,9 +27,7 @@ import BrandAdminContextProvider from "../features/admins/brands/contexts/BrandA
 import WatchAdminContextProvider from "../features/admins/products/contexts/WatchAdminContext";
 import UserIdPage from "../pages/admins/UserIdPage";
 import RedirectIfAuthenticated from "../features/auth/components/RedirectIfAuthenticated";
-import WishListPage from "../pages/WishlistPage";
-
-
+import ProfileContextProvider from "../features/profile/contexts/ProfileContext";
 
 const router = createBrowserRouter([
   {
@@ -38,7 +36,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Container />,
+        element: (
+          <ProfileContextProvider>
+            <Container />
+          </ProfileContextProvider>
+        ),
         children: [
           {
             path: "",
