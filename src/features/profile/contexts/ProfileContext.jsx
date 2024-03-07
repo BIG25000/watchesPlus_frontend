@@ -8,6 +8,7 @@ export const ProfileContext = createContext();
 
 export default function ProfileContextProvider({ children }) {
   const [profileInfo, setProfileInfo] = useState({});
+  const [orders, setOrders] = useState({})
 
   const getProfileInfo = async () => {
     const res = await profileAPI.getProfileInfo();
@@ -21,13 +22,18 @@ export default function ProfileContextProvider({ children }) {
     return res;
   };
 
+  const getAllOrder = async () => {
+    const res = await profileAPI.getAllOrder()
+    setOrders(res.data)
+  }
+
   useEffect(() => {
     getProfileInfo();
   }, []);
 
   return (
     <ProfileContext.Provider
-      value={{ profileInfo, getProfileInfo, updateProfileInfo }}
+      value={{ profileInfo, getProfileInfo, updateProfileInfo, orders, getAllOrder }}
     >
       {children}
     </ProfileContext.Provider>
