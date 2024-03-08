@@ -2,6 +2,7 @@ import { useState, createContext } from "react";
 
 import * as profileAPI from "../../../apis/profile";
 import { toast } from "react-toastify";
+import { useEffect } from "react";
 
 export const ProfileContext = createContext();
 
@@ -20,9 +21,19 @@ export default function ProfileContextProvider({ children }) {
     return res;
   };
 
+  const watchToSell = async (watchId) => {
+    const {data} = await profileAPI.getMyInventoryToSell(watchId)
+    return data
+  }
+
+
+  useEffect(()=>{
+    getProfileInfo()
+  },[])
+
   return (
     <ProfileContext.Provider
-      value={{ profileInfo, getProfileInfo, updateProfileInfo }}
+      value={{ profileInfo, getProfileInfo, updateProfileInfo , watchToSell }}
     >
       {children}
     </ProfileContext.Provider>
