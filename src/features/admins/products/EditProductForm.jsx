@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import brandAdmin from "../brands/hooks/brandAdmin";
 import watchAdmin from "../products/hooks/watchAdmin";
 import { useParams } from "react-router-dom";
+import { Camera } from "lucide-react";
 
 function EditProductForm() {
   const [input, setInput] = useState({});
@@ -58,6 +59,7 @@ function EditProductForm() {
                   className="select w-full max-w-xs"
                   name="brandId"
                   onChange={handleChangeInput}
+                  value={input.brandId || filterWatches?.brandId}
                 >
                   <option disabled selected>
                     Pick Brand
@@ -91,12 +93,13 @@ function EditProductForm() {
                   className="select w-full max-w-xs"
                   onChange={handleChangeInput}
                   name="movement"
+                  value={input.movement || filterWatches?.movement}
                 >
                   <option disabled selected>
                     Pick Movement
                   </option>
-                  <option>AUTOMATIC</option>
-                  <option>QUARTZ</option>
+                  <option value="AUTOMATIC">AUTOMATIC</option>
+                  <option value="QUARTZ">QUARTZ</option>
                 </select>
               </label>
             </div>
@@ -109,6 +112,7 @@ function EditProductForm() {
                   className="select w-full max-w-xs"
                   onChange={handleChangeInput}
                   name="gender"
+                  value={input?.gender || filterWatches?.gender}
                 >
                   <option disabled selected>
                     Pick Gender
@@ -234,7 +238,7 @@ function EditProductForm() {
               </label>
             </div>
 
-            <div className="col-span-full mt-5">
+            <div className="col-span-1/2 mt-5">
               <input
                 type="file"
                 className="hidden"
@@ -256,7 +260,7 @@ function EditProductForm() {
                     className="mx-auto max-h-[15rem]"
                   />
                   <button
-                    className="absolute top-1 right-1 font-black"
+                    className="absolute top-1 right-1 font-black text-white bg-red-500 rounded-full w-6 h-6 flex justify-center items-center hover:bg-red-600 transition duration-300"
                     onClick={(e) => {
                       e.stopPropagation(); // ให้มันหยุดทำงานซ้ำซ้อน
                       setImage(null);
@@ -268,11 +272,12 @@ function EditProductForm() {
                 </div>
               ) : (
                 <div
-                  className="bg-black hover:bg-egg flex flex-col items-center py-12 rounded-lg"
+                  className="bg-black hover:bg-gray-800 flex flex-col items-center py-12 rounded-lg cursor-pointer"
                   role="button"
                   onClick={() => fileInputEl.current.click()}
                 >
-                  <span className="text-greeOne bg-egg rounded-xl">
+                  <span className="text-green-100 bg-gray-900 px-4 py-2 rounded-xl flex items-center">
+                    <Camera className="mr-2" size={20} />
                     Add Photo Watches
                   </span>
                 </div>

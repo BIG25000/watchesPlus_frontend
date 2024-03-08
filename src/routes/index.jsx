@@ -31,6 +31,9 @@ import ProfileContextProvider from "../features/profile/contexts/ProfileContext"
 import UserAdminContextProvider from "../features/admins/users/contexts/UserAdminContext";
 import InventoryAdminContextProvider from "../features/admins/transactions/contexts/InventoryAdminContext";
 import MessagePage from "../pages/admins/MessagePage";
+import ShippingAdminContextProvider from "../features/admins/shippings/contexts/ShippingAdminContext";
+import MessageAdminContextProvider from "../features/admins/messages/contexts/MessageAdminContext";
+import MessageIdPage from "../pages/admins/MessageIdPage";
 
 const router = createBrowserRouter([
   {
@@ -200,11 +203,23 @@ const router = createBrowserRouter([
       },
       {
         path: "shipping",
-        element: <ShippingPage />,
+        element: (
+          <ShippingAdminContextProvider>
+            <ShippingPage />
+          </ShippingAdminContextProvider>
+        ),
       },
       {
         path: "message",
-        element: <MessagePage />,
+        element: (
+          <MessageAdminContextProvider>
+            <MessagePage />
+          </MessageAdminContextProvider>
+        ),
+      },
+      {
+        path: "message/:senderId",
+        element: <MessageIdPage />,
       },
     ],
     // ************************************************************************ ADMIN *****************
