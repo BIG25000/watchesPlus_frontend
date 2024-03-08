@@ -10,11 +10,9 @@ function CreateBrandForm() {
   const handleFormSubmit = async (e) => {
     try {
       e.preventDefault();
-
-      console.log("*******", input);
+      setInput({ name: "" });
 
       await createBrand(input);
-      toast.success("create brand success");
     } catch (err) {
       console.log(err);
     }

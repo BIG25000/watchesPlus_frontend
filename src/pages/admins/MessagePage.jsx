@@ -1,11 +1,12 @@
 import React from "react";
+import MessageForm from "../../features/admins/messages/MessageForm";
 
-function HomePageInAdmin() {
+function MessagePage() {
   return (
     <div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
-      <div>HomePageInAdmin</div>
+      <MessageForm />
     </div>
   );
 }
 
-export default HomePageInAdmin;
+export default MessagePage;

@@ -12,10 +12,6 @@ export default function MainChat({ setOpen }) {
   const { conversation, getConversationContext } = useChat();
   // console.log(conversation, "*****************");
 
-  useEffect(() => {
-    getConversationContext();
-  }, []);
-
   // const receiver = conversation.filter(
   //   (el) => authUser && authUser?.user.id === el?.senderId
   // );

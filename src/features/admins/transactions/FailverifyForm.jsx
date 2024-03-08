@@ -1,8 +1,8 @@
 import React from "react";
 import inventoryAdmin from "./hooks/inventoryAdmin";
 
-function VerifyForm({ id }) {
-  const { inventorys, verifyInventory } = inventoryAdmin();
+function FailverifyForm({ id }) {
+  const { inventorys, failedInventory } = inventoryAdmin();
 
   const filterInventory = inventorys?.filter((e) => e.id == id)[0];
 
@@ -23,17 +23,17 @@ function VerifyForm({ id }) {
               className="btn"
               onClick={(e) => {
                 e.preventDefault();
-                verifyInventory(id);
-                document.getElementById(`verify${id}`).close();
+                failedInventory(id);
+                document.getElementById(`failverify${id}`).close();
               }}
             >
-              confirm verify
+              confirm failverify
             </button>
             <button
               className="underline"
               onClick={(e) => {
                 e.preventDefault();
-                document.getElementById(`verify${id}`).close();
+                document.getElementById(`failverify${id}`).close();
               }}
             >
               back
@@ -45,4 +45,4 @@ function VerifyForm({ id }) {
   );
 }
 
-export default VerifyForm;
+export default FailverifyForm;
