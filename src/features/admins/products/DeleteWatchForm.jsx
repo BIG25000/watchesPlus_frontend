@@ -1,9 +1,12 @@
 import React from "react";
 import { toast } from "react-toastify";
 import watchAdmin from "./hooks/watchAdmin";
+import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 function DeleteWatchForm({ id }) {
   const { deleteWatch, watches } = watchAdmin();
+  const navigate = useNavigate();
 
   const filterWatches = watches.filter((e) => e.id == id)[0];
 
@@ -22,17 +25,19 @@ function DeleteWatchForm({ id }) {
         </div>
       </div>
       <div className="flex justify-center gap-3">
-        <button
-          className="btn"
-          onClick={(e) => {
-            e.preventDefault();
-            e.stopPropagation();
-            deleteWatch(id);
-            document.getElementById(`deleteWatch${id}`).close();
-          }}
-        >
-          confirm
-        </button>
+        <Link to="/admin/products">
+          <button
+            className="btn"
+            onClick={() => {
+              deleteWatch(id);
+              // navigate("/admin/products");
+              document.getElementById(`deleteWatch${id}`).close();
+            }}
+          >
+            confirm
+          </button>
+        </Link>
+
         <button
           className="btn"
           onClick={(e) => {

@@ -5,11 +5,12 @@ import { Link } from "react-router-dom";
 import Modal from "../../../components/admins/Modal";
 import BlockForm from "./BlockForm";
 import userAdmin from "./hooks/userAdmin";
+import UnblockForm from "./UnblockForm";
 
 function UserForm() {
   const navigate = useNavigate();
   const { users } = userAdmin();
-  console.log(users);
+
   return (
     <div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
       <div className="flex justify-between items-center">
@@ -64,20 +65,39 @@ function UserForm() {
                   </td>
                   <td>
                     <div className="flex gap-3 ">
-                      <Modal
-                        title="block"
-                        id={`block${el.id}`}
-                        // id="blockform"
-                        button="btn btn-sm bg-gray-400 text-black"
-                      >
-                        <BlockForm data={el.id} />
-                      </Modal>
-                      <button
-                        className="btn btn-sm bg-gray-400 text-black"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        Un-Block
-                      </button>
+                      {!(el.status === "INACTIVE") ? (
+                        <Modal
+                          title="block"
+                          id={`block${el.id}`}
+                          button="btn btn-sm bg-gray-400 text-black"
+                        >
+                          <BlockForm id={el.id} />
+                        </Modal>
+                      ) : (
+                        <button
+                          className="btn btn-sm bg-gray-400 text-black"
+                          disabled="disabled"
+                        >
+                          block
+                        </button>
+                      )}
+                      {el.status === "INACTIVE" ? (
+                        <Modal
+                          title="unblock"
+                          id={`unblock${el.id}`}
+                          // id="blockform"
+                          button="btn btn-sm bg-gray-400 text-black"
+                        >
+                          <UnblockForm id={el.id} />
+                        </Modal>
+                      ) : (
+                        <button
+                          className="btn btn-sm bg-gray-400 text-black"
+                          disabled="disabled"
+                        >
+                          unblock
+                        </button>
+                      )}
                     </div>
                   </td>
                 </tr>

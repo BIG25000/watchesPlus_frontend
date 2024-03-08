@@ -47,17 +47,17 @@ export const DASHBOARD_SIDEBAR_LINKS = [
   },
 ];
 
-export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
-  {
-    key: "settings",
-    label: "Settings",
-    path: "/settings",
-    icon: <Settings />,
-  },
-  {
-    key: "support",
-    label: "Help & Support",
-    path: "/support",
-    icon: <Info />,
-  },
-];
+// export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
+//   {
+//     key: "settings",
+//     label: "Settings",
+//     path: "/settings",
+//     icon: <Settings />,
+//   },
+//   {
+//     key: "support",
+//     label: "Help & Support",
+//     path: "/support",
+//     icon: <Info />,
+//   },
+// ];

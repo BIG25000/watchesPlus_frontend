@@ -10,6 +10,7 @@ function ProductIdForm() {
   const navigate = useNavigate();
   const { watchId } = useParams();
   const { watches } = watchAdmin();
+
   const filterWatch = watches.filter((e) => e.id == watchId)[0];
 
   return (
@@ -32,32 +33,31 @@ function ProductIdForm() {
           <div>Model Name : {filterWatch?.modelName}</div>
           <div>Movement : {filterWatch?.movement}</div>
           <div>Gender : {filterWatch?.gender}</div>
-          <div>Power reserve (HOUR) : {filterWatch?.powerReserve} </div>
+          <div>Power reserve (HOUR) : {filterWatch?.powerReserve}</div>
           <div>Case diameter (MM) : {filterWatch?.caseDiameter}</div>
           <div>Crystal : {filterWatch?.crystal}</div>
           <div>Dial : {filterWatch?.dial}</div>
           <div>Bracelet material : {filterWatch?.braceletMaterial}</div>
           <div>Bracelet color : {filterWatch?.braceletColor}</div>
           <div>Description : {filterWatch?.description}</div>
-          <div className="flex gap-10 mt-5">
-            <Link
-              to={`/admin/products/edit/${watchId}`}
-              className="btn btn-sm"
-              onClick={(e) => {
-                e.stopPropagation();
-              }}
-            >
-              EDIT
-            </Link>
 
-            <Modal
-              title="delete"
-              id={`deleteWatch${watchId}`}
-              // id="editBrand"
-              button="btn btn-sm bg-gray-400 text-black"
-            >
-              <DeleteWatchForm id={watchId} />
-            </Modal>
+          <div className="flex gap-10 mt-5 items-center">
+            <div>
+              <Link
+                to={`/admin/products/edit/${watchId}`}
+                className="btn btn-sm"
+                onClick={(e) => {
+                  e.stopPropagation();
+                }}
+              >
+                EDIT
+              </Link>
+            </div>
+            <div>
+              <Link to="/admin/products" className="text-black underline">
+                Back
+              </Link>
+            </div>
           </div>
         </div>
       </div>
