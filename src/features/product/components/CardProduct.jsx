@@ -16,11 +16,15 @@ export default function CardProduct({ data, id }) {
   const wishlistArray = data.wishlist;
   let findWishlist = [];
   if (wishlistArray) {
-    findWishlist = wishlistArray.findIndex((el) => el.userId == authUser.id);
+    findWishlist = wishlistArray.findIndex((el) => el.userId == authUser?.id);
   }
 
   const handleClickLike = async (e) => {
     e.stopPropagation();
+
+    if (!authUser) {
+      navigate("/login");
+    }
 
     if (id != undefined || findWishlist >= 0) {
       await myAPI.delete(`/wishlist/${data.id}`);
