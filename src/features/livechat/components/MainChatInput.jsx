@@ -3,14 +3,22 @@ import { SendHorizontal } from "lucide-react";
 import { useState } from "react";
 import socket from "../../../config/socket";
 import { useEffect } from "react";
+import useChat from "../../../hooks/useChat";
 
 export default function MainChatInput() {
   const [message, setMessage] = useState("");
 
+  // console.log(message);
+
+  const { chatRoom } = useChat();
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(message);
-    await socket.emit("message", message);
+    await socket.emit("message", {
+      receiverId: chatRoom?.receiver?.id,
+      msg: message,
+    });
+    // console.log(socket);
     setMessage("");
   };
 
@@ -25,12 +33,13 @@ export default function MainChatInput() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
-          <SendHorizontal
-            className="absolute top-5 right-5 hover:cursor-pointer"
-            color="#1313e1"
-            strokeWidth="1.2"
-            onClick={handleSubmit}
-          />
+          <button onClick={handleSubmit}>
+            <SendHorizontal
+              className="absolute top-5 right-5 hover:cursor-pointer"
+              color="#1313e1"
+              strokeWidth="1.2"
+            />
+          </button>
         </div>
       ) : (
         <div className="w-full h-[7vh] flex flex-row justify-between items-center p-3">
@@ -41,12 +50,13 @@ export default function MainChatInput() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
-          <SendHorizontal
-            className="absolute top-5 right-5 hover:cursor-pointer hidden"
-            color="#1313e1"
-            strokeWidth="1.2"
-            onClick={handleSubmit}
-          />
+          <button onClick={handleSubmit}>
+            <SendHorizontal
+              className="absolute top-5 right-5 hover:cursor-pointer hidden"
+              color="#1313e1"
+              strokeWidth="1.2"
+            />
+          </button>
         </div>
       )}
     </div>

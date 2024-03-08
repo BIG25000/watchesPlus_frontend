@@ -2,6 +2,7 @@ import { useEffect, useState, createContext } from "react";
 import { useNavigate } from "react-router-dom";
 
 import { allWatches, searchWatches } from "../../../apis/watches";
+import { getAllBrand } from "../../../apis/brand";
 
 export const SearchContext = createContext();
 
@@ -12,11 +13,15 @@ export default function SearchContextProvider({ children }) {
   const [search, setSearch] = useState([]);
   const [querySearch, setQuerySearch] = useState(window.location.search);
   const [selectProduct, setSelectProduct] = useState(null);
+  const [brands, setBrands] = useState([])
   const [selectBrand, setSelectBrand] = useState(null);
   const [products, setProducts] = useState([]);
   const [showSearch, setShowSearch] = useState(querySearch.split("=")[1]);
 
   async function fetchData() {
+    const { data: { data } } = await getAllBrand()
+    data.unshift({ id: 0, name: 'All brand' })
+    setBrands(data)
     const query = window.location.search;
     setQuerySearch(query);
 
@@ -91,6 +96,7 @@ export default function SearchContextProvider({ children }) {
         search,
         setSearch,
         querySearch,
+        brands,
         selectBrand,
         handleFilter,
         handleItemClick,

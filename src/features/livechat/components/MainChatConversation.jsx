@@ -6,25 +6,26 @@ import useAuth from "../../../hooks/useAuth";
 export default function MainChatConversation() {
   const { conversation } = useChat();
   const { authUser } = useAuth();
-  console.log(conversation, "////////////////////////////////");
+  console.log(conversation[0].id, "////////////////////////////////");
+  // console.log(authUser, "////////////////////");
 
   return (
     <div className="flex flex-col gap-3">
       {conversation.map((chat) => {
-        console.log(chat, "********");
+        // console.log(chat, "********");
         return (
           <>
             <Conversation
               key={chat.id}
               chatRoomId={chat.chatRoomId}
-              // senderFirstName={chat.sender?.firstName}
-              // senderLastName={chat.sender?.lastName}
-              // senderId={chat.senderId}
-              // receiverFirstName={chat.receiver?.firstName}
-              // receiverLastName={chat.receiver?.lastName}
-              // receiverId={chat.receiverId}
+              senderFirstName={chat.sender?.firstName}
+              senderLastName={chat.sender?.lastName}
+              senderId={chat.senderId}
+              receiverFirstName={chat.receiver?.firstName}
+              receiverLastName={chat.receiver?.lastName}
+              receiverId={chat.receiverId}
               message={chat.message}
-              // createdAt={chat.createdAt}
+              createdAt={chat.createdAt}
               ownMessage={chat.senderId === authUser?.id}
             />
           </>
