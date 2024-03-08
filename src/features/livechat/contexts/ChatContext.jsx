@@ -30,10 +30,10 @@ export default function ChatContextProvider({ children }) {
     if (tempMessage) {
       console.log(chatRoom, "dasdasd");
       if (authUser.role === "USER") {
-        console.log("userrrrrrrrrrrrrrrrrrrrrrrrr");
+        // console.log("userrrrrrrrrrrrrrrrrrrrrrrrr");
         createMessageContext(receiver, tempMessage, chatRoom?.id);
       } else if (authUser.role === "ADMIN") {
-        console.log(chatRoom?.sender?.id, "-----------------------");
+        // console.log(chatRoom?.sender?.id, "-----------------------");
         createMessageContext(chatRoom?.sender?.id, tempMessage, chatRoom?.id);
       }
     }
@@ -62,17 +62,20 @@ export default function ChatContextProvider({ children }) {
   const getChatRoomContext = async () => {
     try {
       console.log(authUser, "testing");
+
       if (authUser?.role === "USER") {
         const res = await livechatApi.getChatRoom(authUser?.id);
         // console.log(res.data.chatRoom, "user");
         // console.log(authUser.id, "user");
         setChatRoom(res.data.chatRoom);
+        getConversationContext();
         // console.log(res.data, "...................");
       } else {
         const res = await livechatApi.getChatRoom(conversation?.[0].senderId);
         // const res = await livechatApi.getChatRoom(authUser.id);
         // console.log(conversation?.[0].senderId, "admin");
         setChatRoom(res.data.chatRoom);
+        getConversationContext();
       }
       // console.log(res.data.chatRoom, "*******");
     } catch (error) {
@@ -81,8 +84,12 @@ export default function ChatContextProvider({ children }) {
   };
 
   const getConversationContext = async () => {
+    // console.log(chatRoom, "chatroommmmmmmmmmmmmmmmmmmmmmmmmm");
     try {
-      const res = await livechatApi.getConversation();
+      console.log(chatRoom, "chatroommmmmmmmmmmmmmmmmmmmmmmmmm");
+
+      const res = await livechatApi.getConversation(chatRoom?.id);
+      console.log(res.data.conversation, "conversationnnnnnnnnnnnnnnnnnnnnnn");
       setConversation(res.data.conversation);
     } catch (error) {
       console.log(error);
@@ -100,9 +107,13 @@ export default function ChatContextProvider({ children }) {
   };
 
   useEffect(() => {
-    getConversationContext();
     getChatRoomContext();
+    // getConversationContext();
   }, [authUser?.id]);
+
+  useEffect(() => {
+    getConversationContext();
+  }, [chatRoom?.id]);
 
   return (
     <ChatContext.Provider
