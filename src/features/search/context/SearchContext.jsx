@@ -41,7 +41,6 @@ export default function SearchContextProvider({ children }) {
     fetchData();
   }, [querySearch]);
 
-  console.log(brands);
   // dropdown-search
   const handleFilter = (value) => {
     setSearchElement(value);

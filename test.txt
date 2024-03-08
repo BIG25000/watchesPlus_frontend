@@ -1,0 +1,7 @@
+- create chatRoomId => click symbol for create 
+{
+    userId = authUser.id,
+    adminId = 1
+}
+ 
+- 
