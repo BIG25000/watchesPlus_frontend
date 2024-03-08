@@ -4,10 +4,12 @@ import App from "./App.jsx";
 import "./index.css";
 import AuthContextProvider from "./features/auth/contexts/AuthContext.jsx";
 
+
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>
-      <AuthContextProvider>
+    <AuthContextProvider>
         <App />
-      </AuthContextProvider>
+    </AuthContextProvider>
   </>
 );

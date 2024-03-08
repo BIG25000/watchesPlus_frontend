@@ -28,6 +28,9 @@ import WatchAdminContextProvider from "../features/admins/products/contexts/Watc
 import UserIdPage from "../pages/admins/UserIdPage";
 import RedirectIfAuthenticated from "../features/auth/components/RedirectIfAuthenticated";
 import ProfileContextProvider from "../features/profile/contexts/ProfileContext";
+import WishlistPage from "../pages/WishlistPage";
+
+
 
 const router = createBrowserRouter([
   {
@@ -60,7 +63,7 @@ const router = createBrowserRouter([
               },
               {
                 path: "wishlist",
-                element: <>WishlistPage</>,
+                element: <WishlistPage/>,
               },
               {
                 path: "history",

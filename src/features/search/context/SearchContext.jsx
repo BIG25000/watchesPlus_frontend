@@ -36,12 +36,12 @@ export default function SearchContextProvider({ children }) {
       setProducts(response.data.data);
     }
   }
+  
 
   useEffect(() => {
     fetchData();
   }, [querySearch]);
 
-  console.log(brands);
   // dropdown-search
   const handleFilter = (value) => {
     setSearchElement(value);
@@ -91,6 +91,7 @@ export default function SearchContextProvider({ children }) {
   return (
     <SearchContext.Provider
       value={{
+        fetchData,
         searchElement,
         setSearchElement,
         showSearch,
