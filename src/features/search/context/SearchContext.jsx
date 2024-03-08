@@ -36,6 +36,7 @@ export default function SearchContextProvider({ children }) {
       setProducts(response.data.data);
     }
   }
+  
 
   useEffect(() => {
     fetchData();
@@ -90,6 +91,7 @@ export default function SearchContextProvider({ children }) {
   return (
     <SearchContext.Provider
       value={{
+        fetchData,
         searchElement,
         setSearchElement,
         showSearch,

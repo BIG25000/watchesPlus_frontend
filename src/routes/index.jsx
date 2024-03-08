@@ -34,6 +34,9 @@ import MessagePage from "../pages/admins/MessagePage";
 import ShippingAdminContextProvider from "../features/admins/shippings/contexts/ShippingAdminContext";
 import MessageAdminContextProvider from "../features/admins/messages/contexts/MessageAdminContext";
 import MessageIdPage from "../pages/admins/MessageIdPage";
+import WishlistPage from "../pages/WishlistPage";
+
+
 
 const router = createBrowserRouter([
   {
@@ -66,7 +69,7 @@ const router = createBrowserRouter([
               },
               {
                 path: "wishlist",
-                element: <>WishlistPage</>,
+                element: <WishlistPage/>,
               },
               {
                 path: "history",
