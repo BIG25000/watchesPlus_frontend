@@ -71,7 +71,6 @@ export default function SearchContextProvider({ children }) {
   // option-brand
   const handleSelectBrand = (e) => {
     setSelectBrand(e.target.value);
-    console.log(selectBrand);
   };
 
   // search-by-active-enter
