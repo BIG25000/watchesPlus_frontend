@@ -9,6 +9,7 @@ import { useState } from "react";
 import useProduct from "../../../hooks/useProduct";
 import { useEffect } from "react";
 import Description from "./Description";
+import AddWatchModal from "./AddWatchModal";
 
 export default function DetailProduct() {
   const { watchId } = useParams();
@@ -54,7 +55,7 @@ export default function DetailProduct() {
                       src="https://cdn.pixabay.com/photo/2014/07/31/23/00/wristwatch-407096_1280.jpg"
                     />
                   </div>
-                  <div className="flex flex-col px-6 gap-10">
+                  <div className="flex flex-col px-6 gap-10 ">
                     <Title>{watch?.modelName}</Title>
                     <Description label="Description">
                       {watch?.description}
@@ -84,8 +85,15 @@ export default function DetailProduct() {
                       <Description label="Bracelet Color">
                         {watch?.braceletColor}
                       </Description>
-                      <Button>Add Product To Inventory</Button>
                     </div>
+                    <Button
+                      bg="green"
+                      color="white"
+                      className="mx-4"
+                      onClick={() => document.getElementById("add").showModal()}
+                    >
+                      Add Product To Inventory
+                    </Button>
                   </div>
                 </div>
                 <div className="flex justify-evenly  gap-8">
@@ -121,6 +129,8 @@ export default function DetailProduct() {
           ) : null}
         </>
       )}
+      {/* modal add product */}
+      <AddWatchModal watch={watch} setLoading={setLoading}/>
     </>
   );
 }

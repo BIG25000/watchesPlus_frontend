@@ -14,18 +14,18 @@ export default function OrderContainer(props) {
       <div className="text-lg flex flex-col gap-8 items-center">
         {dataBuy?.length > 0 && (
           <div className="flex gap-2">
-            <span className="font-bold">{dataBuy?.length}</span>
+            <span className="font-bold">{dataBuy?.length || 0}</span>
             <span>รายการขาย</span>
             <span>เริ่มต้น</span>
-            <span className="font-bold">{baht + dataBuy[0]?.price}</span>
+            <span className="font-bold">{(baht +' '+dataBuy[0]?.price) || 0}</span>
           </div>
         )}
         {dataSale?.length > 0 && (
           <div className="flex gap-2">
-            <span className="font-bold">{dataSale?.length}</span>
+            <span className="font-bold">{dataSale?.length || 0}</span>
             <span>รายการขาย</span>
             <span>เริ่มต้น</span>
-            <span className="font-bold">{baht + dataSale[0]?.price}</span>
+            <span className="font-bold">{(baht +' '+dataSale[0]?.price) || 0}</span>
           </div>
         )}
         <Button
