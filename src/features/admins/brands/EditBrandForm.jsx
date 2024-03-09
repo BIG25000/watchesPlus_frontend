@@ -12,10 +12,7 @@ function EditBrandForm({ id }) {
   const handleFormSubmit = async (e) => {
     try {
       e.preventDefault();
-      // console.log(id);
-      // console.log(`editBrand${id}`);
-      // console.log("*******", input);
-
+      setInput({ name: "" });
       await editBrand(input, id);
     } catch (err) {
       console.log(err);
