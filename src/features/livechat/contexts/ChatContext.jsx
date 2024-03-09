@@ -112,6 +112,7 @@ export default function ChatContextProvider({ children }) {
   }, [authUser?.id]);
 
   useEffect(() => {
+    console.log(chatRoom.id, "dadsadadasdas");
     getConversationContext();
   }, [chatRoom?.id]);
 
