@@ -12,13 +12,19 @@ export const dropdownList = [
         link: '/profile/inventory'
     },
     {
-        id: 3,
+        id:3,
+        icon: 'Heart',
+        name: 'Wishlist',
+        link: '/profile/wishlist'
+    },
+    {
+        id: 4,
         icon: 'Wallet',
         name: 'Wallet',
         link: '/profile/wallet'
     },
     {
-        id: 4,
+        id: 5,
         icon: 'LogOut',
         name: 'Logout',
         link: '/',

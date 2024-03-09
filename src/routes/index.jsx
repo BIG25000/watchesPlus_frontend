@@ -28,6 +28,15 @@ import WatchAdminContextProvider from "../features/admins/products/contexts/Watc
 import UserIdPage from "../pages/admins/UserIdPage";
 import RedirectIfAuthenticated from "../features/auth/components/RedirectIfAuthenticated";
 import ProfileContextProvider from "../features/profile/contexts/ProfileContext";
+import UserAdminContextProvider from "../features/admins/users/contexts/UserAdminContext";
+import InventoryAdminContextProvider from "../features/admins/transactions/contexts/InventoryAdminContext";
+import MessagePage from "../pages/admins/MessagePage";
+import ShippingAdminContextProvider from "../features/admins/shippings/contexts/ShippingAdminContext";
+import MessageAdminContextProvider from "../features/admins/messages/contexts/MessageAdminContext";
+import MessageIdPage from "../pages/admins/MessageIdPage";
+import WishlistPage from "../pages/WishlistPage";
+
+
 
 const router = createBrowserRouter([
   {
@@ -60,7 +69,7 @@ const router = createBrowserRouter([
               },
               {
                 path: "wishlist",
-                element: <>WishlistPage</>,
+                element: <WishlistPage/>,
               },
               {
                 path: "history",
@@ -177,7 +186,11 @@ const router = createBrowserRouter([
       },
       {
         path: "inventory",
-        element: <TransactionPage />,
+        element: (
+          <InventoryAdminContextProvider>
+            <TransactionPage />
+          </InventoryAdminContextProvider>
+        ),
       },
       {
         path: "users",
@@ -185,11 +198,31 @@ const router = createBrowserRouter([
       },
       {
         path: "users/:userId",
-        element: <UserIdPage />,
+        element: (
+          <UserAdminContextProvider>
+            <UserIdPage />
+          </UserAdminContextProvider>
+        ),
       },
       {
         path: "shipping",
-        element: <ShippingPage />,
+        element: (
+          <ShippingAdminContextProvider>
+            <ShippingPage />
+          </ShippingAdminContextProvider>
+        ),
+      },
+      {
+        path: "message",
+        element: (
+          <MessageAdminContextProvider>
+            <MessagePage />
+          </MessageAdminContextProvider>
+        ),
+      },
+      {
+        path: "message/:senderId",
+        element: <MessageIdPage />,
       },
     ],
     // ************************************************************************ ADMIN *****************

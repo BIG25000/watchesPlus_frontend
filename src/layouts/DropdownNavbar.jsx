@@ -51,6 +51,7 @@ export default function DropdownNavbar() {
                 icon={el.icon}
                 name={el.name}
                 link={el.link}
+                onClick={() => handleToggleDropdown()}
               />
             )
           )}

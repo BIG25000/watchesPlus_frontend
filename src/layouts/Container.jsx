@@ -5,17 +5,20 @@ import Footer from "./Footer";
 import LiveChat from "../pages/LiveChat";
 import ChatContextProvider from "../features/livechat/contexts/ChatContext";
 import SearchContextProvider from "../features/search/context/SearchContext";
+import WishlistContextProvider from "../features/wishlist/context/WishlistContext";
 
 export default function Container() {
   return (
     <>
       <SearchContextProvider>
-        <Navbar />
-        <ChatContextProvider>
-          <LiveChat />
-        </ChatContextProvider>
-        <Outlet />
-        <Footer />
+        <WishlistContextProvider>
+          <Navbar />
+          <ChatContextProvider>
+            <LiveChat />
+          </ChatContextProvider>
+          <Outlet />
+          <Footer />
+        </WishlistContextProvider>
       </SearchContextProvider>
     </>
   );
