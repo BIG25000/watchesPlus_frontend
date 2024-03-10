@@ -29,6 +29,11 @@ export default function ProfileContextProvider({ children }) {
     return data
   }
 
+  const getMyInventory = async () => {
+    const {data} = await profileAPI.getAllInMyInventory()
+    return data
+  }
+
 
   useEffect(()=>{
     getProfileInfo()
@@ -51,13 +56,9 @@ export default function ProfileContextProvider({ children }) {
     getAllOrder()
   }
 
-  useEffect(() => {
-    getProfileInfo();
-  }, []);
-
   return (
     <ProfileContext.Provider
-      value={{ profileInfo, getProfileInfo, updateProfileInfo, orders, getAllOrder, handleClickCancelBuyOrder, handleClickCancelSaleOrder , watchToSell }}
+      value={{ profileInfo, getProfileInfo, updateProfileInfo, orders, getAllOrder, handleClickCancelBuyOrder, handleClickCancelSaleOrder , watchToSell , getMyInventory }}
     >
       {children}
     </ProfileContext.Provider>

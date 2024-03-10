@@ -26,10 +26,7 @@ import BrandAdminContextProvider from "../features/admins/brands/contexts/BrandA
 import WatchAdminContextProvider from "../features/admins/products/contexts/WatchAdminContext";
 import UserIdPage from "../pages/admins/UserIdPage";
 import RedirectIfAuthenticated from "../features/auth/components/RedirectIfAuthenticated";
-import ProductContextProvider from "../features/product/contexts/ProductContext";
 import Container from "../layouts/Container";
-
-import ProfileContextProvider from "../features/profile/contexts/ProfileContext";
 import UserAdminContextProvider from "../features/admins/users/contexts/UserAdminContext";
 import InventoryAdminContextProvider from "../features/admins/transactions/contexts/InventoryAdminContext";
 import MessagePage from "../pages/admins/MessagePage";
@@ -37,8 +34,7 @@ import ShippingAdminContextProvider from "../features/admins/shippings/contexts/
 import MessageAdminContextProvider from "../features/admins/messages/contexts/MessageAdminContext";
 import MessageIdPage from "../pages/admins/MessageIdPage";
 import WishlistPage from "../pages/WishlistPage";
-
-
+import InventoryPage from "../pages/User/InventoryPage";
 
 const router = createBrowserRouter([
   {
@@ -47,13 +43,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: (
-          <ProfileContextProvider>
-            <ProductContextProvider>
-              <Container />
-            </ProductContextProvider>
-          </ProfileContextProvider>
-        ),
+        element: <Container />,
         children: [
           {
             path: "",
@@ -76,7 +66,8 @@ const router = createBrowserRouter([
               },
               {
                 path: "wishlist",
-                element: <WishlistPage/>,
+                element: <WishlistPage />,
+                lazy: () => import("../pages/User/WishlistPage"),
               },
               {
                 path: "history",
@@ -85,13 +76,8 @@ const router = createBrowserRouter([
               },
               {
                 path: "inventory",
-                element: <>InventoryPage</>,
-                children: [
-                  {
-                    path: ":inventoryId",
-                    element: <>Watch in InventoryId</>,
-                  },
-                ],
+                element: <InventoryPage />,
+                lazy: () => import("../pages/User/InventoryPage"),
               },
               {
                 path: "wallet",

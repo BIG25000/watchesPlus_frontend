@@ -7,7 +7,8 @@ import useSearch from "../../../hooks/useSearch";
 import { toast } from "react-toastify";
 import { useWishlist } from "../../wishlist/context/WishlistContext";
 
-export default function CardProduct({ data, id }) {
+export default function CardProduct(props) {
+  const { data, id } = props
   const { authUser } = useAuth();
   const { fetchData } = useSearch();
   const { fetchWishlist } = useWishlist();
@@ -44,7 +45,7 @@ export default function CardProduct({ data, id }) {
     <div className="w-72 h-96 flex flex-col bg-black shadow cursor-pointer">
       <div
         className="relative h-60 bg-egg flex justify-center items-center"
-        onClick={() => navigate("/watch/:watchId")}
+        onClick={() => navigate(`/watch/${data.id}`)}
       >
         <img className="h-full" src={data?.watchImage} />
         <div

@@ -46,83 +46,79 @@ export default function DetailProduct() {
       ) : (
         <>
           {watch && allBuyOrder && allSaleOrder ? (
-            <div className="min-h-screen bg-white">
-              <div className="mx-auto w-[1200px]  min-h-screen  flex flex-col gap-10 py-12">
-                <div className="flex gap-10">
-                  <div className="flex flex-col items-center w-[600px] justify-center">
-                    <img
-                      className="rounded-2xl"
-                      src="https://cdn.pixabay.com/photo/2014/07/31/23/00/wristwatch-407096_1280.jpg"
-                    />
-                  </div>
-                  <div className="flex flex-col px-6 gap-10 ">
-                    <Title>{watch?.modelName}</Title>
-                    <Description label="Description">
-                      {watch?.description}
+            <div className="mx-auto w-[1200px]  min-h-screen  flex flex-col gap-10 py-12">
+              <div className="flex gap-10">
+                <div className="flex flex-col items-center w-[600px] justify-center">
+                  <img
+                    className="rounded-2xl"
+                    src="https://cdn.pixabay.com/photo/2014/07/31/23/00/wristwatch-407096_1280.jpg"
+                  />
+                </div>
+                <div className="flex flex-col px-6 gap-10 ">
+                  <Title>{watch?.modelName}</Title>
+                  <Description label="Description">
+                    {watch?.description}
+                  </Description>
+                  <div className="grid grid-cols-2 gap-6">
+                    <Description label="Brand">{watch?.brand}</Description>
+                    <Description label="Movement">
+                      {watch?.movement}
                     </Description>
-                    <div className="grid grid-cols-2 gap-6">
-                      <Description label="Brand">{watch?.brand}</Description>
-                      <Description label="Movement">
-                        {watch?.movement}
-                      </Description>
-                      <Description label="Gender">{watch?.gender}</Description>
-                      <Description label="Power Reserve">
-                        {watch?.powerReserve}
-                      </Description>
-                      <Description label="Case Material">
-                        {watch?.caseMaterial}
-                      </Description>
-                      <Description label="Case Diameter">
-                        {watch?.caseDiameter}
-                      </Description>
-                      <Description label="Crystal">
-                        {watch?.crystal}
-                      </Description>
-                      <Description label="Dial">{watch?.dial}</Description>
-                      <Description label="Bracelet Material">
-                        {watch?.braceletMaterial}
-                      </Description>
-                      <Description label="Bracelet Color">
-                        {watch?.braceletColor}
-                      </Description>
-                    </div>
-                    <Button
-                      bg="green"
-                      color="white"
-                      className="mx-4"
-                      onClick={() => document.getElementById("add").showModal()}
-                    >
-                      Add Product To Inventory
-                    </Button>
+                    <Description label="Gender">{watch?.gender}</Description>
+                    <Description label="Power Reserve">
+                      {watch?.powerReserve}
+                    </Description>
+                    <Description label="Case Material">
+                      {watch?.caseMaterial}
+                    </Description>
+                    <Description label="Case Diameter">
+                      {watch?.caseDiameter}
+                    </Description>
+                    <Description label="Crystal">{watch?.crystal}</Description>
+                    <Description label="Dial">{watch?.dial}</Description>
+                    <Description label="Bracelet Material">
+                      {watch?.braceletMaterial}
+                    </Description>
+                    <Description label="Bracelet Color">
+                      {watch?.braceletColor}
+                    </Description>
                   </div>
-                </div>
-                <div className="flex justify-evenly  gap-8">
-                  <OrderContainer
-                    id="buy"
-                    dataBuy={allBuyOrder}
-                    watch={watch}
-                    setLoading={setLoading}
-                    loading={loading}
+                  <Button
+                    bg="green"
+                    color="white"
+                    className="mx-4"
+                    onClick={() => document.getElementById("add").showModal()}
                   >
-                    Buy
-                  </OrderContainer>
-                  <OrderContainer
-                    id="sell"
-                    dataSale={allSaleOrder}
-                    watch={watch}
-                    setLoading={setLoading}
-                    loading={loading}
-                  >
-                    Sell
-                  </OrderContainer>
+                    Add Product To Inventory
+                  </Button>
                 </div>
-                <div className="flex flex-col gap-4">
-                  <Title>History</Title>
-                  <div>
-                    {allHistory?.map((e) => {
-                      return <OrderList data={e} />;
-                    })}
-                  </div>
+              </div>
+              <div className="flex justify-evenly  gap-8">
+                <OrderContainer
+                  id="buy"
+                  dataBuy={allBuyOrder}
+                  watch={watch}
+                  setLoading={setLoading}
+                  loading={loading}
+                >
+                  Buy
+                </OrderContainer>
+                <OrderContainer
+                  id="sell"
+                  dataSale={allSaleOrder}
+                  watch={watch}
+                  setLoading={setLoading}
+                  loading={loading}
+                >
+                  Sell
+                </OrderContainer>
+              </div>
+              <div className="flex flex-col gap-4">
+                <Title>History</Title>
+                <div>
+                  {allHistory?.map((e) => {
+                    return <OrderList data={e} />;
+                  })}
                 </div>
               </div>
             </div>
@@ -130,7 +126,7 @@ export default function DetailProduct() {
         </>
       )}
       {/* modal add product */}
-      <AddWatchModal watch={watch} setLoading={setLoading}/>
+      <AddWatchModal watch={watch} setLoading={setLoading} />
     </>
   );
 }
