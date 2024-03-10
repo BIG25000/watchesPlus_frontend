@@ -7,6 +7,7 @@ import Icon from "../../../components/Icon";
 
 export default function WishlistList() {
   const { wishlist } = useWishlist();
+  console.log(wishlist)
   const {
     showSearch,
     querySearch,
