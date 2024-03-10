@@ -7,7 +7,8 @@ import shippingAdmin from "./hooks/shippingAdmin";
 function ShipingForm() {
   const { shippings } = shippingAdmin();
 
-  console.log(shippings, ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
+  console.log(shippings, "******************");
+
   return (
     <div>
       <strong className="text-gray-700 font-medium">Shipping</strong>
@@ -28,7 +29,7 @@ function ShipingForm() {
               </tr>
             </thead>
             <tbody>
-              {shippings.map((el) => (
+              {shippings?.map((el) => (
                 <tr>
                   <th>{el.id}</th>
                   <td>
@@ -42,14 +43,16 @@ function ShipingForm() {
                         ></div>
                       </div>
                       <div>
-                        <div className="font-bold">Pongsatorn Sudsom</div>
-                        <div className="text-sm opacity-50">BIG</div>
+                        <div className="font-bold">
+                          {el.inventory?.user?.firstName}
+                          {el.inventory?.user?.lastName}
+                        </div>
                       </div>
                     </div>
                   </td>
                   <td></td>
                   <td>
-                    {el.inventory?.watch?.modelName}
+                    {el.inventory?.watch?.modelName} - -
                     {el.inventory?.watch?.brand?.name}
                   </td>
                   <td>{el.createdAt?.slice(0, 10)}</td>
@@ -57,12 +60,12 @@ function ShipingForm() {
                   <td>{el.trackingNumber}</td>
                   <td>
                     <Modal
-                      title="add tracking"
+                      title="addTracking"
                       // id={`editBrand${el.id}`}
-                      id="add tracking"
+                      id={`addTracking${el.id}`}
                       button="btn btn-sm bg-gray-400 text-black"
                     >
-                      <AddTrackingForm />
+                      <AddTrackingForm id={el.id} />
                     </Modal>
                   </td>
                 </tr>

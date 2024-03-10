@@ -34,6 +34,7 @@ import MessagePage from "../pages/admins/MessagePage";
 import ShippingAdminContextProvider from "../features/admins/shippings/contexts/ShippingAdminContext";
 import MessageAdminContextProvider from "../features/admins/messages/contexts/MessageAdminContext";
 import MessageIdPage from "../pages/admins/MessageIdPage";
+import TrackingTest from "../pages/admins/TrackingTest";
 
 const router = createBrowserRouter([
   {
@@ -220,6 +221,10 @@ const router = createBrowserRouter([
       {
         path: "message/:senderId",
         element: <MessageIdPage />,
+      },
+      {
+        path: "trackingtest",
+        element: <TrackingTest />,
       },
     ],
     // ************************************************************************ ADMIN *****************
