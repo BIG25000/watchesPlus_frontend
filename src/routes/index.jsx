@@ -33,7 +33,7 @@ import MessagePage from "../pages/admins/MessagePage";
 import ShippingAdminContextProvider from "../features/admins/shippings/contexts/ShippingAdminContext";
 import MessageAdminContextProvider from "../features/admins/messages/contexts/MessageAdminContext";
 import MessageIdPage from "../pages/admins/MessageIdPage";
-import WishlistPage from "../pages/WishlistPage";
+import WishlistPage from "../pages/User/WishlistPage";
 import InventoryPage from "../pages/User/InventoryPage";
 
 const router = createBrowserRouter([

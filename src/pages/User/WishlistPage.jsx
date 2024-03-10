@@ -1,7 +1,11 @@
 import React from 'react'
+import WishlistList from '../../features/wishlist/components/WishlistList'
 
-export default function WishlistPage() {
+
+function WishlistPage() {
   return (
-    <div>WishlistPage</div>
+    <WishlistList/>
   )
 }
+
+export default WishlistPage
