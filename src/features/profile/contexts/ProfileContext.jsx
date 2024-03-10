@@ -5,6 +5,7 @@ import * as orderAPI from "../../../apis/order"
 import { toast } from "react-toastify";
 import { useEffect } from "react";
 
+
 export const ProfileContext = createContext();
 
 export default function ProfileContextProvider({ children }) {
@@ -23,6 +24,21 @@ export default function ProfileContextProvider({ children }) {
     return res;
   };
 
+  const watchToSell = async (watchId) => {
+    const {data} = await profileAPI.getMyInventoryToSell(watchId)
+    return data
+  }
+
+  const getMyInventory = async () => {
+    const {data} = await profileAPI.getAllInMyInventory()
+    return data
+  }
+
+
+  useEffect(()=>{
+    getProfileInfo()
+  },[])
+
   const getAllOrder = async () => {
     const res = await orderAPI.getAllOrder()
     setOrders(res.data)
@@ -40,13 +56,9 @@ export default function ProfileContextProvider({ children }) {
     getAllOrder()
   }
 
-  useEffect(() => {
-    getProfileInfo();
-  }, []);
-
   return (
     <ProfileContext.Provider
-      value={{ profileInfo, getProfileInfo, updateProfileInfo, orders, getAllOrder, handleClickCancelBuyOrder, handleClickCancelSaleOrder }}
+      value={{ profileInfo, getProfileInfo, updateProfileInfo, orders, getAllOrder, handleClickCancelBuyOrder, handleClickCancelSaleOrder , watchToSell , getMyInventory }}
     >
       {children}
     </ProfileContext.Provider>
