@@ -1,5 +1,5 @@
 import React from 'react'
-import WishlistList from '../features/wishlist/components/WishlistList'
+import WishlistList from '../../features/wishlist/components/WishlistList'
 
 
 function WishlistPage() {
