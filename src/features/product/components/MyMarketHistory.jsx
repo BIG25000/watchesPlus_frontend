@@ -1,3 +1,4 @@
+import Pagination from "../../../components/Pagination"
 import MyMarketHistoryForm from "./MyMarketHistoryForm"
 
 export default function MyMarketHistory() {
@@ -6,6 +7,7 @@ export default function MyMarketHistory() {
             <span>My sell listing</span>
             <MyMarketHistoryForm />
             <MyMarketHistoryForm />
+            <Pagination />
         </>
     )
 }
