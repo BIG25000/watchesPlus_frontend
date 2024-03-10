@@ -30,12 +30,16 @@ function TrackingTest() {
             };
 
             axios
-              .post("http://localhost:5173/admin/trackingtest", data, {
-                headers: {
-                  Authorization: `Token ${token}`,
-                  "Content-Type": "application/json",
-                },
-              })
+              .post(
+                "https://trackapi.thailandpost.co.th/post/api/v1/track",
+                data,
+                {
+                  headers: {
+                    Authorization: `Token ${token}`,
+                    "Content-Type": "application/json",
+                  },
+                }
+              )
               .then((response) => {
                 if (response.data.message === "successful") {
                   const trackingItems =

@@ -17,21 +17,21 @@ function BrandAdminContextProvider({ children }) {
       .catch((err) => console.log(err));
   }, []);
 
-  const createBrand = async (name) => {
+  const createBrand = async (formData) => {
     try {
-      const result = await brandApi.createBrand(name);
-      setBrands((res) => [...res, result.data.data]);
+      const result = await brandApi.createBrand(formData);
+      setBrands((res) => [...res, result.data.data]); // ท่าไอฮั่นนนนทามายัง
       toast.success("create brand success");
     } catch (error) {
       console.log(error);
     }
   };
 
-  const editBrand = async (name, id) => {
+  const editBrand = async (formData, id) => {
     try {
-      await brandApi.editBrand(name, id);
+      await brandApi.editBrand(formData, id);
       const res = await brandApi.getAllBrand();
-      setBrands(res.data.data);
+      setBrands(res.data.data); // ท่าโอม
       toast.success("edit brand success");
     } catch (error) {
       console.log(error);

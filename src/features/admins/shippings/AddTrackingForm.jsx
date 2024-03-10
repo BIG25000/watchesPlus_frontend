@@ -1,6 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import shippingAdmin from "./hooks/shippingAdmin";
+import { toast } from "react-toastify";
 
 function AddTrackingForm({ id }) {
   const [input, setInput] = useState({});
@@ -8,9 +9,41 @@ function AddTrackingForm({ id }) {
 
   const filterShippings = shippings?.filter((e) => e.id == id)[0];
 
+  // const handleFormSubmit = async (e) => {
+  //   try {
+  //     e.preventDefault();
+  //     await updateTracking(input, id);
+  //   } catch (err) {
+  //     console.log(err);
+  //   }
+  //   document.getElementById(`addTracking${id}`).close();
+  // };
+
   const handleFormSubmit = async (e) => {
     try {
       e.preventDefault();
+
+      // ตรวจสอบว่าช่องกรอกเลขที่ติดตามไม่เป็นค่าว่าง
+      if (!input.trackingNumber || !input.trackingNumber.trim()) {
+        toast.error("Please enter tracking number.");
+        return;
+      }
+
+      // เช็คความยาวของเลขที่ติดตาม
+      if (input.trackingNumber.trim().length !== 10) {
+        toast.error("Tracking number must be 10 characters long.");
+        return;
+      }
+
+      // เช็คว่าเลขที่ติดตามประกอบด้วยภาษาอังกฤษและตัวเลขเท่านั้น
+      const alphanumericRegex = /^[a-zA-Z0-9]+$/;
+      if (!alphanumericRegex.test(input.trackingNumber.trim())) {
+        toast.error(
+          "Tracking number must contain only English letters and digits."
+        );
+        return;
+      }
+
       await updateTracking(input, id);
     } catch (err) {
       console.log(err);

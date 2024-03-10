@@ -145,7 +145,11 @@ const router = createBrowserRouter([
       },
       {
         path: "products",
-        element: <ProductPage />,
+        element: (
+          <BrandAdminContextProvider>
+            <ProductPage />
+          </BrandAdminContextProvider>
+        ),
       },
       {
         path: "products/create",
@@ -180,9 +184,11 @@ const router = createBrowserRouter([
       {
         path: "inventory",
         element: (
-          <InventoryAdminContextProvider>
-            <TransactionPage />
-          </InventoryAdminContextProvider>
+          <BrandAdminContextProvider>
+            <InventoryAdminContextProvider>
+              <TransactionPage />
+            </InventoryAdminContextProvider>
+          </BrandAdminContextProvider>
         ),
       },
       {
