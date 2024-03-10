@@ -68,14 +68,15 @@ export default function ChatContextProvider({ children }) {
         // console.log(res.data.chatRoom, "user");
         // console.log(authUser.id, "user");
         setChatRoom(res.data.chatRoom);
-        getConversationContext();
+        // getConversationContext();
+        getConversationContext(res.data.chatRoom.id);
         // console.log(res.data, "...................");
       } else {
         const res = await livechatApi.getChatRoom(conversation?.[0].senderId);
         // const res = await livechatApi.getChatRoom(authUser.id);
         // console.log(conversation?.[0].senderId, "admin");
         setChatRoom(res.data.chatRoom);
-        getConversationContext();
+        // getConversationContext();
       }
       // console.log(res.data.chatRoom, "*******");
     } catch (error) {
@@ -83,12 +84,13 @@ export default function ChatContextProvider({ children }) {
     }
   };
 
-  const getConversationContext = async () => {
+  const getConversationContext = async (id) => {
     // console.log(chatRoom, "chatroommmmmmmmmmmmmmmmmmmmmmmmmm");
     try {
       console.log(chatRoom, "chatroommmmmmmmmmmmmmmmmmmmmmmmmm");
 
-      const res = await livechatApi.getConversation(chatRoom?.id);
+      // const res = await livechatApi.getConversation(chatRoom?.id);
+      const res = await livechatApi.getConversation(id);
       console.log(res.data.conversation, "conversationnnnnnnnnnnnnnnnnnnnnnn");
       setConversation(res.data.conversation);
     } catch (error) {
@@ -108,7 +110,7 @@ export default function ChatContextProvider({ children }) {
 
   useEffect(() => {
     getChatRoomContext();
-    // getConversationContext();
+    getConversationContext();
   }, [authUser?.id]);
 
   useEffect(() => {
@@ -118,7 +120,12 @@ export default function ChatContextProvider({ children }) {
 
   return (
     <ChatContext.Provider
-      value={{ getConversationContext, conversation, chatRoom }}
+      value={{
+        getConversationContext,
+        conversation,
+        chatRoom,
+        getChatRoomContext,
+      }}
     >
       {children}
     </ChatContext.Provider>

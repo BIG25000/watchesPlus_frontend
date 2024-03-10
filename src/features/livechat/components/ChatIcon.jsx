@@ -1,13 +1,29 @@
 import { MessagesSquare } from "lucide-react";
 import { useState } from "react";
 import MainChat from "./MainChat";
+import useChat from "../../../hooks/useChat";
+import { useEffect } from "react";
+import useAuth from "../../../hooks/useAuth";
 
 export default function ChatIcon() {
   const [open, setOpen] = useState(false);
 
+  const { authUser } = useAuth();
+  const { getConversationContext, chatRoom, getChatRoomContext } = useChat();
+
   const handleClick = () => {
     setOpen((prev) => !prev);
   };
+
+  useEffect(() => {
+    console.log(chatRoom.id, "dadsadadasdas");
+    getConversationContext();
+  }, [chatRoom?.id]);
+
+  useEffect(() => {
+    getChatRoomContext();
+    getConversationContext();
+  }, [authUser?.id]);
 
   return (
     <>

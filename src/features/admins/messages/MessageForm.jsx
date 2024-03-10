@@ -16,6 +16,8 @@ function MessageForm() {
     return 0;
   });
 
+  console.log(livechatSort, "livechat");
+
   return (
     <>
       <div className="flex justify-between items-center">
@@ -40,10 +42,7 @@ function MessageForm() {
                 // onClick={() => navigate(`${el.id}`)}
                 <tr key={el.id}>
                   <th>{el.id}</th>
-                  <td
-                    onClick={() => navigate(`${el.sender?.id}`)}
-                    role="button"
-                  >
+                  <td onClick={() => navigate(`${el.id}`)} role="button">
                     <div className="flex items-center gap-3">
                       <div className="avatar">
                         <div

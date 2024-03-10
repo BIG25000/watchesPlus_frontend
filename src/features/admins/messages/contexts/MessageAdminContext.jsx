@@ -3,11 +3,15 @@ import * as livechatApi from "../../../../apis/admins/livechat";
 import { useState } from "react";
 import { createContext } from "react";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 export const MessageAdminContext = createContext();
 
 function MessageAdminContextProvider({ children }) {
   const [livechat, setLivechat] = useState();
+  const { chatroomId } = useParams();
+
+  console.log(chatroomId, "chatRoom");
 
   useEffect(() => {
     livechatApi
@@ -17,7 +21,7 @@ function MessageAdminContextProvider({ children }) {
   }, []);
 
   return (
-    <MessageAdminContext.Provider value={{ livechat }}>
+    <MessageAdminContext.Provider value={{ livechat, chatroomId }}>
       {children}
     </MessageAdminContext.Provider>
   );

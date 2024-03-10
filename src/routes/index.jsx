@@ -35,8 +35,7 @@ import ShippingAdminContextProvider from "../features/admins/shippings/contexts/
 import MessageAdminContextProvider from "../features/admins/messages/contexts/MessageAdminContext";
 import MessageIdPage from "../pages/admins/MessageIdPage";
 import WishlistPage from "../pages/WishlistPage";
-
-
+import ChatContextProvider from "../features/livechat/contexts/ChatContext";
 
 const router = createBrowserRouter([
   {
@@ -69,7 +68,7 @@ const router = createBrowserRouter([
               },
               {
                 path: "wishlist",
-                element: <WishlistPage/>,
+                element: <WishlistPage />,
               },
               {
                 path: "history",
@@ -215,14 +214,20 @@ const router = createBrowserRouter([
       {
         path: "message",
         element: (
-          <MessageAdminContextProvider>
-            <MessagePage />
-          </MessageAdminContextProvider>
+          <ChatContextProvider>
+            <MessageAdminContextProvider>
+              <MessagePage />
+            </MessageAdminContextProvider>
+          </ChatContextProvider>
         ),
       },
       {
-        path: "message/:senderId",
-        element: <MessageIdPage />,
+        path: "message/:chatroomId",
+        element: (
+          <ChatContextProvider>
+            <MessageIdPage />
+          </ChatContextProvider>
+        ),
       },
     ],
     // ************************************************************************ ADMIN *****************

@@ -5,8 +5,6 @@ export default function Conversation({
   ownMessage,
   senderFirstName,
   senderLastName,
-  receiverFirstName,
-  receiverLastName,
   createdAt,
   message,
 }) {
