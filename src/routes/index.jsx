@@ -208,19 +208,17 @@ const router = createBrowserRouter([
       {
         path: "message",
         element: (
-          <ChatContextProvider>
-            <MessageAdminContextProvider>
-              <MessagePage />
-            </MessageAdminContextProvider>
-          </ChatContextProvider>
+          <MessageAdminContextProvider>
+            <MessagePage />
+          </MessageAdminContextProvider>
         ),
       },
       {
-        path: "message/:chatroomId",
+        path: "message/:chatroomId/:senderId",
         element: (
-          <ChatContextProvider>
+          <MessageAdminContextProvider>
             <MessageIdPage />
-          </ChatContextProvider>
+          </MessageAdminContextProvider>
         ),
       },
     ],

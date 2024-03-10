@@ -2,7 +2,6 @@ import React from "react";
 import { SendHorizontal } from "lucide-react";
 import { useState } from "react";
 import socket from "../../../config/socket";
-import { useEffect } from "react";
 import useChat from "../../../hooks/useChat";
 
 export default function MainChatInput() {
@@ -14,11 +13,12 @@ export default function MainChatInput() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     await socket.emit("message", {
       receiverId: chatRoom?.receiver?.id,
       msg: message,
+      chatRoomId: chatRoom?.id,
     });
-    // console.log(socket);
     setMessage("");
   };
 

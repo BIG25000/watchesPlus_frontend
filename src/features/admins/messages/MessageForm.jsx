@@ -42,7 +42,10 @@ function MessageForm() {
                 // onClick={() => navigate(`${el.id}`)}
                 <tr key={el.id}>
                   <th>{el.id}</th>
-                  <td onClick={() => navigate(`${el.id}`)} role="button">
+                  <td
+                    onClick={() => navigate(`${el.id}/${el.userId}`)}
+                    role="button"
+                  >
                     <div className="flex items-center gap-3">
                       <div className="avatar">
                         <div

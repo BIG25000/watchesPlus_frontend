@@ -9,20 +9,17 @@ export default function ChatIcon() {
   const [open, setOpen] = useState(false);
 
   const { authUser } = useAuth();
-  const { getConversationContext, chatRoom, getChatRoomContext } = useChat();
+  const { getChatRoomContext, setConversation } = useChat();
 
   const handleClick = () => {
     setOpen((prev) => !prev);
   };
 
   useEffect(() => {
-    console.log(chatRoom.id, "dadsadadasdas");
-    getConversationContext();
-  }, [chatRoom?.id]);
-
-  useEffect(() => {
     getChatRoomContext();
-    getConversationContext();
+    if (!authUser) {
+      setConversation([]);
+    }
   }, [authUser?.id]);
 
   return (

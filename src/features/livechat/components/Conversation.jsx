@@ -7,6 +7,7 @@ export default function Conversation({
   senderLastName,
   createdAt,
   message,
+  src,
 }) {
   // console.log(message);
   // console.log(createdAt);
@@ -29,7 +30,7 @@ export default function Conversation({
               </small>
             </div>
             <div className="w-[2.5vw] h-[2.5vw] bg-blue-100 rounded-full flex items-center justify-center my-6 mr-2">
-              <Avatar />
+              <Avatar src={src} />
             </div>
           </div>
         </div>
@@ -37,7 +38,7 @@ export default function Conversation({
         <div className="flex flex-col">
           <div className="flex flex-row gap-2">
             <div className="w-[2.5vw] h-[2.5vw] bg-blue-100 rounded-full flex items-center justify-center my-6 ml-2">
-              <Avatar />
+              <Avatar src={src} />
             </div>
             <div>
               <span className="my-1">
