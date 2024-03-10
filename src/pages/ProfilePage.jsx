@@ -4,7 +4,8 @@ import ProfileMarket from "../features/profile/components/ProfileMarket";
 
 export default function ProfilePage() {
   return (
-    <>
+    // { test profile page }
+    <> 
       <ProfileInfo />
       <ProfileMarket />
     </>
