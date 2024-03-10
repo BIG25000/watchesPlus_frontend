@@ -7,10 +7,12 @@ import { WalletIcon } from "lucide-react";
 import Button from "../../../components/Button";
 import useWallet from "../../../hooks/useWallet";
 import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 let OmiseCard;
 
 export default function TopUp() {
+  const navigate = useNavigate()
   const [amount, setAmount] = useState(0);
 
   const { getWallet, getWalletTransaction } = useWallet();
