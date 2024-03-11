@@ -8,28 +8,13 @@ import useChat from "../../../hooks/useChat";
 import { useEffect } from "react";
 
 export default function MainChat({ setOpen }) {
-  const { authUser } = useAuth();
-  const { conversation, getConversationContext } = useChat();
-  // console.log(conversation, "*****************");
-
-  // const receiver = conversation.filter(
-  //   (el) => authUser && authUser?.user.id === el?.senderId
-  // );
-
-  // console.log(receiver[0].receiver.firstName, "+++++++++++");
-
-  // const receiverFirstName = receiver?.[0].receiver?.firstName;
-  // const receiverLastName = receiver?.[0].receiver?.lastName;
+  const { conversation } = useChat();
 
   return (
     <div className="">
       <div className="w-[20vw] h-[55vh] bg-white rounded-2xl">
         {/* Header */}
-        <MainChatHeader
-          setOpen={setOpen}
-          // receiverFirstName={receiverFirstName}
-          // receiverlastName={receiverLastName}
-        />
+        <MainChatHeader setOpen={setOpen} />
 
         {/* LIVE CHAT */}
         <div className="w-full h-[38vh] overflow-auto">
@@ -38,7 +23,7 @@ export default function MainChat({ setOpen }) {
 
         {/* Input */}
         <div>
-          <MainChatInput />
+          <MainChatInput setOpen={setOpen} />
         </div>
       </div>
     </div>

@@ -7,4 +7,8 @@ export const createMessage = (receiverId, message, chatRoomId) =>
 
 export const getChatRoom = (userId) =>
   myAPI.post("/livechat/get-room", { userId });
-export const getUser = () => myAPI.get("/livechat/get-user");
+
+export const getUser = (userId) => myAPI.post("/livechat/get-user", { userId });
+
+export const getChatRoomAdmin = (userId) =>
+  myAPI.post("/livechat/get-chatroom-admin", { userId });

@@ -11,7 +11,7 @@ import { toast } from "react-toastify";
 
 export default function SellModal(props) {
   const { watchId } = useParams();
-  const { watch, dataSale , setLoading  } = props;
+  const { watch, dataSale , setLoading , watchIdFromInventory } = props;
   const [watchAvailable, setWatchAvailable] = useState([]);
   const [input, setInput] = useState(null);
   const { watchToSell } = useProfile();
@@ -54,7 +54,7 @@ export default function SellModal(props) {
   };
 
   const getData = async () => {
-    const inventory = await watchToSell(+watchId);
+    const inventory = await watchToSell(watchId ? +watchId : watchIdFromInventory);
     setWatchAvailable(inventory.data);
   };
 
