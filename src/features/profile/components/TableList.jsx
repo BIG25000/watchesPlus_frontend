@@ -14,9 +14,11 @@ export default function TableList(props) {
 
   const getDataAddress= async (inventoryId) => {
     const data = await getAddressFromInventoryId(inventoryId)
+    setEditAddress(data)
   }
   return (
     <>
+    {/* pendingLists */}
       {pending && (
         <div className="overflow-x-auto">
           <table className="table">
@@ -51,6 +53,7 @@ export default function TableList(props) {
           </table>
         </div>
       )}
+      {/* watingLists */}
       {waitingData && (
         <div className="overflow-x-auto">
           <table className="table">
@@ -98,6 +101,7 @@ export default function TableList(props) {
                         inventoryId={e.id}
                         setLoading={setLoading}
                         referenceNumber={e.referenceNumber}
+                        editAddress={editAddress}
                       />
                     </td>
                     <td>
@@ -119,6 +123,7 @@ export default function TableList(props) {
           </table>
         </div>
       )}
+      {/* {watch in inventory} */}
       {activeData && (
         <div className="overflow-x-auto">
           <table className="table">
