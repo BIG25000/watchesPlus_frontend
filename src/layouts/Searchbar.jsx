@@ -25,7 +25,7 @@ export default function Searchbar() {
         <div className='relative' ref={searchEl}>
             <Input
                 type="text"
-                placeholder="Search"
+                placeholder="Search model..."
                 name="search"
                 value={searchElement}
                 onChange={e => handleFilter(e.target.value)}
