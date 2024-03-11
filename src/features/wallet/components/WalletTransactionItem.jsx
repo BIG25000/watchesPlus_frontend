@@ -11,6 +11,7 @@ export default function WalletTransactionItem({ el }) {
       <div
         className={`flex-1 ${
           el.type === "DEPOSIT" ||
+          (el.type === "REFUNDED" && el.toWalletId === id) ||
           (el.type === "TRANSFER" && el.toWalletId === id)
             ? "text-green-500"
             : "text-red-500"
