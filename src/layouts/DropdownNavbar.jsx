@@ -45,7 +45,7 @@ export default function DropdownNavbar() {
         )}
       </div>
       {open && (
-        <div className="border-2 border-brown bg-black absolute right-0 top-14 w-44 rounded-md shadow">
+        <div className="border-2 border-yellow-950 bg-black absolute right-0 top-14 w-44 shadow">
           {dropdownList.map((el) =>
             el.id === dropdownList.length ? (
               <DropdownItem

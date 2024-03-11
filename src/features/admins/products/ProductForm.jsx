@@ -46,12 +46,12 @@ function ProductForm() {
             {/* head */}
             <thead>
               <tr className="bg-gray-700 text-white">
-                <th>id</th>
-                <th>brand_id : brandName</th>
-                <th>modelName</th>
-                <th>movement</th>
-                <th>ButtonEdit</th>
-                <th>ButtonDelete</th>
+                <th>ID</th>
+                <th>NAME_BRAND</th>
+                <th>NAME_MODEL</th>
+                <th>MOVEMENT</th>
+                <th></th>
+                <th></th>
               </tr>
             </thead>
             <tbody>

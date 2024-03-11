@@ -1,24 +1,27 @@
 import React from "react";
 import Button from "../../../components/Button";
-import SellModal from "../../product/components/SellModal";
 import ShippingModal from "./ShippingModal";
 import useAuth from "../../../hooks/useAuth";
 import CancelModal from "./CancelModal";
-import useProfile from "../../../hooks/useProfile";
-import { useState } from "react";
+import ConfirmModal from "./ConfirmModal";
+import CancelShippingModal from "./CancelShippingModal";
+
 export default function TableList(props) {
   const { authUser } = useAuth();
-  const { getAddressFromInventoryId } = useProfile();
-  const [editAddress, setEditAddress] = useState(null);
-  const { pending, activeData, setLoading, waitingData } = props;
 
-  const getDataAddress= async (inventoryId) => {
-    const data = await getAddressFromInventoryId(inventoryId)
-    setEditAddress(data)
-  }
+  const {
+    pending,
+    activeData,
+    setLoading,
+    waitingData,
+    shippingData,
+    loading,
+  } = props;
+
+  console.log(shippingData);
   return (
     <>
-    {/* pendingLists */}
+      {/* pendingLists */}
       {pending && (
         <div className="overflow-x-auto">
           <table className="table">
@@ -86,7 +89,6 @@ export default function TableList(props) {
                         bg="green"
                         color="white"
                         onClick={async () => {
-                          await getDataAddress(e.id)
                           document
                             .getElementById(`address_edit_${e.id}`)
                             .showModal();
@@ -96,12 +98,12 @@ export default function TableList(props) {
                       </Button>
 
                       <ShippingModal
+                        loading={loading}
                         index={e.id}
                         authUser={authUser}
                         inventoryId={e.id}
                         setLoading={setLoading}
                         referenceNumber={e.referenceNumber}
-                        editAddress={editAddress}
                       />
                     </td>
                     <td>
@@ -166,6 +168,69 @@ export default function TableList(props) {
                         inventoryId={e.id}
                         setLoading={setLoading}
                         referenceNumber={e.referenceNumber}
+                      />
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+      {/* {my shipping lists} */}
+      {shippingData && (
+        <div className="overflow-x-auto">
+          <table className="table">
+            {/* head */}
+            <thead>
+              <tr>
+                <th>No</th>
+                <th>Image</th>
+                <th>Tracking Number</th>
+                <th>Reference Number</th>
+                <th>Accept</th>
+                <th>Cancel</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* row 1 */}
+              {shippingData.map((e, i) => {
+                return (
+                  <tr className="hover" key={e.id}>
+                    <th>{i + 1}</th>
+                    <td>
+                      <img className="w-20" src={e.inventory.watchImage} />
+                    </td>
+                    <td>{e.trackingNumber}</td>
+                    <td>{e.inventory.referenceNumber}</td>
+                    {/* <td>{e.referenceNumber}</td> */}
+                    <td>
+                      <Button
+                        bg="green"
+                        color="white"
+                        onClick={() =>
+                          document
+                            .getElementById(`confirm_shipping_${e.id}`)
+                            .showModal()
+                        }
+                      >
+                        Confirm
+                      </Button>
+                      <ConfirmModal index={e.id} setLoading={setLoading} />
+                    </td>
+                    <td>
+                      <Button
+                        bg="red"
+                        color="white"
+                        onClick={() =>
+                          document.getElementById(`cancel_shipping_${e.id}`).showModal()
+                        }
+                      >
+                        Cancel
+                      </Button>
+                      <CancelShippingModal
+                        index={e.id}
+                        setLoading={setLoading}
                       />
                     </td>
                   </tr>

@@ -45,9 +45,9 @@ function BrandForm() {
           <table className="table w-full ">
             <thead>
               <tr className="bg-gray-700 text-white">
-                <th>id</th>
-                <th>image</th>
-                <th>name</th>
+                <th>ID</th>
+                <th>IMAGE</th>
+                <th>NAME_BRAND</th>
                 <th></th>
               </tr>
             </thead>

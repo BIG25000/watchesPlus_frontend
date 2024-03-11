@@ -37,13 +37,14 @@ function TransactionForm() {
               {/* head */}
               <thead>
                 <tr className="bg-gray-700 text-white">
-                  <th>id</th>
-                  <th>User</th>
-                  <th>Brand</th>
-                  <th>Model</th>
-                  <th>DateCreate</th>
-                  <th>status</th>
-                  <th>buttonVerify</th>
+                  <th>ID</th>
+                  <th></th>
+                  <th>referenceNumber</th>
+                  <th>NAME_BRAND</th>
+                  <th>MODEL</th>
+                  <th>DATE</th>
+                  <th>STATUS</th>
+                  <th></th>
                 </tr>
               </thead>
               <tbody>
@@ -72,6 +73,7 @@ function TransactionForm() {
                           </div>
                         </div>
                       </td>
+                      <td>{el.referenceNumber}</td>
                       <td>{el.watch?.brand?.name}</td>
                       <td>{el.watch?.modelName}</td>
                       <td>{el.createdAt?.slice(0, 10)}</td>
