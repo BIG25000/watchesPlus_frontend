@@ -49,7 +49,9 @@ function ShipingForm() {
             <tbody>
               {shippings
                 ?.filter((el) => el.status.includes(select))
-                .filter((el) => el.status !== "SUCCESS")
+                .filter(
+                  (el) => el.status !== "SUCCESS" && el.status !== "CANCELED"
+                )
                 .map((el) => (
                   <tr>
                     <th>{el.id}</th>
