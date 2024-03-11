@@ -112,7 +112,7 @@ function ShipingForm() {
                             id={`DETAIL${el.id}`}
                             button="btn btn-sm bg-gray-400 text-black"
                           >
-                            <FailForm id={el.id} />
+                            <FailForm id={el.id} issue={el.issue} />
                           </Modal>
                         ) : (
                           false
