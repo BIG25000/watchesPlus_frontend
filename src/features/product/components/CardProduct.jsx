@@ -46,7 +46,7 @@ export default function CardProduct({ data, id }) {
         className="relative h-60 bg-egg flex justify-center items-center"
         onClick={() => navigate("/watch/:watchId")}
       >
-        <img className="h-full" src={data?.watchImage} />
+        <img className="h-full w-full object-cover" src={data?.watchImage} />
         <div
           className="absolute right-2 top-2 "
           onClick={handleClickLike}
