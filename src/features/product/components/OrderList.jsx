@@ -8,15 +8,15 @@ export default function OrderList(props) {
   return (
     <div className='flex items-center h-16 px-4 gap-6 border-b-2'>
         <div className='flex items-center gap-4'>
-            <Avatar src={data?.fromWallet.user.profileImage}/>
-            <span>{data?.fromWallet.user.firstName}</span>
+            <Avatar src={data?.fromWallet?.user?.profileImage}/>
+            <span>{data?.fromWallet?.user?.firstName}</span>
         </div>
         <div>
             purchased this watch from
         </div>
         <div className='flex items-center gap-4'>
-            <Avatar  src={data?.toWallet.user.profileImage}/>
-            <span>{data?.toWallet.user.firstName}</span>
+            <Avatar  src={data?.toWallet?.user?.profileImage}/>
+            <span>{data?.toWallet?.user?.firstName}</span>
         </div>
         <div className='flex items-center gap-4'>
             <span>for</span>

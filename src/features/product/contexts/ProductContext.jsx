@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { createContext } from "react";
 import { allWatches, getWatchById } from "../../../apis/watches";
-import { getAllOrderOnWatch, placeBuyOrder, placeSaleOrder } from "../../../apis/order";
-import { getAllHistory} from '../../../apis/history'
+import { getAllOrderOnWatch, mostOrder, placeBuyOrder, placeSaleOrder } from "../../../apis/order";
+import { getAllHistory } from '../../../apis/history'
 import { useEffect } from "react";
 import { toast } from "react-toastify";
 
@@ -10,11 +10,21 @@ export const ProductContext = createContext();
 
 const ProductContextProvider = ({ children }) => {
   const [dataWatch, setDataWatch] = useState([]);
+  const [mostOrders, setMostOrders] = useState([])
 
   const getWatch = async () => {
     const { data } = await allWatches();
     setDataWatch(data);
   };
+
+  const fetchMostOrder = async () => {
+    try {
+      const { data } = await mostOrder()
+      setMostOrders(data.data)
+    } catch (err) {
+      console.log(err);
+    }
+  }
 
   const getOneWatch = async (watchId) => {
     try {
@@ -56,22 +66,23 @@ const ProductContextProvider = ({ children }) => {
   };
 
   const getAllHistoryByWatchId = async (watchId) => {
-    try{
-      const {data} = await getAllHistory(watchId)
+    try {
+      const { data } = await getAllHistory(watchId)
       return data
-    }catch(err){
+    } catch (err) {
       console.log(err)
     }
   }
 
   useEffect(() => {
     getWatch();
+    fetchMostOrder()
     // getOneWatch();
   }, []);
 
   return (
     <ProductContext.Provider
-      value={{ dataWatch, getOneWatch, getAllOrderOnTransaction, sendBuyOrder ,sendSaleOrder , getAllHistoryByWatchId }}
+      value={{ dataWatch, getOneWatch, getAllOrderOnTransaction, sendBuyOrder, sendSaleOrder, getAllHistoryByWatchId, mostOrders, fetchMostOrder }}
     >
       {children}
     </ProductContext.Provider>
