@@ -16,11 +16,14 @@ export default function ChatContextProvider({ children }) {
   const { authUser } = useAuth();
 
   useEffect(() => {
-    socket.auth = { senderId: authUser?.id };
-    // console.log("first");
-    socket.connect();
-    return () => socket.disconnect();
-  }, []);
+    if (authUser) {
+      console.log(authUser, "authuserrrrrr");
+      socket.auth = { senderId: authUser?.id };
+      // console.log("first");
+      socket.connect();
+      return () => socket.disconnect();
+    }
+  }, [authUser]);
 
   useEffect(() => {
     socket.on("message1", (msg) => {

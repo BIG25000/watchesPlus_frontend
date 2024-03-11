@@ -31,10 +31,13 @@ function MessageAdminContextProvider({ children }) {
   }, [conversation]);
 
   useEffect(() => {
-    socket.auth = { senderId: authUser?.id };
-    socket.connect();
-    return () => socket.disconnect();
-  }, []);
+    if (authUser) {
+      console.log(authUser, "authUserrrrrrrrrrrrrrrrrr");
+      socket.auth = { senderId: authUser?.id };
+      socket.connect();
+      return () => socket.disconnect();
+    }
+  }, [authUser]);
 
   const getConversationContext = async () => {
     // console.log(chatRoom, "chatroommmmmmmmmmmmmmmmmmmmmmmmmm");
