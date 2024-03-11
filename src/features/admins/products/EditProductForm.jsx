@@ -26,7 +26,7 @@ function EditProductForm() {
       for (let i in input) {
         formData.append(i, input[i]);
       }
-
+      console.log(image, "CHECK WATCH IMAGE");
       if (image) {
         formData.append("watchImage", image);
       }

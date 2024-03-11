@@ -4,10 +4,14 @@ import VerifyForm from "../transactions/VerifyForm";
 import AddTrackingForm from "./AddTrackingForm";
 import shippingAdmin from "./hooks/shippingAdmin";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ShipingForm() {
   const { shippings } = shippingAdmin();
+  const navigate = useNavigate();
   const [select, setSelect] = useState("");
+
+  console.log(shippings, "*********************************");
 
   return (
     <div>
@@ -47,7 +51,12 @@ function ShipingForm() {
                 .map((el) => (
                   <tr>
                     <th>{el.id}</th>
-                    <td>
+                    <td
+                      onClick={() =>
+                        navigate(`/admin/users/${el.inventory?.userId}`)
+                      }
+                      role="button"
+                    >
                       <div className="flex items-center gap-3">
                         <div className="avatar">
                           <div
@@ -79,14 +88,23 @@ function ShipingForm() {
                     <td>{el.status}</td>
                     <td>{el.trackingNumber}</td>
                     <td>
-                      <Modal
-                        title="addTracking"
-                        // id={`editBrand${el.id}`}
-                        id={`addTracking${el.id}`}
-                        button="btn btn-sm bg-gray-400 text-black"
-                      >
-                        <AddTrackingForm id={el.id} />
-                      </Modal>
+                      {!(el.status === "ONSHIPPING") ? (
+                        <Modal
+                          title="addTracking"
+                          // id={`editBrand${el.id}`}
+                          id={`addTracking${el.id}`}
+                          button="btn btn-sm bg-gray-400 text-black"
+                        >
+                          <AddTrackingForm id={el.id} />
+                        </Modal>
+                      ) : (
+                        <button
+                          className="btn btn-sm bg-gray-400 text-black"
+                          disabled="disabled"
+                        >
+                          addTracking
+                        </button>
+                      )}
                     </td>
                   </tr>
                 ))}

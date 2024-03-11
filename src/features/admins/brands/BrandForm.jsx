@@ -84,14 +84,14 @@ function BrandForm() {
                         >
                           <EditBrandForm id={el.id} />
                         </Modal>
-                        <Modal
+                        {/* <Modal
                           title="delete"
                           id={`delete${el.id}`}
                           // id="editBrand"
                           button="btn btn-sm bg-gray-400 text-black"
                         >
                           <DeleteForm id={el.id} />
-                        </Modal>
+                        </Modal> */}
                       </div>
                     </td>
                   </tr>

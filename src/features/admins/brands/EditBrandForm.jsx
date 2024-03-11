@@ -22,17 +22,18 @@ function EditBrandForm({ id }) {
       for (let i in input) {
         formData.append(i, input[i]);
       }
+      console.log(image, "QQQQQQQQQQQQq");
       if (image) {
         formData.append("brandImage", image);
       }
-      await editBrand(input, id);
+      await editBrand(formData, id);
+      console.log("after eidt");
       const data = {};
-
       for (let i in input) {
         data[i] = "";
       }
 
-      setInput({ name: "" });
+      // setInput({ name: "" });
       setInput(data);
 
       setImage(null);
@@ -130,7 +131,7 @@ function EditBrandForm({ id }) {
               document.getElementById(`editBrand${id}`).close();
             }}
           >
-            cancal
+            cancel
           </button>
         </div>
       </form>
