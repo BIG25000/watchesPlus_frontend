@@ -5,13 +5,12 @@ import AddTrackingForm from "./AddTrackingForm";
 import shippingAdmin from "./hooks/shippingAdmin";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import FailForm from "./FailForm";
 
 function ShipingForm() {
   const { shippings } = shippingAdmin();
   const navigate = useNavigate();
   const [select, setSelect] = useState("");
-
-  console.log(shippings, "*********************************");
 
   return (
     <div>
@@ -26,6 +25,7 @@ function ShipingForm() {
           </option>
           <option value="PENDING">PENDING</option>
           <option value="ONSHIPPING">ONSHIPPING</option>
+          <option value="FAILED">FAILED</option>
           <option value="">ALL</option>
         </select>
       </div>
@@ -35,19 +35,21 @@ function ShipingForm() {
             {/* head */}
             <thead>
               <tr className="bg-gray-700 text-white">
-                <th>id</th>
-                <th>User</th>
-                <th>address</th>
-                <th>watch_id</th>
-                <th>DateCreate</th>
-                <th>status</th>
+                <th>ID</th>
+                <th></th>
+                <th>referenceNumber</th>
+                <th>NAME_BRAND</th>
+                <th>MODEL</th>
+                <th>DATE</th>
+                <th>STATUS</th>
                 <th>tacking_number</th>
-                <th>buttonAddtackingNumber</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
               {shippings
                 ?.filter((el) => el.status.includes(select))
+                .filter((el) => el.status !== "SUCCESS")
                 .map((el) => (
                   <tr>
                     <th>{el.id}</th>
@@ -75,36 +77,47 @@ function ShipingForm() {
                       </div>
                     </td>
                     <td>
-                      <div>
-                        {el.address?.district} - {el.address?.subDistrict} -{" "}
-                        {el.address?.province} - {el.address?.zipCode}
-                      </div>
+                      <div>{el.inventory?.referenceNumber}</div>
                     </td>
-                    <td>
-                      {el.inventory?.watch?.modelName} - -
-                      {el.inventory?.watch?.brand?.name}
-                    </td>
+                    <td>{el.inventory?.watch?.brand?.name}</td>
+                    <td>{el.inventory?.watch?.modelName}</td>
                     <td>{el.createdAt?.slice(0, 10)}</td>
                     <td>{el.status}</td>
                     <td>{el.trackingNumber}</td>
                     <td>
-                      {!(el.status === "ONSHIPPING") ? (
-                        <Modal
-                          title="addTracking"
-                          // id={`editBrand${el.id}`}
-                          id={`addTracking${el.id}`}
-                          button="btn btn-sm bg-gray-400 text-black"
-                        >
-                          <AddTrackingForm id={el.id} />
-                        </Modal>
-                      ) : (
-                        <button
-                          className="btn btn-sm bg-gray-400 text-black"
-                          disabled="disabled"
-                        >
-                          addTracking
-                        </button>
-                      )}
+                      <div className="flex gap-5 items-center">
+                        {!(
+                          el.status === "ONSHIPPING" || el.status === "FAILED"
+                        ) ? (
+                          <Modal
+                            title="addTracking"
+                            // id={`editBrand${el.id}`}
+                            id={`addTracking${el.id}`}
+                            button="btn btn-sm bg-gray-400 text-black"
+                          >
+                            <AddTrackingForm id={el.id} />
+                          </Modal>
+                        ) : (
+                          <button
+                            className="btn btn-sm bg-gray-400 text-black"
+                            disabled="disabled"
+                          >
+                            addTracking
+                          </button>
+                        )}
+                        {el.status === "FAILED" ? (
+                          <Modal
+                            title="DETAIL"
+                            // id={`editBrand${el.id}`}
+                            id={`DETAIL${el.id}`}
+                            button="btn btn-sm bg-gray-400 text-black"
+                          >
+                            <FailForm id={el.id} />
+                          </Modal>
+                        ) : (
+                          false
+                        )}
+                      </div>
                     </td>
                   </tr>
                 ))}
