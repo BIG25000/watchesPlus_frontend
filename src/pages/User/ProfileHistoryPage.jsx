@@ -1,4 +1,4 @@
-import ProfileHistory from "../features/product/components/ProfileHistory";
+import ProfileHistory from "../../features/product/components/ProfileHistory";
 
 export default function ProfileHistoryPage() {
     return (
