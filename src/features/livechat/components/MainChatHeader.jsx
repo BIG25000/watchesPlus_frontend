@@ -1,6 +1,8 @@
 import { ChevronDown } from "lucide-react";
 import React from "react";
 import Avatar from "../../../components/Avatar";
+import { useEffect } from "react";
+import useChat from "../../../hooks/useChat";
 
 export default function MainChatHeader({
   setOpen,
