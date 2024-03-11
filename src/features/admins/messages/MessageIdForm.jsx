@@ -24,8 +24,7 @@ function MessageIdForm() {
   // console.log(chatroomId, "messageForm");
   // console.log(authUser, "messageForm");
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const sendMessage = async () => {
     await socket.emit("message", {
       receiverId: +senderId,
       msg: message,
@@ -33,6 +32,20 @@ function MessageIdForm() {
     });
 
     setMessage("");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (message.trim() !== "") {
+      sendMessage();
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      sendMessage();
+    }
   };
 
   const getUserById = async (id) => {
@@ -51,7 +64,7 @@ function MessageIdForm() {
 
   useEffect(() => {
     scrollRef?.current?.scrollIntoView({ behavior: "smooth" });
-  }, [message, conversation]);
+  }, [conversation]);
 
   return (
     <div className="h-[86.2vh] flex flex-col">
@@ -90,6 +103,7 @@ function MessageIdForm() {
         <input
           type="text"
           value={message}
+          onKeyDown={handleKeyPress}
           onChange={(e) => setMessage(e.target.value)}
           placeholder="Texting here..."
           className="w-[100%] focus:outline-none overflow-auto border m-auto p-2.5 rounded-lg"

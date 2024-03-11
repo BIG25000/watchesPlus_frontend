@@ -11,15 +11,28 @@ export default function MainChatInput() {
 
   const { chatRoom } = useChat();
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
+  const sendMessage = async () => {
     await socket.emit("message", {
       receiverId: chatRoom?.receiver?.id,
       msg: message,
       chatRoomId: chatRoom?.id,
     });
+
     setMessage("");
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (message.trim() !== "") {
+      sendMessage();
+    }
+  };
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      sendMessage();
+    }
   };
 
   return (
@@ -32,6 +45,7 @@ export default function MainChatInput() {
             className="border border-gray-400 focus:outline-none py-2 px-3 rounded-2xl w-full"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={handleKeyPress}
           />
           <button onClick={handleSubmit}>
             <SendHorizontal
@@ -49,6 +63,7 @@ export default function MainChatInput() {
             className="border border-gray-400 focus:outline-none py-2 px-3 rounded-2xl w-full"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
+            onKeyDown={handleKeyPress}
           />
           <button onClick={handleSubmit}>
             <SendHorizontal
