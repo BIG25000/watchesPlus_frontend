@@ -12,7 +12,6 @@ import CardProduct from "../../product/components/CardProduct";
 export default function InventoryDetail() {
   const { brands, handleSelectBrand, selectBrand } = useSearch();
   const { wishlist } = useWishlist();
-  console.log(wishlist);
   const { getMyInventory } = useProfile();
   const [inventory, setInventory] = useState([]);
   const [pendingData, setPendingData] = useState([]);
@@ -29,7 +28,6 @@ export default function InventoryDetail() {
     setWaitingData(() => data.filter((e) => e.status === "WAITING")); //show waiting
     setActiveData(() => data.filter((e) => e.status === "AVAILABLE")); //show inventory
   };
-  // console.log(inventory);
 
   const handleTab = (index) => {
     setActiveTab(index);
@@ -118,6 +116,7 @@ export default function InventoryDetail() {
                           <TableList
                             waitingData={waitingData}
                             setLoading={setLoading}
+                            loading={loading}
                           />
                         </div>
                       </div>

@@ -1,21 +1,15 @@
 import React from "react";
 import Button from "../../../components/Button";
-import SellModal from "../../product/components/SellModal";
 import ShippingModal from "./ShippingModal";
 import useAuth from "../../../hooks/useAuth";
 import CancelModal from "./CancelModal";
-import useProfile from "../../../hooks/useProfile";
-import { useState } from "react";
+
 export default function TableList(props) {
   const { authUser } = useAuth();
-  const { getAddressFromInventoryId } = useProfile();
-  const [editAddress, setEditAddress] = useState(null);
-  const { pending, activeData, setLoading, waitingData } = props;
 
-  const getDataAddress= async (inventoryId) => {
-    const data = await getAddressFromInventoryId(inventoryId)
-    setEditAddress(data)
-  }
+  const { pending, activeData, setLoading, waitingData  ,loading } = props;
+
+  
   return (
     <>
     {/* pendingLists */}
@@ -86,7 +80,6 @@ export default function TableList(props) {
                         bg="green"
                         color="white"
                         onClick={async () => {
-                          await getDataAddress(e.id)
                           document
                             .getElementById(`address_edit_${e.id}`)
                             .showModal();
@@ -96,12 +89,13 @@ export default function TableList(props) {
                       </Button>
 
                       <ShippingModal
+                        loading={loading}
                         index={e.id}
                         authUser={authUser}
                         inventoryId={e.id}
                         setLoading={setLoading}
                         referenceNumber={e.referenceNumber}
-                        editAddress={editAddress}
+                        
                       />
                     </td>
                     <td>

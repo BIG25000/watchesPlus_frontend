@@ -52,6 +52,14 @@ export default function ProfileContextProvider({ children }) {
     return res.data.data
   }
 
+  const updateAddressByAddressId = async (addressId,body)=>{
+    console.log(addressId,'aaaaa')
+    console.log(body,'bbb')
+    const res = await addressAPI.updateAddress(addressId,body)
+    toast.success(res.data.message)
+    return res.data.data
+  }
+
   useEffect(() => {
     getProfileInfo();
   }, []);
@@ -87,7 +95,8 @@ export default function ProfileContextProvider({ children }) {
         getMyInventory,
         createAddress,
         cancelShippingBeforeAdmin,
-        getAddressFromInventoryId
+        getAddressFromInventoryId,
+        updateAddressByAddressId
       }}
     >
       {children}
