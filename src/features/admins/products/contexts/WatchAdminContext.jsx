@@ -28,7 +28,10 @@ function WatchAdminContextProvider({ children }) {
 
   const editWatch = async (formData, id) => {
     try {
-      await watchApi.editWatch(formData, id);
+      const res = await watchApi.editWatch(formData, id);
+      setWatches((el) =>
+        el.map((el1) => (el1.id == res.data.data.id ? res.data.data : el1))
+      ); // เฟตซ่อนเพื่ออัพเดท  เพตโฮเดอร์ และรีเซตของ
       toast.success("edit sucess");
     } catch (error) {
       console.log(error);
