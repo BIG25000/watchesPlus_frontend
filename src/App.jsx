@@ -8,7 +8,7 @@ export default function App() {
   return (
     <Suspense fallback={<Loading/>}>
       <Router />
-      <ToastContainer />
+      <ToastContainer autoClose={1000} />
     </Suspense>
   );
 }
