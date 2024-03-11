@@ -8,5 +8,5 @@ export default function RedirectIfAuthenticated({ children }) {
     return <Navigate to="/admin" />;
   }
 
-  return authUser ? <Navigate to="/" /> : children;
+  return authUser?.role === "USER" ? <Navigate to="/" /> : children;
 }
