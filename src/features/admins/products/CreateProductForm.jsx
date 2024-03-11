@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import brandAdmin from "../brands/hooks/brandAdmin";
 import watchAdmin from "../products/hooks/watchAdmin";
 import { Camera } from "lucide-react";
-import { ArrowLeft } from "lucide-react";
+
+import { toast } from "react-toastify";
 
 function CreateProductForm() {
   const [input, setInput] = useState({});
@@ -15,10 +16,76 @@ function CreateProductForm() {
   const { brands } = brandAdmin();
   const { createWatch } = watchAdmin();
 
+  // const handleSubmitForm = async (e) => {
+  //   try {
+  //     e.preventDefault();
+  //     setLoading(true);
+  //     const formData = new FormData();
+  //     for (let i in input) {
+  //       formData.append(i, input[i]);
+  //     }
+  //     formData.append("watchImage", image);
+  //     await createWatch(formData);
+
+  //     const data = {};
+
+  //     for (let i in input) {
+  //       data[i] = "";
+  //     }
+
+  //     setInput(data);
+
+  //     setImage(null);
+
+  //     setLoading(false);
+  //   } catch (error) {
+  //     console.log(error);
+
+  //     const data = {};
+
+  //     for (let i in input) {
+  //       data[i] = "";
+  //     }
+  //     setInput(data);
+
+  //     setImage(null);
+
+  //     setLoading(false);
+  //   }
+  // };
+
   const handleSubmitForm = async (e) => {
     try {
       e.preventDefault();
       setLoading(true);
+
+      // ตรวจสอบว่ามีรูปภาพถูกเลือกหรือไม่
+      if (!image) {
+        toast.error("Please select an image");
+        setLoading(false);
+        return;
+      }
+
+      // ตรวจสอบว่า input ทั้งหมดถูกกรอกครบหรือไม่
+      if (
+        !input.brandId ||
+        !input.modelName ||
+        !input.movement ||
+        !input.gender ||
+        !input.powerReserve ||
+        !input.caseMaterial ||
+        !input.caseDiameter ||
+        !input.crystal ||
+        !input.dial ||
+        !input.braceletMaterial ||
+        !input.braceletColor ||
+        !input.description
+      ) {
+        toast.error("Please fill in all fields");
+        setLoading(false);
+        return;
+      }
+
       const formData = new FormData();
       for (let i in input) {
         formData.append(i, input[i]);
@@ -27,28 +94,21 @@ function CreateProductForm() {
       await createWatch(formData);
 
       const data = {};
-
       for (let i in input) {
         data[i] = "";
       }
-
       setInput(data);
-
       setImage(null);
-
       setLoading(false);
     } catch (error) {
       console.log(error);
-
+      toast.error("An error occurred");
       const data = {};
-
       for (let i in input) {
         data[i] = "";
       }
       setInput(data);
-
       setImage(null);
-
       setLoading(false);
     }
   };

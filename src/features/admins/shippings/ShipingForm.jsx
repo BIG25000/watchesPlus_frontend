@@ -3,14 +3,32 @@ import Modal from "../../../components/admins/Modal";
 import VerifyForm from "../transactions/VerifyForm";
 import AddTrackingForm from "./AddTrackingForm";
 import shippingAdmin from "./hooks/shippingAdmin";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function ShipingForm() {
   const { shippings } = shippingAdmin();
+  const navigate = useNavigate();
+  const [select, setSelect] = useState("");
 
-  console.log(shippings, ",,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,");
+  console.log(shippings, "*********************************");
+
   return (
     <div>
-      <strong className="text-gray-700 font-medium">Shipping</strong>
+      <div className="flex gap-5 items-center">
+        <strong className="text-gray-700 font-medium">Shipping</strong>
+        <select
+          className="select  max-w-xs"
+          onChange={(e) => setSelect(e.target.value)}
+        >
+          <option disabled selected>
+            Pick search
+          </option>
+          <option value="PENDING">PENDING</option>
+          <option value="ONSHIPPING">ONSHIPPING</option>
+          <option value="">ALL</option>
+        </select>
+      </div>
       <div className="border-x border-gray-200 rounded-sm mt-3">
         <div className="overflow-x-auto">
           <table className="table w-full ">
@@ -28,45 +46,68 @@ function ShipingForm() {
               </tr>
             </thead>
             <tbody>
-              {shippings.map((el) => (
-                <tr>
-                  <th>{el.id}</th>
-                  <td>
-                    <div className="flex items-center gap-3">
-                      <div className="avatar">
-                        <div
-                          className="h-10 w-10 rounded-full bg-sky-500 bg-cover bg-no-repeat bg-center"
-                          style={{
-                            backgroundImage: `url(${el.inventory?.user?.profileImage})`,
-                          }}
-                        ></div>
-                      </div>
-                      <div>
-                        <div className="font-bold">Pongsatorn Sudsom</div>
-                        <div className="text-sm opacity-50">BIG</div>
-                      </div>
-                    </div>
-                  </td>
-                  <td></td>
-                  <td>
-                    {el.inventory?.watch?.modelName}
-                    {el.inventory?.watch?.brand?.name}
-                  </td>
-                  <td>{el.createdAt?.slice(0, 10)}</td>
-                  <td>{el.status}</td>
-                  <td>{el.trackingNumber}</td>
-                  <td>
-                    <Modal
-                      title="add tracking"
-                      // id={`editBrand${el.id}`}
-                      id="add tracking"
-                      button="btn btn-sm bg-gray-400 text-black"
+              {shippings
+                ?.filter((el) => el.status.includes(select))
+                .map((el) => (
+                  <tr>
+                    <th>{el.id}</th>
+                    <td
+                      onClick={() =>
+                        navigate(`/admin/users/${el.inventory?.userId}`)
+                      }
+                      role="button"
                     >
-                      <AddTrackingForm />
-                    </Modal>
-                  </td>
-                </tr>
-              ))}
+                      <div className="flex items-center gap-3">
+                        <div className="avatar">
+                          <div
+                            className="h-10 w-10 rounded-full bg-sky-500 bg-cover bg-no-repeat bg-center"
+                            style={{
+                              backgroundImage: `url(${el.inventory?.user?.profileImage})`,
+                            }}
+                          ></div>
+                        </div>
+                        <div>
+                          <div className="font-bold">
+                            {el.inventory?.user?.firstName}
+                            {el.inventory?.user?.lastName}
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                    <td>
+                      <div>
+                        {el.address?.district} - {el.address?.subDistrict} -{" "}
+                        {el.address?.province} - {el.address?.zipCode}
+                      </div>
+                    </td>
+                    <td>
+                      {el.inventory?.watch?.modelName} - -
+                      {el.inventory?.watch?.brand?.name}
+                    </td>
+                    <td>{el.createdAt?.slice(0, 10)}</td>
+                    <td>{el.status}</td>
+                    <td>{el.trackingNumber}</td>
+                    <td>
+                      {!(el.status === "ONSHIPPING") ? (
+                        <Modal
+                          title="addTracking"
+                          // id={`editBrand${el.id}`}
+                          id={`addTracking${el.id}`}
+                          button="btn btn-sm bg-gray-400 text-black"
+                        >
+                          <AddTrackingForm id={el.id} />
+                        </Modal>
+                      ) : (
+                        <button
+                          className="btn btn-sm bg-gray-400 text-black"
+                          disabled="disabled"
+                        >
+                          addTracking
+                        </button>
+                      )}
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>

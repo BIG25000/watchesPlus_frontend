@@ -36,6 +36,7 @@ import MessageIdPage from "../pages/admins/MessageIdPage";
 import WishlistPage from "../pages/User/WishlistPage";
 import InventoryPage from "../pages/User/InventoryPage";
 import ChatContextProvider from "../features/livechat/contexts/ChatContext";
+import TrackingTest from "../pages/admins/TrackingTest";
 
 const router = createBrowserRouter([
   {
@@ -145,7 +146,11 @@ const router = createBrowserRouter([
       },
       {
         path: "products",
-        element: <ProductPage />,
+        element: (
+          <BrandAdminContextProvider>
+            <ProductPage />
+          </BrandAdminContextProvider>
+        ),
       },
       {
         path: "products/create",
@@ -180,9 +185,11 @@ const router = createBrowserRouter([
       {
         path: "inventory",
         element: (
-          <InventoryAdminContextProvider>
-            <TransactionPage />
-          </InventoryAdminContextProvider>
+          <BrandAdminContextProvider>
+            <InventoryAdminContextProvider>
+              <TransactionPage />
+            </InventoryAdminContextProvider>
+          </BrandAdminContextProvider>
         ),
       },
       {
@@ -220,6 +227,10 @@ const router = createBrowserRouter([
             <MessageIdPage />
           </MessageAdminContextProvider>
         ),
+      },
+      {
+        path: "trackingtest",
+        element: <TrackingTest />,
       },
     ],
     // ************************************************************************ ADMIN *****************

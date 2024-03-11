@@ -5,15 +5,33 @@ import { useNavigate } from "react-router-dom";
 import watchAdmin from "./hooks/watchAdmin";
 import DeleteWatchForm from "./DeleteWatchForm";
 import Modal from "../../../components/admins/Modal";
+import brandAdmin from "../brands/hooks/brandAdmin";
+import { useState } from "react";
 
 function ProductForm() {
   const navigate = useNavigate();
   const { watches } = watchAdmin();
+  const { brands } = brandAdmin();
+  const [select, setSelect] = useState("");
 
   return (
     <div className="bg-white px-4 pt-3 pb-4 rounded-sm border border-gray-200 flex-1">
       <div className="flex justify-between items-center">
-        <strong className="text-gray-700 font-medium">Products</strong>
+        <div className="flex gap-5 items-center">
+          <strong className="text-gray-700 font-medium">Products</strong>
+          <select
+            className="select  max-w-xs"
+            onChange={(e) => setSelect(e.target.value)}
+          >
+            <option disabled selected>
+              Pick search
+            </option>
+            {brands?.map((el) => (
+              <option value={el.name}>{el.name}</option>
+            ))}
+            <option value="">ALL</option>
+          </select>
+        </div>
 
         <Link
           to="/admin/products/create"
@@ -37,41 +55,43 @@ function ProductForm() {
               </tr>
             </thead>
             <tbody>
-              {watches.map((el) => (
-                <tr key={el.id}>
-                  <th
-                    onClick={() => navigate(`${el.id}`)}
-                    role="button"
-                    className="underline"
-                  >
-                    #{el.id}
-                  </th>
-                  <td className="text-center">{el.brand.name}</td>
-                  <td>{el.modelName}</td>
-                  <td>{el.movement}</td>
-                  <td>
-                    <button
-                      className="btn btn-sm"
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        navigate(`edit/${el.id}`);
-                      }}
+              {watches
+                ?.filter((el) => el.brand?.name.includes(select))
+                .map((el) => (
+                  <tr key={el.id}>
+                    <th
+                      onClick={() => navigate(`${el.id}`)}
+                      role="button"
+                      className="underline"
                     >
-                      EDIT
-                    </button>
-                  </td>
-                  <td>
-                    <Modal
-                      title="delete"
-                      id={`deleteWatch${el.id}`}
-                      // id="editBrand"
-                      button="btn btn-sm bg-gray-400 text-black"
-                    >
-                      <DeleteWatchForm id={el.id} />
-                    </Modal>
-                  </td>
-                </tr>
-              ))}
+                      #{el.id}
+                    </th>
+                    <td className="text-center">{el.brand?.name}</td>
+                    <td>{el.modelName}</td>
+                    <td>{el.movement}</td>
+                    <td>
+                      <button
+                        className="btn btn-sm"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`edit/${el.id}`);
+                        }}
+                      >
+                        EDIT
+                      </button>
+                    </td>
+                    <td>
+                      <Modal
+                        title="delete"
+                        id={`deleteWatch${el.id}`}
+                        // id="editBrand"
+                        button="btn btn-sm bg-gray-400 text-black"
+                      >
+                        <DeleteWatchForm id={el.id} />
+                      </Modal>
+                    </td>
+                  </tr>
+                ))}
             </tbody>
           </table>
         </div>
