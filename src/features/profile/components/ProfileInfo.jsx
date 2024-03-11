@@ -3,12 +3,13 @@ import useProfile from "../../../hooks/useProfile";
 import { useEffect } from "react";
 import { User } from "lucide-react";
 import { useState } from "react";
-import Button from "../../../components/Button";
 import EditProfileForm from "./EditProfileForm";
 
 export default function ProfileInfo() {
   const { profileInfo, getProfileInfo } = useProfile();
   const [isEdit, setIsEdit] = useState(false);
+
+  console.log(profileInfo);
 
   useEffect(() => {
     getProfileInfo();
@@ -21,7 +22,7 @@ export default function ProfileInfo() {
           {profileInfo?.profileImage ? (
             <img
               src={profileInfo.profileImage}
-              className="w-48 h-48 rounded-full"
+              className="w-48 h-48 rounded-full object-cover"
             />
           ) : (
             <User size={40} />
@@ -30,6 +31,7 @@ export default function ProfileInfo() {
         <span className="text-4xl">
           {profileInfo?.firstName + " " + profileInfo?.lastName}
         </span>
+        <span>Your points : {profileInfo?.royalty?.point}</span>
         <button
           type="button"
           onClick={() => setIsEdit(!isEdit)}
