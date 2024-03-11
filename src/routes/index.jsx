@@ -35,6 +35,7 @@ import MessageAdminContextProvider from "../features/admins/messages/contexts/Me
 import MessageIdPage from "../pages/admins/MessageIdPage";
 import WishlistPage from "../pages/User/WishlistPage";
 import InventoryPage from "../pages/User/InventoryPage";
+import ChatContextProvider from "../features/livechat/contexts/ChatContext";
 
 const router = createBrowserRouter([
   {
@@ -213,8 +214,12 @@ const router = createBrowserRouter([
         ),
       },
       {
-        path: "message/:senderId",
-        element: <MessageIdPage />,
+        path: "message/:chatroomId/:senderId",
+        element: (
+          <MessageAdminContextProvider>
+            <MessageIdPage />
+          </MessageAdminContextProvider>
+        ),
       },
     ],
     // ************************************************************************ ADMIN *****************
