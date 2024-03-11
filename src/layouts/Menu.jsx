@@ -6,10 +6,10 @@ export default function Menu() {
     return (
         <div className="flex gap-10">
             <Link to='/search'>
-                <div onClick={() => handleResetQuerySearch()}>Gallery</div>
+            <div onClick={() => handleResetQuerySearch()} className="hover:text-brown">Gallery</div>
             </Link>
             <Link to='/'>
-                <div>Contact us</div>
+                <div className="hover:text-brown">Contact us</div>
             </Link>
         </div>
     )

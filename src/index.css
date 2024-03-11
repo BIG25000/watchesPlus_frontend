@@ -12,6 +12,10 @@
   background-image: linear-gradient(to top, #725936, #634e2f, #544329, #463822, #392e1c, #312818, #292215, #221c11, #1d180e, #19140a, #140f05, #0d0901);
 }
 
+.footer {
+  background-image: linear-gradient(to bottom, #725936, #634e2f, #544329, #463822, #392e1c, #312818, #292215, #221c11, #1d180e, #19140a, #140f05, #0d0901)
+}
+
 .speech {
   /* (A1) FONT & COLORS */
   font-size: 1rem;
@@ -61,3 +65,4 @@
 /* .side2 {
   background-color: blue;
 } */
+

@@ -44,15 +44,16 @@ export default function CardProduct(props) {
       fetchMostOrder()
       toast.success("Added to wishlist");
     }
+
   };
 
   return (
     <div
-      className="w-72 h-96 flex flex-col bg-black shadow cursor-pointer"
+      className="w-72 h-96 flex flex-col rounded-md bg-gradient-to-b from-slate-500 to-slate-800 shadow cursor-pointer"
       onClick={() => navigate(`/watch/${data.id}`)}
     >
       <div className="relative h-60 bg-egg flex justify-center items-center">
-        <img className="h-full" src={data?.watchImage} />
+        <img className="h-full w-full object-cover rounded-t-md" src={data?.watchImage} />
         <div
           className="absolute right-2 top-2 "
           onClick={handleClickLike}
