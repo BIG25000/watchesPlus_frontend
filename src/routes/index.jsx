@@ -37,6 +37,8 @@ import WishlistPage from "../pages/User/WishlistPage";
 import InventoryPage from "../pages/User/InventoryPage";
 import ChatContextProvider from "../features/livechat/contexts/ChatContext";
 import TrackingTest from "../pages/admins/TrackingTest";
+import ProtectRouteUser from "../features/auth/components/ProtectRouteUser";
+import ProtectRouteAdmin from "../features/auth/components/ProtectRouteAdmin";
 
 const router = createBrowserRouter([
   {
@@ -59,7 +61,11 @@ const router = createBrowserRouter([
           },
           {
             path: "profile",
-            element: <Outlet />, //search + all watches
+            element: (
+              <ProtectRouteUser>
+                <Outlet />
+              </ProtectRouteUser>
+            ), //search + all watches
             children: [
               {
                 path: "",
@@ -134,7 +140,11 @@ const router = createBrowserRouter([
   // ************************************************************************ ADMIN *****************
   {
     path: "/admin",
-    element: <SideBarAdmin />,
+    element: (
+      <ProtectRouteAdmin>
+        <SideBarAdmin />
+      </ProtectRouteAdmin>
+    ),
     children: [
       {
         path: "",
