@@ -5,12 +5,11 @@ import useAuth from "../../../hooks/useAuth";
 import { useRef } from "react";
 import { useEffect } from "react";
 
-export default function MainChatConversation() {
+export default function MainChatConversation({ loading }) {
   const { conversation } = useChat();
   const { authUser } = useAuth();
   const scrollRef = useRef();
-  // console.log(conversation[0].id, "////////////////////////////////");
-  // console.log(authUser, "////////////////////");
+
   useEffect(() => {
     scrollRef?.current?.scrollIntoView({ behavior: "smooth" });
   }, [conversation]);
@@ -33,6 +32,7 @@ export default function MainChatConversation() {
               message={chat.message}
               createdAt={chat.createdAt}
               ownMessage={chat.senderId === authUser?.id}
+              loading={loading}
             />
           </div>
         );

@@ -9,29 +9,32 @@ import livechatAdmin from "./hooks/livechatAdmin";
 import * as livechatAdminApi from "../../../apis/livechat";
 import { useEffect } from "react";
 import { useRef } from "react";
+import { toast } from "react-toastify";
 
 function MessageIdForm() {
   const [message, setMessage] = useState("");
   const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const { authUser } = useAuth();
   const { chatroomId, senderId } = useParams();
   const { conversation } = livechatAdmin();
   const scrollRef = useRef();
 
-  // console.log(user, "userrrrrrrrrrrrrrr");
-
-  // console.log(chatroomId, "messageForm");
-  // console.log(authUser, "messageForm");
-
   const sendMessage = async () => {
-    await socket.emit("message", {
-      receiverId: +senderId,
-      msg: message,
-      chatRoomId: +chatroomId,
-    });
-
-    setMessage("");
+    try {
+      setLoading(true);
+      await socket.emit("message", {
+        receiverId: +senderId,
+        msg: message,
+        chatRoomId: +chatroomId,
+      });
+    } catch (error) {
+      toast.error(error.response?.data.message);
+    } finally {
+      setLoading(false);
+      setMessage("");
+    }
   };
 
   const handleSubmit = (e) => {
@@ -68,10 +71,8 @@ function MessageIdForm() {
 
   return (
     <div className="h-[86.2vh] flex flex-col">
-      <div className="flex flex-col bg-slate-500 h-[15vh] items-center justify-center">
-        <div className="">
-          <Avatar src={user.profileImage} />
-        </div>
+      <div className="flex flex-col  h-[15vh] items-center justify-center">
+        <Avatar src={user.profileImage} />
         <span className="font-semibold text-lg">
           {user.firstName} {user.lastName}
         </span>
@@ -94,6 +95,7 @@ function MessageIdForm() {
                 message={chat.message}
                 createdAt={chat.createdAt}
                 ownMessage={chat.senderId === authUser?.id}
+                loading={loading}
               />
             </div>
           );

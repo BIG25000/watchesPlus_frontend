@@ -3,8 +3,9 @@ import { SendHorizontal } from "lucide-react";
 import { useState } from "react";
 import socket from "../../../config/socket";
 import useChat from "../../../hooks/useChat";
+import { toast } from "react-toastify";
 
-export default function MainChatInput() {
+export default function MainChatInput({ setLoading }) {
   const [message, setMessage] = useState("");
 
   // console.log(message);
@@ -12,13 +13,21 @@ export default function MainChatInput() {
   const { chatRoom } = useChat();
 
   const sendMessage = async () => {
-    await socket.emit("message", {
-      receiverId: chatRoom?.receiver?.id,
-      msg: message,
-      chatRoomId: chatRoom?.id,
-    });
+    try {
+      setLoading(true);
+      await socket.emit("message", {
+        receiverId: chatRoom?.receiver?.id,
+        msg: message,
+        chatRoomId: chatRoom?.id,
+      });
 
-    setMessage("");
+      setMessage("");
+    } catch (error) {
+      toast.error(error.response?.data.message);
+    } finally {
+      setLoading(false);
+      setMessage("");
+    }
   };
 
   const handleSubmit = (e) => {
@@ -50,7 +59,7 @@ export default function MainChatInput() {
           <button onClick={handleSubmit}>
             <SendHorizontal
               className="absolute top-5 right-5 hover:cursor-pointer"
-              color="#1313e1"
+              color="orange"
               strokeWidth="1.2"
             />
           </button>
@@ -68,7 +77,7 @@ export default function MainChatInput() {
           <button onClick={handleSubmit}>
             <SendHorizontal
               className="absolute top-5 right-5 hover:cursor-pointer hidden"
-              color="#1313e1"
+              color="orange"
               strokeWidth="1.2"
             />
           </button>
