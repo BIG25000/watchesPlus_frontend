@@ -19,11 +19,11 @@ export default function WishlistList() {
   return (
     <div className=" mx-auto w-[1200px] min-h-56 mt-4 mb-8">
       <div className="text-2xl font-bold mb-4">WatchesPlus - Wishlist</div>
-      {showSearch || querySearch ? <p>Search keyword: '{showSearch}'</p> : ""}
       <div className="flex gap-4 justify-end">
         <SelectionForm items={brands} onClick={handleSelectBrand} />
       </div>
-      <div className="flex flex-wrap gap-4">
+      <br />
+     <div className="flex flex-wrap gap-4">
         {wishlist.length > 0 ? (
           selectBrand !== null && selectBrand !== "All brand" ? (
             wishlist
