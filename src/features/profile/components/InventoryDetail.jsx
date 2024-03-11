@@ -11,8 +11,8 @@ import CardProduct from "../../product/components/CardProduct";
 
 export default function InventoryDetail() {
   const { brands, handleSelectBrand, selectBrand } = useSearch();
-  const { wishlist } = useWishlist();
-  const { getMyInventory } = useProfile();
+  
+  const { getMyInventory , myShipping } = useProfile();
   const [inventory, setInventory] = useState([]);
   const [pendingData, setPendingData] = useState([]);
   const [waitingData, setWaitingData] = useState([]);
@@ -22,11 +22,13 @@ export default function InventoryDetail() {
   const [loading, setLoading] = useState(false);
   const getData = async () => {
     const res = await getMyInventory();
+    const shipData = await myShipping()
     const data = res.data;
     setInventory(() => data); // data ใน inventory ทั้งหมด
     setPendingData(() => data.filter((e) => e.status === "PENDING")); //show pending
     setWaitingData(() => data.filter((e) => e.status === "WAITING")); //show waiting
     setActiveData(() => data.filter((e) => e.status === "AVAILABLE")); //show inventory
+    setShippingData(()=> shipData)
   };
 
   const handleTab = (index) => {
@@ -148,22 +150,18 @@ export default function InventoryDetail() {
                     {shippingData?.length > 0 ? (
                       <div className="flex flex-col">
                         <div className="flex items-center justify-between">
-                          <div>Watch In Inventory</div>
+                          <div>My Shipping Lists</div>
                           <SelectionForm
                             items={brands}
                             onClick={handleSelectBrand}
                           />
                         </div>
-                        <div className="flex">
-                          {activeData.map((e) => {
-                            return (
-                              <CardProduct
-                                data={e.watch}
-                                id={e.id}
-                                key={e.id}
-                              />
-                            );
-                          })}
+                        <div>
+                          <TableList
+                            shippingData={shippingData}
+                            setLoading={setLoading}
+                            loading={loading}
+                          />
                         </div>
                       </div>
                     ) : (

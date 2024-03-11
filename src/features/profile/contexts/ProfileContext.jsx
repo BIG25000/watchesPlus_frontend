@@ -3,6 +3,7 @@ import { useState, createContext } from "react";
 import * as profileAPI from "../../../apis/profile";
 import * as orderAPI from "../../../apis/order";
 import * as addressAPI from "../../../apis/address";
+import * as shippingAPI from '../../../apis/shipping'
 import { toast } from "react-toastify";
 import { useEffect } from "react";
 
@@ -47,14 +48,29 @@ export default function ProfileContextProvider({ children }) {
     return res.data.data
   }
 
+  const myShipping = async () => {
+    const res = await shippingAPI.getAllShipping()
+    return res.data.data
+  }
+
+  const confirmShipping = async (shippingId) => {
+    const res = await shippingAPI.confirmShippingByUser(shippingId)
+    toast.success(res.data.message)
+    return res.data.data
+  }
+  
+  const cancelShipping = async (shippingId,body) => {
+    const res = await shippingAPI.cancelShippingByUser(shippingId,body)
+    toast.success(res.data.message)
+    return res.data.data
+  }
+
   const getAddressFromInventoryId = async (inventoryId) => {
     const res = await addressAPI.getAddressByInventoryId(inventoryId)
     return res.data.data
   }
 
   const updateAddressByAddressId = async (addressId,body)=>{
-    console.log(addressId,'aaaaa')
-    console.log(body,'bbb')
     const res = await addressAPI.updateAddress(addressId,body)
     toast.success(res.data.message)
     return res.data.data
@@ -96,7 +112,10 @@ export default function ProfileContextProvider({ children }) {
         createAddress,
         cancelShippingBeforeAdmin,
         getAddressFromInventoryId,
-        updateAddressByAddressId
+        updateAddressByAddressId,
+        myShipping,
+        confirmShipping,
+        cancelShipping
       }}
     >
       {children}
