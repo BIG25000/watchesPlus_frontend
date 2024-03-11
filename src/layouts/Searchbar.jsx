@@ -25,13 +25,14 @@ export default function Searchbar() {
         <div className='relative' ref={searchEl}>
             <Input
                 type="text"
-                placeholder="Search"
+                placeholder="Search model..."
                 name="search"
                 value={searchElement}
                 onChange={e => handleFilter(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' ? handleEnterSearch(e.target.value) : ''}
+                className='group'
             >
-                <Search />
+                <Search className='group-hover:text-brown'/>
             </ Input>
             {
                 search &&

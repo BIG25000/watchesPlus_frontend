@@ -35,6 +35,11 @@ import MessageAdminContextProvider from "../features/admins/messages/contexts/Me
 import MessageIdPage from "../pages/admins/MessageIdPage";
 import WishlistPage from "../pages/User/WishlistPage";
 import InventoryPage from "../pages/User/InventoryPage";
+import ChatContextProvider from "../features/livechat/contexts/ChatContext";
+import TrackingTest from "../pages/admins/TrackingTest";
+import ProtectRouteUser from "../features/auth/components/ProtectRouteUser";
+import ProtectRouteAdmin from "../features/auth/components/ProtectRouteAdmin";
+import RedirectWhenAdminLogin from "../features/auth/components/RedirectWhenAdminLogin";
 
 const router = createBrowserRouter([
   {
@@ -43,7 +48,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Container />,
+        element: (
+          <RedirectWhenAdminLogin>
+            <Container />
+          </RedirectWhenAdminLogin>
+        ),
         children: [
           {
             path: "",
@@ -57,7 +66,11 @@ const router = createBrowserRouter([
           },
           {
             path: "profile",
-            element: <Outlet />, //search + all watches
+            element: (
+              <ProtectRouteUser>
+                <Outlet />
+              </ProtectRouteUser>
+            ), //search + all watches
             children: [
               {
                 path: "",
@@ -132,7 +145,11 @@ const router = createBrowserRouter([
   // ************************************************************************ ADMIN *****************
   {
     path: "/admin",
-    element: <SideBarAdmin />,
+    element: (
+      <ProtectRouteAdmin>
+        <SideBarAdmin />
+      </ProtectRouteAdmin>
+    ),
     children: [
       {
         path: "",
@@ -144,7 +161,11 @@ const router = createBrowserRouter([
       },
       {
         path: "products",
-        element: <ProductPage />,
+        element: (
+          <BrandAdminContextProvider>
+            <ProductPage />
+          </BrandAdminContextProvider>
+        ),
       },
       {
         path: "products/create",
@@ -179,9 +200,11 @@ const router = createBrowserRouter([
       {
         path: "inventory",
         element: (
-          <InventoryAdminContextProvider>
-            <TransactionPage />
-          </InventoryAdminContextProvider>
+          <BrandAdminContextProvider>
+            <InventoryAdminContextProvider>
+              <TransactionPage />
+            </InventoryAdminContextProvider>
+          </BrandAdminContextProvider>
         ),
       },
       {
@@ -219,6 +242,10 @@ const router = createBrowserRouter([
             <MessageIdPage />
           </MessageAdminContextProvider>
         ),
+      },
+      {
+        path: "trackingtest",
+        element: <TrackingTest />,
       },
     ],
     // ************************************************************************ ADMIN *****************

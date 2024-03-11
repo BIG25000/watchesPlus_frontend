@@ -51,7 +51,7 @@ export default function DetailProduct() {
                 <div className="flex flex-col items-center w-[600px] justify-center">
                   <img
                     className="rounded-2xl"
-                    src="https://cdn.pixabay.com/photo/2014/07/31/23/00/wristwatch-407096_1280.jpg"
+                    src={watch?.watchImage}
                   />
                 </div>
                 <div className="flex flex-col px-6 gap-10 ">
@@ -115,18 +115,18 @@ export default function DetailProduct() {
               </div>
               <div className="flex flex-col gap-4">
                 <Title>History</Title>
-                <div>
-                  {allHistory?.map((e) => {
-                    return <OrderList data={e} />;
+                <>
+                  {allHistory?.map((e,i) => {
+                    return <OrderList key={i} data={e} />;
                   })}
-                </div>
+                </>
               </div>
             </div>
           ) : null}
         </>
       )}
       {/* modal add product */}
-      <AddWatchModal watch={watch} setLoading={setLoading} />
+      <AddWatchModal watch={watch} setLoading={setLoading} loading={loading} />
     </>
   );
 }

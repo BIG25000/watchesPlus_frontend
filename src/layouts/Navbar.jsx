@@ -5,9 +5,16 @@ import Menu from './Menu'
 import Searchbar from './Searchbar'
 import Button from '../components/Button'
 import useAuth from '../hooks/useAuth'
+import useWallet from '../hooks/useWallet'
+import Icon from '../components/Icon'
+import { useEffect } from 'react'
 
 export default function Navbar() {
     const { authUser } = useAuth()
+    const { wallet, getWallet } = useWallet()
+    useEffect(() => {
+        getWallet()
+    }, [])
     return (
         <div className="navbar sticky top-0 w-full z-10 h-20 flex justify-around items-center text-white">
             <Link to='/'>
@@ -19,6 +26,12 @@ export default function Navbar() {
             <Searchbar />
             <div className='flex items-center gap-12'>
                 <Menu />
+                <Link to='/profile/wallet'>
+                    <div className='flex gap-2'>
+                        <div>{wallet.amount} THB</div>
+                        <Icon name='Wallet' />
+                    </div>
+                </Link>
                 {!authUser
                     ? (
                         <Link to='/login'>
@@ -28,6 +41,6 @@ export default function Navbar() {
                     : <DropdownNavbar />
                 }
             </div>
-        </div>
+        </div >
     )
 }
