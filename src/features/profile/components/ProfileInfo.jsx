@@ -9,8 +9,6 @@ export default function ProfileInfo() {
   const { profileInfo, getProfileInfo } = useProfile();
   const [isEdit, setIsEdit] = useState(false);
 
-  console.log(profileInfo);
-
   useEffect(() => {
     getProfileInfo();
   }, []);
