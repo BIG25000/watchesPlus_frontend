@@ -115,11 +115,11 @@ export default function DetailProduct() {
               </div>
               <div className="flex flex-col gap-4">
                 <Title>History</Title>
-                <div>
-                  {allHistory?.map((e) => {
-                    return <OrderList data={e} />;
+                <>
+                  {allHistory?.map((e,i) => {
+                    return <OrderList key={i} data={e} />;
                   })}
-                </div>
+                </>
               </div>
             </div>
           ) : null}
