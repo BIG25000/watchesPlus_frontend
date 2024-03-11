@@ -39,6 +39,7 @@ import ChatContextProvider from "../features/livechat/contexts/ChatContext";
 import TrackingTest from "../pages/admins/TrackingTest";
 import ProtectRouteUser from "../features/auth/components/ProtectRouteUser";
 import ProtectRouteAdmin from "../features/auth/components/ProtectRouteAdmin";
+import RedirectWhenAdminLogin from "../features/auth/components/RedirectWhenAdminLogin";
 
 const router = createBrowserRouter([
   {
@@ -47,7 +48,11 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Container />,
+        element: (
+          <RedirectWhenAdminLogin>
+            <Container />
+          </RedirectWhenAdminLogin>
+        ),
         children: [
           {
             path: "",

@@ -4,5 +4,5 @@ import useAuth from "../../../hooks/useAuth";
 export default function RedirectIfAuthenticated({ children }) {
   const { authUser } = useAuth();
 
-  return authUser ? <Navigate to="/" /> : children;
+  return authUser?.role === "USER" ? <Navigate to="/" /> : children;
 }

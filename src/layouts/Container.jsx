@@ -8,6 +8,7 @@ import SearchContextProvider from "../features/search/context/SearchContext";
 import WishlistContextProvider from "../features/wishlist/context/WishlistContext";
 import ProfileContextProvider from "../features/profile/contexts/ProfileContext";
 import ProductContextProvider from "../features/product/contexts/ProductContext";
+import WalletContextProvider from "../features/wallet/contexts/WalletContext";
 
 export default function Container() {
   return (
@@ -16,12 +17,14 @@ export default function Container() {
         <ProductContextProvider>
           <SearchContextProvider>
             <WishlistContextProvider>
-              <Navbar />
-              <ChatContextProvider>
-                <LiveChat />
-              </ChatContextProvider>
-              <Outlet />
-              <Footer />
+              <WalletContextProvider>
+                <Navbar />
+                <ChatContextProvider>
+                  <LiveChat />
+                </ChatContextProvider>
+                <Outlet />
+                <Footer />
+              </WalletContextProvider>
             </WishlistContextProvider>
           </SearchContextProvider>
         </ProductContextProvider>
