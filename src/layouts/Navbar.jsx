@@ -8,6 +8,7 @@ import useAuth from "../hooks/useAuth";
 import useWallet from "../hooks/useWallet";
 import Icon from "../components/Icon";
 import { useEffect } from "react";
+import { formatNum } from "../utils/formatNumber";
 
 export default function Navbar() {
   const { authUser } = useAuth();
@@ -29,7 +30,7 @@ export default function Navbar() {
         {authUser ? (
           <Link to="/profile/wallet">
             <div className="flex gap-2">
-              <div>{wallet.amount} THB</div>
+              <div>{formatNum(wallet.amount)} THB</div>
               <Icon name="Wallet" />
             </div>
           </Link>

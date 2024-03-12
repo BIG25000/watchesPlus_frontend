@@ -7,6 +7,7 @@ import Button from "../../../components/Button";
 import useWallet from "../../../hooks/useWallet";
 import { toast } from "react-toastify";
 import validateAmount from "../validations/validate-amount";
+import { formatNum } from "../../../utils/formatNumber";
 
 export default function Withdraw() {
   const [amount, setAmount] = useState("");
@@ -54,7 +55,11 @@ export default function Withdraw() {
         >
           <WalletIcon />
         </Input>
-        {amount < 100 ? "" : <span>You will receive {amount - 30}</span>}
+        {amount < 100 ? (
+          ""
+        ) : (
+          <span>You will receive {formatNum(amount - 30)}</span>
+        )}
         <Button type="button" bg="green" className="btn" onClick={hdlClick}>
           Withdraw
         </Button>
@@ -63,7 +68,7 @@ export default function Withdraw() {
             <h3 className="font-bold text-lg text-center">Confirm withdraw</h3>
             <p className="py-4">Amount : {amount}</p>
             <small className="text-xs font-light">
-              You will receive {amount - 30} THB
+              You will receive {formatNum(amount - 30)} THB
             </small>
             <div className="modal-action">
               <button type="button" className="btn" onClick={hdlSubmit}>
