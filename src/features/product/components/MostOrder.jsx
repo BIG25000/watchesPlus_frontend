@@ -3,6 +3,7 @@ import Icon from "../../../components/Icon"
 import useProduct from "../../../hooks/useProduct"
 import Button from "../../../components/Button";
 import { useNavigate } from "react-router-dom";
+import IconNoHover from "../../../components/IconNoHover"
 
 export default function MostOrder() {
     const { mostOrders } = useProduct()
@@ -18,7 +19,8 @@ export default function MostOrder() {
                         ? mostOrders.map(product => <CardProduct data={product.watch} key={product.id} />)
                         : (
                             <div className='w-full flex flex-col justify-center items-center'>
-                                <Icon name='FileSearch' size='100' />
+                                <IconNoHover name='FileSearch' size='100' />
+
                                 <div>No results found</div>
                                 <div>Try different or more general keywords</div>
                             </div>
@@ -26,7 +28,7 @@ export default function MostOrder() {
                 </div>
             </div>
             <div className="flex justify-center items-center">
-                <Button bg='brown' onClick={() => navigate('/search')}>
+                <Button bg='scarlet' color="white" onClick={() => navigate('/search')}>
                     More Gallery
                 </Button>
             </div>

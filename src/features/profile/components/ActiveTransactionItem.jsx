@@ -24,7 +24,7 @@ export default function ActiveTransactionItem({ name, el }) {
                     <div className="w-32 flex items-center justify-center">{timeAgo}</div>
                     <div className="w-32 flex items-center justify-center">{el?.createdAt.split('T')[0]}</div>
                     <div className="w-32 flex items-center justify-center">
-                        <Button bg='black' color='white' onClick={() => handleClickCancelBuyOrder(el.id)}>Cancel</Button>
+                        <Button bg='scarlet' color='white' onClick={() => handleClickCancelBuyOrder(el.id)}>Cancel</Button>
                     </div>
                 </li>
             );

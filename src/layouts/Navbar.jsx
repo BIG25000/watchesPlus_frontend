@@ -8,6 +8,7 @@ import useAuth from '../hooks/useAuth'
 import useWallet from '../hooks/useWallet'
 import Icon from '../components/Icon'
 import { useEffect } from 'react'
+import logoSign from '../assets/Logo-Sign.png'
 
 export default function Navbar() {
     const { authUser } = useAuth()
@@ -16,11 +17,11 @@ export default function Navbar() {
         getWallet()
     }, [])
     return (
-        <div className="navbar sticky top-0 w-full z-10 h-20 flex justify-around items-center text-white">
+        <div className="navbar  sticky top-0 w-full z-10 h-20 flex justify-around items-center text-white">
             <Link to='/'>
                 <div className='flex items-center'>
                     <img className='w-28' src={logoImage} />
-                    <div className='font-semibold'>WatchesPlus+</div>
+                    <img className='w-28' src={logoSign}/>
                 </div>
             </Link>
             <Searchbar />
@@ -28,8 +29,9 @@ export default function Navbar() {
                 <Menu />
                 <Link to='/profile/wallet'>
                     <div className='flex gap-2'>
-                        <div>{wallet.amount} THB</div>
+                        <div className='hover:text-brown flex flex-row gap-2'>{wallet.amount} THB 
                         <Icon name='Wallet' />
+                        </div>
                     </div>
                 </Link>
                 {!authUser

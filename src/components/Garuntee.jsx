@@ -3,7 +3,7 @@ import Icon from "./Icon"
 export default function Garuntee() {
     return (
         <>
-            <div className="bg-black text-white font-semibold flex justify-between rounded-md w-full">
+            <div className="navbar text-white font-semibold flex justify-between rounded-md w-full">
                 <div className="flex flex-col p-12 gap-8">
                     <div className="text-2xl font-semibold">WatchesPlus+ Buyer Protection</div>
                     <div className="flex gap-2"><Icon name='SearchCheck' color='#20830c' size='25' />Payment via the Escrow Service</div>
@@ -14,7 +14,7 @@ export default function Garuntee() {
                     <div className="flex gap-2"><Icon name='SearchCheck' color='#20830c' size='25' />WatchesPlus+'s quality & security team</div>
                 </div>
                 <div>
-                    <img className="rounded-r-md" src="https://static.chrono24.com/cdn-cgi/image/f=auto,metadata=none,w=600/images/default/buyer-protection/buyer-protection-teaser/buyer-protection-teaser-lg.jpg" />
+                    <img className="rounded-md" src="https://i0.wp.com/masterhorologer.com/wp-content/uploads/2012/12/TAG_Heuer_LINK_Leonardo_Di_Caprio.jpg?resize=810%2C540&quality=89&ssl=1" />
                 </div>
             </div>
             <div className="grid grid-cols-4 justify-center items-center text-center gap-4">
