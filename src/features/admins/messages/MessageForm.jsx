@@ -1,59 +1,56 @@
 import React from "react";
 import livechatAdmin from "./hooks/livechatAdmin";
 import { useNavigate } from "react-router-dom";
+import useAuth from "../../../hooks/useAuth";
+import Avatar from "../../../components/Avatar";
+import { useEffect } from "react";
+import formatTimeAgo from "../../../utils/time-ago";
 
 function MessageForm() {
-  const { livechat } = livechatAdmin();
+  const { livechat, getAllConversation } = livechatAdmin();
   const navigate = useNavigate();
+  const { authUser } = useAuth();
 
-  const livechatSort = livechat?.sort((a, b) => {
-    if (a.createdAt > b.createdAt) {
-      return -1;
-    }
-    if (a.createdAt < b.createdAt) {
-      return 1;
-    }
-    return 0;
-  });
+  useEffect(() => {
+    getAllConversation();
+  }, [navigate]);
 
-  console.log(livechatSort, "livechat");
+  const livechatSort = livechat?.filter((el) => authUser?.id !== el.sender?.id);
 
   return (
     <>
       <div className="flex justify-between items-center">
-        <strong className="text-gray-700 font-medium">Message</strong>
+        <strong className="text-gray-700 font-medium">Incoming Message</strong>
       </div>
       <div className="border-x border-gray-200 rounded-sm mt-3">
         <div className="overflow-x-auto">
           <table className="table">
             <thead>
               <tr className="bg-gray-700 text-white">
-                <th>id</th>
+                <th>ID</th>
                 <th>User</th>
-                <th>email</th>
-                <th>mobile</th>
-                <th>status</th>
-                <th>SENDER ID</th>
-                <th>RECEIVER ID</th>
+                <th>Email</th>
+                <th>Message</th>
+                <th>Status</th>
+                <th>Sender ID</th>
+                <th>Incoming Time</th>
               </tr>
             </thead>
             <tbody>
               {livechatSort?.map((el) => (
-                // onClick={() => navigate(`${el.id}`)}
                 <tr key={el.id}>
-                  <th>{el.id}</th>
+                  <th>{el.chatRoomId}</th>
                   <td
-                    onClick={() => navigate(`${el.id}/${el.userId}`)}
+                    onClick={() =>
+                      navigate(`${el.chatRoomId}/${el.chatRoom.userId}`)
+                    }
                     role="button"
                   >
                     <div className="flex items-center gap-3">
                       <div className="avatar">
-                        <div
-                          className="h-10 w-10 rounded-full bg-sky-500 bg-cover bg-no-repeat bg-center"
-                          style={{
-                            backgroundImage: `url(${el.sender?.profileImage})`,
-                          }}
-                        ></div>
+                        <div className="rounded-full bg-gray-200 bg-cover bg-no-repeat bg-center">
+                          <Avatar src={el.sender?.profileImage} />
+                        </div>
                       </div>
                       <div>
                         <div className="font-bold">
@@ -66,7 +63,11 @@ function MessageForm() {
                     <div>{el.sender?.email}</div>
                   </td>
                   <td>
-                    <div>{el.sender?.mobile}</div>
+                    <div>
+                      {el?.message?.length > 15
+                        ? `${el.message.slice(0, 15 - 3)}...`
+                        : el.message}
+                    </div>
                   </td>
                   <td>
                     <div>{el.sender?.status}</div>
@@ -75,7 +76,7 @@ function MessageForm() {
                     <div>{el.sender?.id}</div>
                   </td>
                   <td>
-                    <div>{el.receiver?.id}</div>
+                    <div>{formatTimeAgo(el?.createdAt)}</div>
                   </td>
                 </tr>
               ))}
