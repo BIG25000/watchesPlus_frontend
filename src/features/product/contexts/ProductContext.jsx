@@ -82,7 +82,7 @@ const ProductContextProvider = ({ children }) => {
 
   return (
     <ProductContext.Provider
-      value={{ dataWatch, getOneWatch, getAllOrderOnTransaction, sendBuyOrder, sendSaleOrder, getAllHistoryByWatchId, mostOrders, fetchMostOrder }}
+      value={{ dataWatch, getOneWatch, getAllOrderOnTransaction, sendBuyOrder, sendSaleOrder, getAllHistoryByWatchId, mostOrders, fetchMostOrder, getWatch }}
     >
       {children}
     </ProductContext.Provider>

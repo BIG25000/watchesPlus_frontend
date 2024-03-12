@@ -3,11 +3,11 @@ import Icon from "../../../components/Icon"
 import useProduct from "../../../hooks/useProduct"
 import Button from "../../../components/Button";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export default function MostOrder() {
     const { mostOrders } = useProduct()
     const navigate = useNavigate()
-    console.log(mostOrders);
 
     return (
         <>
