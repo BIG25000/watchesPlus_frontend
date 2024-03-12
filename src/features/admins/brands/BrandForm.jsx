@@ -25,7 +25,7 @@ function BrandForm() {
             value={search}
           />
           <button
-            className="btn bg-rose-800 text-white btn-sm hover:bg-red-900"
+            className="btn btn-sm bg-gray-400 text-black"
             onClick={() => setSearch("")}
           >
             RESET
@@ -35,7 +35,7 @@ function BrandForm() {
         <Modal
           title="createBrand"
           id="createBrand"
-          button="btn bg-green-700 text-white btn-sm hover:bg-green-900"
+          button="btn btn-sm bg-gray-400 text-black"
         >
           <CreateBrandForm />
         </Modal>
@@ -80,7 +80,7 @@ function BrandForm() {
                           title="editBrand"
                           id={`editBrand${el.id}`}
                           // id="editBrand"
-                          button="btn bg-blue- text-white btn-sm hover:bg-blue-900"
+                          button="btn btn-sm bg-gray-400 text-black"
                         >
                           <EditBrandForm id={el.id} />
                         </Modal>
