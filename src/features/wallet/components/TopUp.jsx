@@ -8,17 +8,18 @@ import Button from "../../../components/Button";
 import useWallet from "../../../hooks/useWallet";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import validateAmount from "../validations/validate-amount";
 
 let OmiseCard;
 
 export default function TopUp() {
-  const navigate = useNavigate()
-  const [amount, setAmount] = useState(0);
+  const navigate = useNavigate();
+  const [amount, setAmount] = useState("");
 
   const { getWallet, getWalletTransaction } = useWallet();
 
   const hdlChange = (e) => {
-    setAmount(e.target.value * 100);
+    setAmount(e.target.value);
   };
 
   const handleLoadScript = () => {
@@ -43,10 +44,13 @@ export default function TopUp() {
 
   const hdlOmiseToken = () => {
     OmiseCard.open({
-      amount,
+      amount: amount * 100,
       onCreateTokenSuccess: async (nonce) => {
         /* Handler on token or source creation.  Use this to submit form or send ajax request to server */
-        const response = await walletAPI.topUp({ token: nonce, amount });
+        const response = await walletAPI.topUp({
+          token: nonce,
+          amount: amount * 100,
+        });
         toast.success(response.data.message);
         getWallet();
         getWalletTransaction();
@@ -59,6 +63,10 @@ export default function TopUp() {
 
   const hdlClick = (e) => {
     e.preventDefault();
+    const validateErr = validateAmount({ amount });
+    if (validateErr) {
+      return toast.error(validateErr.amount);
+    }
     creditCardConfigure();
     hdlOmiseToken();
   };
@@ -68,7 +76,16 @@ export default function TopUp() {
         Top-up
         <small className="text-xs font-light">Fee 3.65% and VAT fee 7%</small>
       </span>
-      <Input onChange={hdlChange} placeholder="amount" type="number">
+      <Input
+        onChange={hdlChange}
+        placeholder="amount"
+        type="text"
+        value={amount}
+        inputMode="numeric"
+        pattern="[1-9][0-9]*"
+        min={0}
+        max={200000}
+      >
         <WalletIcon />
       </Input>
       {amount == 0 ? (
@@ -76,11 +93,7 @@ export default function TopUp() {
       ) : (
         <span>
           You will receive{" "}
-          {Math.round(
-            amount / 100 -
-              ((amount / 100) * 0.0365 + (amount / 100) * 0.0365 * 0.07)
-          )}{" "}
-          THB
+          {Math.round(amount - (amount * 0.0365 + amount * 0.0365 * 0.07))} THB
         </span>
       )}
       <Script url="https://cdn.omise.co/omise.js" onLoad={handleLoadScript} />

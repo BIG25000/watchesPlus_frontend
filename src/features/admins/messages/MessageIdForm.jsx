@@ -9,29 +9,34 @@ import livechatAdmin from "./hooks/livechatAdmin";
 import * as livechatAdminApi from "../../../apis/livechat";
 import { useEffect } from "react";
 import { useRef } from "react";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 function MessageIdForm() {
   const [message, setMessage] = useState("");
   const [user, setUser] = useState({});
+  const [loading, setLoading] = useState(false);
 
   const { authUser } = useAuth();
   const { chatroomId, senderId } = useParams();
   const { conversation } = livechatAdmin();
   const scrollRef = useRef();
-
-  // console.log(user, "userrrrrrrrrrrrrrr");
-
-  // console.log(chatroomId, "messageForm");
-  // console.log(authUser, "messageForm");
+  const navigate = useNavigate();
 
   const sendMessage = async () => {
-    await socket.emit("message", {
-      receiverId: +senderId,
-      msg: message,
-      chatRoomId: +chatroomId,
-    });
-
-    setMessage("");
+    try {
+      setLoading(true);
+      await socket.emit("message", {
+        receiverId: +senderId,
+        msg: message,
+        chatRoomId: +chatroomId,
+      });
+    } catch (error) {
+      toast.error(error.response?.data.message);
+    } finally {
+      setLoading(false);
+      setMessage("");
+    }
   };
 
   const handleSubmit = (e) => {
@@ -68,13 +73,53 @@ function MessageIdForm() {
 
   return (
     <div className="h-[86.2vh] flex flex-col">
-      <div className="flex flex-col bg-slate-500 h-[15vh] items-center justify-center">
-        <div className="">
-          <Avatar src={user.profileImage} />
+      <div
+        className="flex flex-row items-start justify-between"
+        onClick={() => navigate(-1)}
+      >
+        <div className="bg-gray-200 rounded-full p-3 hover:cursor-pointer hover:bg-gray-300">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-undo-2"
+          >
+            <path d="M9 14 4 9l5-5" />
+            <path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5v0a5.5 5.5 0 0 1-5.5 5.5H11" />
+          </svg>
         </div>
-        <span className="font-semibold text-lg">
-          {user.firstName} {user.lastName}
-        </span>
+        <div className="flex flex-col  h-[15vh] items-center justify-center">
+          <Avatar src={user.profileImage} />
+          <span className="font-semibold text-lg">
+            {user.firstName} {user.lastName}
+          </span>
+        </div>
+        {/* HIDDEN ICON */}
+        <div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-undo-2"
+            className="invisible"
+          >
+            <path d="M9 14 4 9l5-5" />
+            <path d="M4 9h10.5a5.5 5.5 0 0 1 5.5 5.5v0a5.5 5.5 0 0 1-5.5 5.5H11" />
+          </svg>
+        </div>
+        {/* HIDDEN ICON */}
       </div>
       <div className="flex h-[60vh]  overflow-auto mb-3 flex-col">
         {conversation?.map((chat) => {
@@ -94,6 +139,7 @@ function MessageIdForm() {
                 message={chat.message}
                 createdAt={chat.createdAt}
                 ownMessage={chat.senderId === authUser?.id}
+                loading={loading}
               />
             </div>
           );

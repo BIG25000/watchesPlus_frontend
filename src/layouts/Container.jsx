@@ -9,25 +9,27 @@ import WishlistContextProvider from "../features/wishlist/context/WishlistContex
 import ProfileContextProvider from "../features/profile/contexts/ProfileContext";
 import ProductContextProvider from "../features/product/contexts/ProductContext";
 import WalletContextProvider from "../features/wallet/contexts/WalletContext";
+import useAuth from "../hooks/useAuth";
 
 export default function Container() {
+  const { authUser } = useAuth();
   return (
     <>
       <ProfileContextProvider>
-        <ProductContextProvider>
-          <SearchContextProvider>
-            <WishlistContextProvider>
-              <WalletContextProvider>
+        <WalletContextProvider>
+          <ProductContextProvider>
+            <SearchContextProvider>
+              <WishlistContextProvider>
                 <Navbar />
                 <ChatContextProvider>
-                  <LiveChat />
+                  {authUser ? <LiveChat /> : ""}
                 </ChatContextProvider>
                 <Outlet />
                 <Footer />
-              </WalletContextProvider>
-            </WishlistContextProvider>
-          </SearchContextProvider>
-        </ProductContextProvider>
+              </WishlistContextProvider>
+            </SearchContextProvider>
+          </ProductContextProvider>
+        </WalletContextProvider>
       </ProfileContextProvider>
     </>
   );
