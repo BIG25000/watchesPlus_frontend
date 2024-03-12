@@ -8,6 +8,7 @@ import Button from "../../../components/Button";
 import useProduct from "../../../hooks/useProduct";
 import { validateSaleOrder } from "../validations/validate-order";
 import { toast } from "react-toastify";
+import { formatNum } from "../../../utils/formatNumber";
 
 export default function SellModal(props) {
   const { watchId } = useParams();
@@ -138,14 +139,14 @@ export default function SellModal(props) {
               <div className="flex h-8 gap-4 justify-between">
                 <label>Minimum Price:</label>
                 <div className="flex gap-2">
-                  <div>{dataSale?.[0]?.price || 0}</div>
+                  <div>{formatNum(dataSale?.[0]?.price) || 0}</div>
                   {baht}
                 </div>
               </div>
               <div className="flex h-8 gap-4 justify-between">
                 <label>Total Price:</label>
                 <div className="flex gap-2">
-                  <div>{input?.price}</div>
+                  <div>{formatNum(input?.price)}</div>
                   {baht}
                 </div>
               </div>
@@ -155,7 +156,7 @@ export default function SellModal(props) {
             <Button
               type="button"
               color="white"
-              bg="green"
+              bg="cyan"
               onClick={handleClick}
             >
               PLACE ORDER
@@ -172,15 +173,15 @@ export default function SellModal(props) {
             <h3 className="font-bold text-lg">Are You Confirm This Order ?</h3>
             <div>
               You Order is place on Market at Price{" "}
-              <span className="font-bold text-lg">{input?.price || 0}</span>{" "}
+              <span className="font-bold text-lg">{formatNum(input?.price) || 0}</span>{" "}
               {baht}
             </div>
             <div className="mt-4 flex justify-evenly">
-              <Button bg="green" onClick={handleSaleOrder}>
+              <Button bg="cyan" onClick={handleSaleOrder}>
                 YES
               </Button>
               <Button
-                bg="red"
+                bg="scarlet"
                 onClick={() => document.getElementById("confirm_sell").close()}
               >
                 NO

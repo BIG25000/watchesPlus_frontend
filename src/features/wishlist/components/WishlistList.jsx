@@ -3,7 +3,9 @@ import CardProduct from "../../product/components/CardProduct";
 import { useWishlist } from "../context/WishlistContext";
 import useSearch from "../../../hooks/useSearch";
 import SelectionForm from "../../product/components/SelectionForm";
-import Icon from "../../../components/Icon";
+import IconNoHover from "../../../components/IconNoHover";
+// import Icon from "../../../components/Icon";
+
 
 export default function WishlistList() {
   const { wishlist } = useWishlist();
@@ -28,6 +30,11 @@ export default function WishlistList() {
           selectBrand !== null && selectBrand !== "All brand" ? (
             wishlist
               .filter((el) => el.watch.brand.name === selectBrand)
+              .length == 0 ? <div className="w-full flex flex-col justify-center items-center">
+              <IconNoHover name="FileSearch" size="100" />
+              <div>No item in your wishlist</div>
+            </div> : wishlist
+              .filter((el) => el.watch.brand.name === selectBrand)
               .map((el) => {
                 return <CardProduct data={el.watch} key={el.id} id={el.id} />;
               })
@@ -38,7 +45,7 @@ export default function WishlistList() {
           )
         ) : (
           <div className="w-full flex flex-col justify-center items-center">
-            <Icon name="FileSearch" size="100" />
+            <IconNoHover name="FileSearch" size="100" />
             <div>No item in your wishlist</div>
           </div>
         )}

@@ -27,7 +27,7 @@ export default function Input({
         min={min}
         max={max}
         onChange={onChange}
-        className={`border-white border-2 pl-12 bg-white bg-opacity-0 hover:border-brown hover:placeholder:text-brown text-white placeholder:text-white px-6 w-[350px] h-[45px] rounded-2xl focus:outline-none ${extendClassName}`}
+        className={` border-white border-2 pl-12 bg-white bg-opacity-0  text-white placeholder:text-white px-6 w-[350px] h-[45px] rounded-2xl focus:outline-none ${extendClassName}`}
         onKeyDown={onKeyDown}
       />
     </div>

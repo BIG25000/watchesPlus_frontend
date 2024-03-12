@@ -86,7 +86,7 @@ export default function DetailProduct() {
                     </Description>
                   </div>
                   <Button
-                    bg="green"
+                    bg="cyan"
                     color="white"
                     className="mx-4"
                     onClick={() => document.getElementById("add").showModal()}
