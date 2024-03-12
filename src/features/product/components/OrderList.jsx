@@ -1,9 +1,7 @@
 import React from "react";
 import Avatar from "../../../components/Avatar";
 import { baht } from "../../../constants/baht";
-import React from "react";
-import Avatar from "../../../components/Avatar";
-import { baht } from "../../../constants/baht";
+
 
 export default function OrderList(props) {
   const { data, type , watch } = props;
