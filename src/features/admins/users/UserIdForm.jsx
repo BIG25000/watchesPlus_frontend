@@ -17,7 +17,7 @@ function UserIdForm() {
       <div className="grid grid-cols-2 mt-3.5">
         <div className="flex justify-center">
           <div
-            className="h-[20rem] w-[20rem]  bg-sky-500 bg-cover bg-no-repeat bg-center"
+            className="h-[20rem] w-[20rem]  bg-gray-200 bg-cover bg-no-repeat bg-center"
             style={{
               backgroundImage: `url(${filterUsers?.profileImage})`,
             }}

@@ -18,10 +18,7 @@ function MessageAdminContextProvider({ children }) {
   const { chatroomId } = useParams();
 
   useEffect(() => {
-    livechatApi
-      .getAllLivechat()
-      .then((res) => setLivechat(res.data.data))
-      .catch((err) => console.log(err));
+    getAllConversation();
   }, []);
 
   useEffect(() => {
@@ -32,12 +29,21 @@ function MessageAdminContextProvider({ children }) {
 
   useEffect(() => {
     if (authUser) {
-      console.log(authUser, "authUserrrrrrrrrrrrrrrrrr");
+      // console.log(authUser, "authUserrrrrrrrrrrrrrrrrr");
       socket.auth = { senderId: authUser?.id };
       socket.connect();
       return () => socket.disconnect();
     }
   }, [authUser]);
+
+  const getAllConversation = async () => {
+    try {
+      const res = await livechatApi.getAllConversation();
+      setLivechat(res.data.sort);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const getConversationContext = async () => {
     // console.log(chatRoom, "chatroommmmmmmmmmmmmmmmmmmmmmmmmm");
@@ -58,7 +64,9 @@ function MessageAdminContextProvider({ children }) {
   }, [+chatroomId]);
 
   return (
-    <MessageAdminContext.Provider value={{ livechat, conversation }}>
+    <MessageAdminContext.Provider
+      value={{ livechat, conversation, getAllConversation }}
+    >
       {children}
     </MessageAdminContext.Provider>
   );
