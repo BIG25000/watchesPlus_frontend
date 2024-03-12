@@ -146,11 +146,11 @@ export default function ShippingModal(props) {
     <>
       {province && (
         <dialog id={`address_${index}`} className="modal">
-          <div className="modal-box relative">
+          <div className="modal-box relative ">
             <h3 className="font-bold text-lg  mb-8">
               Add Your Address To Shipping
             </h3>
-            <div className="flex flex-col gap-8 ">
+            <div className="flex flex-col gap-4 ">
               <div
                 className="absolute right-8 top-6 text-xl font-bold cursor-pointer"
                 onClick={() => {
