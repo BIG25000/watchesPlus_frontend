@@ -26,22 +26,29 @@ export default function SellModal(props) {
   const handleSaleOrder = async (e) => {
     try{
       e.preventDefault();
-      if (input.price === 0 && !input.inventoryId) {
+      if (input?.price === 0 && !input?.inventoryId) {
         toast.error("Please Select Inventory And Insert Price");
+        document.getElementById("confirm_sell").close();
+        document.getElementById("sell").close();
         return;
       }
       const data = {
-        inventoryId : input.inventoryId,
-        price : input.price
+        inventoryId : input?.inventoryId,
+        price : input?.price
+      }
+      if(!data.inventoryId){
+        toast.error('You dont have This Watch in Inventory')
+        document.getElementById("confirm_sell").close();
+        document.getElementById("sell").close();
+        return
       }
       const validateErr = validateSaleOrder(data)
       if(validateErr?.price){
-        toast.error(validateErr.price)
+        toast.error(validateErr?.price)
         return
       }
       setLoading(true)
-      await sendSaleOrder(input);
-     
+      await sendSaleOrder(data);
       setInput(null);
       document.getElementById("confirm_sell").close();
       document.getElementById("sell").close();
@@ -89,13 +96,14 @@ export default function SellModal(props) {
           >
             X
           </div>
-          <h3 className="font-bold text-lg ">Sell - {watch?.modelName}</h3>
+          <h3 className="font-bold text-lg pb-8">Sell - {watch?.modelName}</h3>
           <div className="flex flex-col gap-4 text-start">
             <h1>My Inventory</h1>
             {watchAvailable?.length > 0 ? (
               watchAvailable.map((e) => {
                 return (
                   <InventoryList
+                  inventory={e}
                     key={e.id}
                     watch={watch}
                     id={e.id}
@@ -104,7 +112,7 @@ export default function SellModal(props) {
                 );
               })
             ) : (
-              <p>You dont have this Item</p>
+              <p className="text-center py-8">-------------- You dont have this Item --------------</p>
             )}
           </div>
           <div className="grid grid-cols-2 ">
@@ -130,7 +138,7 @@ export default function SellModal(props) {
               <div className="flex h-8 gap-4 justify-between">
                 <label>Minimum Price:</label>
                 <div className="flex gap-2">
-                  <div>{dataSale?.[0]?.price}</div>
+                  <div>{dataSale?.[0]?.price || 0}</div>
                   {baht}
                 </div>
               </div>

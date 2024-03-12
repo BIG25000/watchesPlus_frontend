@@ -29,7 +29,7 @@ export default function DetailProduct() {
     const data = await getOneWatch(+watchId);
     const orders = await getAllOrderOnTransaction(+watchId);
     const history = await getAllHistoryByWatchId(+watchId);
-    setWatch(data.data);
+    setWatch(data?.data);
     setAllBuyOrder(orders.AllBuyOrder);
     setAllSaleOrder(orders.AllSaleOrder);
     setAllHistory(history.data);
@@ -39,14 +39,16 @@ export default function DetailProduct() {
     getData();
   }, [loading]);
 
+  console.log(allHistory)
+
   return (
-    <>
+    <div  className="mx-auto w-[1200px]  min-h-screen">
       {loading ? (
         <Loading />
       ) : (
         <>
           {watch && allBuyOrder && allSaleOrder ? (
-            <div className="mx-auto w-[1200px]  min-h-screen  flex flex-col gap-10 py-12">
+            <div className="flex flex-col gap-10 py-12">
               <div className="flex gap-10">
                 <div className="flex flex-col items-center w-[600px] justify-center">
                   <img
@@ -117,7 +119,7 @@ export default function DetailProduct() {
                 <Title>History</Title>
                 <>
                   {allHistory?.map((e,i) => {
-                    return <OrderList key={i} data={e} />;
+                    return <OrderList key={i} data={e} type={e.type} watch={watch} />;
                   })}
                 </>
               </div>
@@ -127,6 +129,6 @@ export default function DetailProduct() {
       )}
       {/* modal add product */}
       <AddWatchModal watch={watch} setLoading={setLoading} loading={loading} />
-    </>
+    </div>
   );
 }
