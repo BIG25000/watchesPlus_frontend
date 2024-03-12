@@ -9,6 +9,7 @@ import useWallet from "../../../hooks/useWallet";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import validateAmount from "../validations/validate-amount";
+import { formatNum } from "../../../utils/formatNumber";
 
 let OmiseCard;
 
@@ -93,7 +94,10 @@ export default function TopUp() {
       ) : (
         <span>
           You will receive{" "}
-          {Math.round(amount - (amount * 0.0365 + amount * 0.0365 * 0.07))} THB
+          {formatNum(
+            Math.round(amount - (amount * 0.0365 + amount * 0.0365 * 0.07))
+          )}{" "}
+          THB
         </span>
       )}
       <Script url="https://cdn.omise.co/omise.js" onLoad={handleLoadScript} />

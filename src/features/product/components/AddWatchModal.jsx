@@ -35,6 +35,7 @@ export default function AddWatchModal(props) {
       formData.append("watchId", watch.id);
       formData.append("watchImage", input.watchImage);
       setLoading(true);
+      document.getElementById("add").close();
       await addWatchToInventory(formData);
       toast.success("Add Watch To Your Inventory");
       fileEl.current.value = "";
@@ -67,8 +68,8 @@ export default function AddWatchModal(props) {
           </div>
           <h3 className="font-bold text-lg">Add Watch To Your Inventory</h3>
           <div className="grid grid-cols-2 gap-8">
-            <div className="flex gap-8">
-              <img src="https://cdn.pixabay.com/photo/2014/07/31/23/00/wristwatch-407096_1280.jpg" />
+            <div className="flex p-4 w-[400px] items-center">
+              <img src={watch?.watchImage} />
             </div>
             <div className="flex flex-col gap-4">
               <Title>{watch?.modelName}</Title>

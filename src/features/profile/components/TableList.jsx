@@ -5,8 +5,10 @@ import useAuth from "../../../hooks/useAuth";
 import CancelModal from "./CancelModal";
 import ConfirmModal from "./ConfirmModal";
 import CancelShippingModal from "./CancelShippingModal";
+import { useNavigate } from "react-router-dom";
 
 export default function TableList(props) {
+  const navigate = useNavigate()
   const { authUser } = useAuth();
 
   const {
@@ -144,10 +146,10 @@ export default function TableList(props) {
               {/* row 1 */}
               {activeData.map((e, i) => {
                 return (
-                  <tr className="hover" key={e.id}>
+                  <tr className="hover cursor-pointer" key={e.id} >
                     <th>{i + 1}</th>
                     <td>
-                      <img className="w-20" src={e.watch.watchImage} />
+                      <img className="w-20" src={e.watch.watchImage} onClick={()=>navigate(`/watch/${e.watch.id}`)}/>
                     </td>
                     <td>{e.watch.modelName}</td>
                     <td>{e.watch.brand.name}</td>
@@ -196,7 +198,7 @@ export default function TableList(props) {
               {/* row 1 */}
               {shippingData.map((e, i) => {
                 return (
-                  <tr className="hover" key={e.id}>
+                  <tr className="hover" key={e.id} >
                     <th>{i + 1}</th>
                     <td>
                       <img className="w-20" src={e.inventory.watchImage} />
