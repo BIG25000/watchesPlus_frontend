@@ -25,7 +25,7 @@ export default function Conversation({
                   {senderFirstName} {senderLastName}
                 </span>
               </div>
-              <div className="py-1.5 px-2.5 rounded-xl bg-yellow-600 flex items-center justify-center max-w-[13vw]">
+              <div className="py-1.5 px-2.5 rounded-xl bg-yellow-600 flex items-center justify-center min-w-1">
                 <h1 className="text-white">{message}</h1>
               </div>
               <small className="font-light text-[0.7rem]">
@@ -47,7 +47,7 @@ export default function Conversation({
               <span className="my-1">
                 {senderFirstName} {senderLastName}
               </span>
-              <div className="py-1.5 px-2.5 rounded-xl bg-gray-100 flex items-center justify-center max-w-[13vw]">
+              <div className="py-1.5 px-2.5 rounded-xl bg-gray-100 flex items-center justify-center min-w-1">
                 <h1>{message}</h1>
               </div>
               <small className="font-light text-[0.7rem]">
