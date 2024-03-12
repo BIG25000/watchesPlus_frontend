@@ -6,7 +6,8 @@ import formatTimeAgo from "../../../utils/time-ago";
 export default function ActiveTransactionItem({ name, el }) {
   const { handleClickCancelBuyOrder, handleClickCancelSaleOrder } =
     useProfile();
-  const timeAgo = formatTimeAgo(el.createdAt);
+  const timeAgo = formatTimeAgo(el?.createdAt);
+
   switch (name) {
     case "BUYORDER":
       return (
@@ -60,7 +61,7 @@ export default function ActiveTransactionItem({ name, el }) {
           <div className="w-32 flex items-center justify-center">
             {el.status}
           </div>
-          <div className="w-32 flex items-center justify-center">-</div>
+          <div className="w-32 flex items-center justify-center">{timeAgo}</div>
           <div className="w-32 flex items-center justify-center">
             {el.createdAt.split("T")[0]}
           </div>

@@ -2,7 +2,6 @@ import { formatNum } from "../../../utils/formatNumber";
 import formatTimeAgo from "../../../utils/time-ago";
 
 export default function HistoryTransactionItem({ el }) {
-  console.log(el);
   const timeAgo = formatTimeAgo(el?.createdAt);
   return (
     <li className="px-4 py-2 border border-b-0 flex">

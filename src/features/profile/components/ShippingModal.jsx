@@ -16,6 +16,7 @@ export default function ShippingModal(props) {
   const [subDistrict, setSubDistrict] = useState([]);
   const [editAddress, setEditAddress] = useState(null);
   const [input, setInput] = useState({
+    detail : "",
     province: "",
     district: "",
     subDistrict: "",
@@ -77,12 +78,20 @@ export default function ShippingModal(props) {
     }));
   };
 
+  const handleDetailOnchange = (e) => {
+    setInput({
+      ...input,
+      detail : e.target.value
+    })
+  }
+
   const handleSubmitAddress = async (e) => {
     try {
       e.preventDefault();
       const address = {
         inventoryId,
         referenceNumber,
+        detail : input.detail,
         province: input.province,
         district: input.district,
         subDistrict: input.subDistrict,
@@ -92,6 +101,7 @@ export default function ShippingModal(props) {
       await createAddress(address);
       document.getElementById(`address_${index}`).close();
       setInput({
+        detail: "",
         province: "",
         district: "",
         subDistrict: "",
@@ -109,6 +119,7 @@ export default function ShippingModal(props) {
     try {
       e.preventDefault()
       const data = {
+        detail : input?.detail,
         province: input?.province,
         district: input?.district,
         subDistrict: input?.subDistrict,
@@ -135,11 +146,11 @@ export default function ShippingModal(props) {
     <>
       {province && (
         <dialog id={`address_${index}`} className="modal">
-          <div className="modal-box relative">
+          <div className="modal-box relative ">
             <h3 className="font-bold text-lg  mb-8">
               Add Your Address To Shipping
             </h3>
-            <div className="flex flex-col gap-8 ">
+            <div className="flex flex-col gap-4 ">
               <div
                 className="absolute right-8 top-6 text-xl font-bold cursor-pointer"
                 onClick={() => {
@@ -147,6 +158,16 @@ export default function ShippingModal(props) {
                 }}
               >
                 X
+              </div>
+              <div className="flex gap-4 items-center justify-between">
+                <label>Detail :</label>
+                <input
+                  className="input input-bordered w-full max-w-xs"
+                  type="text"
+                  name="detail"
+                  value={input?.detail}
+                  onChange={handleDetailOnchange}
+                />
               </div>
               <div className="flex gap-4 items-center justify-between">
                 <label>Province : </label>

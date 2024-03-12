@@ -10,6 +10,29 @@ export default function MyMarketHistory() {
     useEffect(() => {
         getAllOrder()
     }, []);
+
+    const ordersBySort = orders.history.myBuyHistory
+        .sort((a, b) => {
+            if (a.createdAt > b.createdAt) {
+                return -1;
+            }
+            if (a.createdAt < b.createdAt) {
+                return 1;
+            }
+            return 0;
+        });
+
+    const saleBySort = orders.history.mySaleHistory
+        .sort((a, b) => {
+            if (a.createdAt > b.createdAt) {
+                return -1;
+            }
+            if (a.createdAt < b.createdAt) {
+                return 1;
+            }
+            return 0;
+        });
+
     return (
         <>
             <div className="flex flex-col gap-2">
@@ -25,7 +48,7 @@ export default function MyMarketHistory() {
                     </div>
                     {
                         orders.history.myBuyHistory.length > 0
-                            ? orders.history.myBuyHistory.reverse().slice(0, 3).map(el => <HistoryTransactionItem key={el.id} el={el} />)
+                            ? ordersBySort.slice(0, 3).map(el => <HistoryTransactionItem key={el.id} el={el} />)
                             : <div className="p-4 border-l border-r">No result</div>
                     }
                 </ul>
@@ -46,7 +69,7 @@ export default function MyMarketHistory() {
                     </div>
                     {
                         orders.history.mySaleHistory.length > 0
-                            ? orders.history.mySaleHistory.reverse().slice(0, 3).map(el => <HistoryTransactionItem key={el.id} el={el} />)
+                            ? saleBySort.slice(0, 3).map(el => <HistoryTransactionItem key={el.id} el={el} />)
                             : <div className="p-4 border-l border-r">No result</div>
                     }
                 </ul>

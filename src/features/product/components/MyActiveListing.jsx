@@ -13,6 +13,28 @@ export default function MyActiveListing() {
     useEffect(() => {
         getAllOrder()
     }, []);
+
+    const buyOrderBySort = orders.activity?.myBuyOrder
+        .sort((a, b) => {
+            if (a.createdAt > b.createdAt) {
+                return -1;
+            }
+            if (a.createdAt < b.createdAt) {
+                return 1;
+            }
+            return 0;
+        });
+    const saleOrderBySort = orders.activity?.mySaleOrder
+        .sort((a, b) => {
+            if (a.createdAt > b.createdAt) {
+                return -1;
+            }
+            if (a.createdAt < b.createdAt) {
+                return 1;
+            }
+            return 0;
+        });
+
     return (
         <>
             <div className="flex flex-col gap-2">
@@ -32,7 +54,7 @@ export default function MyActiveListing() {
                     </div>
                     {
                         orders.activity?.myBuyOrder.length > 0
-                            ? orders.activity?.myBuyOrder.reverse().slice(0, 3).map(el => <ActiveTransactionItem key={el.id} name={BUYORDER} el={el} />)
+                            ? buyOrderBySort.slice(0, 3).map(el => <ActiveTransactionItem key={el.id} name={BUYORDER} el={el} />)
                             : <div className="p-4 border-l border-r">No result</div>
                     }
                 </ul>
@@ -54,7 +76,7 @@ export default function MyActiveListing() {
                     </div>
                     {
                         orders.activity?.mySaleOrder.length > 0
-                            ? orders.activity?.mySaleOrder.reverse().slice(0, 3).map(el => <ActiveTransactionItem key={el.id} name={SALEORDER} el={el} />)
+                            ? saleOrderBySort.slice(0, 3).map(el => <ActiveTransactionItem key={el.id} name={SALEORDER} el={el} />)
                             : <div className="p-4 border-l border-r">No result</div>
                     }
                 </ul>
