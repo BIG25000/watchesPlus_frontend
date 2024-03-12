@@ -39,7 +39,7 @@ export default function DetailProduct() {
     getData();
   }, [loading]);
 
-  console.log(allHistory)
+
 
   return (
     <div  className="mx-auto w-[1200px]  min-h-screen">

@@ -37,7 +37,7 @@ export default function OrderList(props) {
           </div>
           <div>Placed Order on This Watch On</div>
           <div className="flex items-center gap-4">
-            <Avatar src={watch?.watchImage} />
+            <img className="w-10" src={watch?.watchImage} />
           </div>
           <div className="flex items-center gap-4">
             <span>for</span>
