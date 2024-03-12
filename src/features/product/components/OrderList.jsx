@@ -1,7 +1,7 @@
 import React from "react";
 import Avatar from "../../../components/Avatar";
 import { baht } from "../../../constants/baht";
-
+import { formatNum } from '../../../utils/formatNumber'
 
 export default function OrderList(props) {
   const { data, type , watch } = props;
@@ -21,7 +21,7 @@ export default function OrderList(props) {
           </div>
           <div className="flex items-center gap-4">
             <span>for</span>
-            <span>{baht + " " + data?.price}</span>
+            <span>{baht + " " + formatNum(data?.price)}</span>
           </div>
         </div>
       )}
@@ -37,7 +37,7 @@ export default function OrderList(props) {
           </div>
           <div className="flex items-center gap-4">
             <span>for</span>
-            <span>{baht + " " + data?.price}</span>
+            <span>{baht + " " + formatNum(data?.price)}</span>
           </div>
         </div>
       )}
