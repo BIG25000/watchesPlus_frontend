@@ -1,5 +1,6 @@
 import React from "react";
 import useWallet from "../../../hooks/useWallet";
+import { formatNum } from "../../../utils/formatNumber";
 
 export default function WalletTransactionItem({ el }) {
   const {
@@ -17,7 +18,7 @@ export default function WalletTransactionItem({ el }) {
             : "text-red-500"
         }`}
       >
-        {el.price}
+        {formatNum(el.price)}
       </div>
       <div className="flex-1">{el.type}</div>
       {el.type === "DEPOSIT" || el.type === "WITHDRAW" ? (
