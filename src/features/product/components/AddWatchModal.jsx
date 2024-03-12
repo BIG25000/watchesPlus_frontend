@@ -156,7 +156,7 @@ export default function AddWatchModal(props) {
             <Button
               type="button"
               color="white"
-              bg="green"
+              bg="cyan"
               onClick={handleSubmit}
             >
               Add Product To Inventory

@@ -50,7 +50,7 @@ export default function OrderContainer(props) {
         )}
         <Button
           onClick={() => document.getElementById(id).showModal()}
-          bg="green"
+          bg="cyan"
           color="white"
           width="48"
         >

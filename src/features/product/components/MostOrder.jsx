@@ -28,7 +28,7 @@ export default function MostOrder() {
                 </div>
             </div>
             <div className="flex justify-center items-center">
-                <Button bg='scarlet' color="white" onClick={() => navigate('/search')}>
+                <Button bg='cyan' color="white" onClick={() => navigate('/search')}>
                     More Gallery
                 </Button>
             </div>

@@ -155,7 +155,7 @@ export default function SellModal(props) {
             <Button
               type="button"
               color="white"
-              bg="green"
+              bg="cyan"
               onClick={handleClick}
             >
               PLACE ORDER
@@ -176,11 +176,11 @@ export default function SellModal(props) {
               {baht}
             </div>
             <div className="mt-4 flex justify-evenly">
-              <Button bg="green" onClick={handleSaleOrder}>
+              <Button bg="cyan" onClick={handleSaleOrder}>
                 YES
               </Button>
               <Button
-                bg="red"
+                bg="scarlet"
                 onClick={() => document.getElementById("confirm_sell").close()}
               >
                 NO

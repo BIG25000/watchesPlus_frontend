@@ -130,7 +130,7 @@ export default function BuyModal(props) {
             <Button
               type="button"
               color="white"
-              bg="green"
+              bg="cyan"
               onClick={handleClick}
             >
               PLACE ORDER
@@ -150,9 +150,9 @@ export default function BuyModal(props) {
               <span className="font-bold text-lg">{formatNum(price) || 0}</span> {baht}
             </div>
             <div className="mt-4 flex justify-evenly">
-              <Button bg="green" onClick={handleBuyOrder}>YES</Button>
+              <Button bg="cyan" onClick={handleBuyOrder}>YES</Button>
               <Button
-                bg="red"
+                bg="scarlet"
                 onClick={() => document.getElementById("confirm_buy").close()}
               >
                 NO
