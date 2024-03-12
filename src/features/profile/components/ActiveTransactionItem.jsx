@@ -55,7 +55,7 @@ export default function ActiveTransactionItem({ name, el }) {
             {el.inventory.watch?.brand.name}
           </div>
           <div className="w-32 flex items-center justify-center">
-            {el.price} THB
+            {formatNum(el.price)} THB
           </div>
           <div className="w-32 flex items-center justify-center">
             {el.status}
