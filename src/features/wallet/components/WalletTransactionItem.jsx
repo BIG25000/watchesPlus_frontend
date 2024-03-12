@@ -21,9 +21,9 @@ export default function WalletTransactionItem({ el }) {
       </div>
       <div className="flex-1">{el.type}</div>
       {el.type === "DEPOSIT" || el.type === "WITHDRAW" ? (
-        <div>Credit card</div>
+        <div className="w-24 text-end">Credit card</div>
       ) : (
-        <div>Wallet</div>
+        <div className="w-24 text-end">Wallet</div>
       )}
     </li>
   );
