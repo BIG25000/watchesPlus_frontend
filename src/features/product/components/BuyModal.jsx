@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { toast } from "react-toastify";
 import useProduct from "../../../hooks/useProduct";
 import { validateBuyOrder } from "../validations/validate-order";
+import { formatNum } from "../../../utils/formatNumber";
 
 export default function BuyModal(props) {
   const {watchId } = useParams()
@@ -103,7 +104,7 @@ export default function BuyModal(props) {
                     min={0}
                     max={1000000}
                     onChange={handleChange}
-                    value={price}
+                    value={formatNum(price)}
                   />
                 
                   {baht}
@@ -112,14 +113,14 @@ export default function BuyModal(props) {
               <div className="flex h-8 gap-4 justify-between">
                 <label>Minimum Price:</label>
                 <div className="flex gap-2">
-                  <div>{dataBuy?.[0]?.price || 0}</div>
+                  <div>{formatNum(dataBuy?.[0]?.price) || 0}</div>
                   {baht}
                 </div>
               </div>
               <div className="flex h-8 gap-4 justify-between">
                 <label>Total Price:</label>
                 <div>
-                  <input disabled className="w-24 text-end p-2" value={price} />
+                  <input disabled className="w-24 text-end p-2" value={formatNum(price)} />
                   {baht}
                 </div>
               </div>
@@ -146,7 +147,7 @@ export default function BuyModal(props) {
             <h3 className="font-bold text-lg">Are You Confirm This Order ?</h3>
             <div>
               You Order is place on Market at Price{" "}
-              <span className="font-bold text-lg">{price || 0}</span> {baht}
+              <span className="font-bold text-lg">{formatNum(price) || 0}</span> {baht}
             </div>
             <div className="mt-4 flex justify-evenly">
               <Button bg="green" onClick={handleBuyOrder}>YES</Button>
