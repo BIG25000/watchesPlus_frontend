@@ -20,7 +20,6 @@ export default function TableList(props) {
     loading,
   } = props;
 
-  console.log(shippingData);
   return (
     <>
       {/* pendingLists */}
@@ -149,7 +148,7 @@ export default function TableList(props) {
                   <tr className="hover cursor-pointer" key={e.id} >
                     <th>{i + 1}</th>
                     <td>
-                      <img className="w-20" src={e.watch.watchImage} onClick={()=>navigate(`/watch/${e.watch.id}`)}/>
+                      <img className="w-20" src={e.watch.watchImage} onClick={() => navigate(`/watch/${e.watch.id}`)} />
                     </td>
                     <td>{e.watch.modelName}</td>
                     <td>{e.watch.brand.name}</td>

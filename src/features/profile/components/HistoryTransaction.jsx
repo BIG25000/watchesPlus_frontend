@@ -9,8 +9,26 @@ export default function HistoryTransaction() {
     getAllOrder()
   }, []);
 
-  console.log(orders);
-
+  const buyOrderBySort = orders.history.myBuyHistory
+    .sort((a, b) => {
+      if (a.createdAt > b.createdAt) {
+        return -1;
+      }
+      if (a.createdAt < b.createdAt) {
+        return 1;
+      }
+      return 0;
+    });
+  const saleOrderBySort = orders.history.mySaleHistory
+    .sort((a, b) => {
+      if (a.createdAt > b.createdAt) {
+        return -1;
+      }
+      if (a.createdAt < b.createdAt) {
+        return 1;
+      }
+      return 0;
+    });
   return (
     <div className="w-[1200px] rounded-xl p-8 flex flex-col justify-between items-center gap-4">
       <div className="w-full">
@@ -28,8 +46,8 @@ export default function HistoryTransaction() {
           <span className="w-32 flex items-center justify-center">Date</span>
         </div>
         {
-          orders.history.myBuyHistorylength > 0
-            ? orders.history.myBuyHistory.reverse().map(el => <HistoryTransactionItem key={el.id} el={el} />)
+          orders.history.myBuyHistory.length > 0
+            ? buyOrderBySort.map(el => <HistoryTransactionItem key={el.id} el={el} />)
             : <div className='p-4'>No result</div>
         }
       </ul>
@@ -46,7 +64,7 @@ export default function HistoryTransaction() {
         </div>
         {
           orders.history.mySaleHistory.length > 0
-            ? orders.history.mySaleHistory.reverse().map(el => <HistoryTransactionItem key={el.id} el={el} />)
+            ? saleOrderBySort.map(el => <HistoryTransactionItem key={el.id} el={el} />)
             : <div className='p-4'>No result</div>
         }
       </ul>

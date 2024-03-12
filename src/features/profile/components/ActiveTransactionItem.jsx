@@ -65,7 +65,7 @@ export default function ActiveTransactionItem({ name, el }) {
           <div className="w-32 flex items-center justify-center">
             {el.status}
           </div>
-          <div className="w-32 flex items-center justify-center">-</div>
+          <div className="w-32 flex items-center justify-center">{timeAgo}</div>
           <div className="w-32 flex items-center justify-center">
             {el.createdAt.split("T")[0]}
           </div>
