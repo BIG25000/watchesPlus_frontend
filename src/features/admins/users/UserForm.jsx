@@ -21,12 +21,12 @@ function UserForm() {
           <table className="table">
             <thead>
               <tr className="bg-gray-700 text-white">
-                <th>id</th>
-                <th>user</th>
-                <th>email</th>
-                <th>mobile</th>
-                <th>status</th>
-                <th>Buttonblock</th>
+                <th>ID</th>
+                <th></th>
+                <th>EMAIL</th>
+                <th>MOBILE</th>
+                <th>STATUS</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>

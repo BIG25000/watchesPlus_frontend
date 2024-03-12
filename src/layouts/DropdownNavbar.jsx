@@ -3,6 +3,7 @@ import DropdownItem from "./DropdownItem";
 import { dropdownList } from "../constants/Navbar";
 import useAuth from "../hooks/useAuth";
 import useProfile from "../hooks/useProfile";
+import { User } from "lucide-react";
 
 export default function DropdownNavbar() {
   const { logout } = useAuth();
@@ -32,7 +33,16 @@ export default function DropdownNavbar() {
   return (
     <div className="relative" ref={dropdownEl}>
       <div role="button" onClick={handleToggleDropdown}>
-        <img className="w-12 h-12 rounded-full" src={profileImage} />
+        {profileImage ? (
+          <img
+            className="w-12 h-12 rounded-full object-cover"
+            src={profileImage}
+          />
+        ) : (
+          <div className="w-12 h-12 rounded-full flex justify-center items-center bg-gray-400">
+            <User color="black" />
+          </div>
+        )}
       </div>
       {open && (
         <div className="border-2 border-yellow-950 bg-black absolute right-0 top-14 w-44 shadow">
