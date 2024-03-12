@@ -50,13 +50,15 @@ function VideoCustom(props) {
   }, [isSelected]);
 
   const videoOptions = {
+    height: "630",
+    width: "0",
     playerVars: {
       autoplay: 0,
       controls: 0,
       rel: 0,
       showinfo: 0,
       mute: 1,
-      loop: 1,
+      loop: 1,  
     },
   };
   return (
