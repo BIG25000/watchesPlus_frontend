@@ -2,11 +2,19 @@ import Button from "../../../components/Button";
 import useProfile from "../../../hooks/useProfile";
 import { formatNum } from "../../../utils/formatNumber";
 import formatTimeAgo from "../../../utils/time-ago";
+import useWallet from "../../../hooks/useWallet";
+import { useState } from "react";
 
 export default function ActiveTransactionItem({ name, el }) {
   const { handleClickCancelBuyOrder, handleClickCancelSaleOrder } =
     useProfile();
-  const timeAgo = formatTimeAgo(el?.createdAt);
+  const { getWallet } = useWallet();
+  const timeAgo = formatTimeAgo(el.createdAt);
+
+  const hdlClick = async () => {
+    await handleClickCancelBuyOrder(el.id);
+    await getWallet();
+  };
 
   switch (name) {
     case "BUYORDER":
@@ -32,11 +40,7 @@ export default function ActiveTransactionItem({ name, el }) {
             {el?.createdAt.split("T")[0]}
           </div>
           <div className="w-32 flex items-center justify-center">
-            <Button
-              bg="black"
-              color="white"
-              onClick={() => handleClickCancelBuyOrder(el.id)}
-            >
+            <Button bg="black" color="white" onClick={hdlClick}>
               Cancel
             </Button>
           </div>
