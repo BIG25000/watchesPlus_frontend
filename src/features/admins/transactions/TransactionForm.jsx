@@ -6,6 +6,7 @@ import FailverifyForm from "./FailverifyForm";
 import { useNavigate } from "react-router-dom";
 import brandAdmin from "../brands/hooks/brandAdmin";
 import { useState } from "react";
+import Avatar from "../../../components/Avatar";
 
 function TransactionForm() {
   const { inventorys } = inventoryAdmin();
@@ -59,12 +60,11 @@ function TransactionForm() {
                       >
                         <div className="flex items-center gap-3">
                           <div className="avatar">
-                            <div
-                              className="h-10 w-10 rounded-full bg-sky-500 bg-cover bg-no-repeat bg-center"
-                              style={{
-                                backgroundImage: `url(${el.user?.profileImage})`,
-                              }}
-                            ></div>
+                            <div className="avatar">
+                              <div className="rounded-full bg-gray-200 bg-cover bg-no-repeat bg-center">
+                                <Avatar src={el.user?.profileImage} />
+                              </div>
+                            </div>
                           </div>
                           <div>
                             <div className="font-bold">

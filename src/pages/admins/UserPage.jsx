@@ -1,13 +1,16 @@
 import React from "react";
 import UserForm from "../../features/admins/users/UserForm";
 import UserAdminContextProvider from "../../features/admins/users/contexts/UserAdminContext";
+import MessageAdminContextProvider from "../../features/admins/messages/contexts/MessageAdminContext";
 
 function UserPage() {
   return (
     <>
-      <UserAdminContextProvider>
-        <UserForm />
-      </UserAdminContextProvider>
+      <MessageAdminContextProvider>
+        <UserAdminContextProvider>
+          <UserForm />
+        </UserAdminContextProvider>
+      </MessageAdminContextProvider>
     </>
   );
 }
