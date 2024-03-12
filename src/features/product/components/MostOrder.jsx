@@ -3,11 +3,17 @@ import Icon from "../../../components/Icon";
 import useProduct from "../../../hooks/useProduct";
 import Button from "../../../components/Button";
 import { useNavigate } from "react-router-dom";
+import useSearch from "../../../hooks/useSearch";
 
 export default function MostOrder() {
     const { mostOrders } = useProduct();
+    const { setShowSearch } = useSearch()
     const navigate = useNavigate();
 
+    const handleGetMoreGallery = () => {
+        setShowSearch('')
+        navigate("/search")
+    }
     return (
         <>
             <div className="flex flex-col gap-4">
@@ -27,7 +33,7 @@ export default function MostOrder() {
                 </div>
             </div>
             <div className="flex justify-center items-center">
-                <Button bg="brown" onClick={() => navigate("/search")}>
+                <Button bg="brown" onClick={handleGetMoreGallery}>
                     More Gallery
                 </Button>
             </div>

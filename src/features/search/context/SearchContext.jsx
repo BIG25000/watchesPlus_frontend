@@ -33,7 +33,6 @@ export default function SearchContextProvider({ children }) {
       setProducts(response.data.data);
     } else {
       const response = await allWatches();
-      setShowSearch('')
       setProducts(response.data.data);
     }
   }
@@ -95,6 +94,7 @@ export default function SearchContextProvider({ children }) {
         searchElement,
         setSearchElement,
         showSearch,
+        setShowSearch,
         search,
         setSearch,
         querySearch,
