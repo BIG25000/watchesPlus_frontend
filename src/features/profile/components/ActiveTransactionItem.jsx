@@ -40,7 +40,7 @@ export default function ActiveTransactionItem({ name, el }) {
             {el?.createdAt.split("T")[0]}
           </div>
           <div className="w-32 flex items-center justify-center">
-            <Button bg="black" color="white" onClick={hdlClick}>
+            <Button bg="scarlet" color="white" onClick={hdlClick}>
               Cancel
             </Button>
           </div>

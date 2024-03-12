@@ -87,7 +87,7 @@ export default function TableList(props) {
                     <td>{e.referenceNumber}</td>
                     <td>
                       <Button
-                        bg="green"
+                        bg="cyan"
                         color="white"
                         onClick={async () => {
                           document
@@ -109,7 +109,7 @@ export default function TableList(props) {
                     </td>
                     <td>
                       <Button
-                        bg="red"
+                        bg="scarlet"
                         color="white"
                         onClick={() =>
                           document.getElementById("cancel").showModal()
@@ -155,7 +155,7 @@ export default function TableList(props) {
                     <td>{e.referenceNumber}</td>
                     <td>
                       <Button
-                        bg="green"
+                        bg="cyan"
                         color="white"
                         onClick={() =>
                           document.getElementById(`address_${e.id}`).showModal()
@@ -207,7 +207,7 @@ export default function TableList(props) {
                     {/* <td>{e.referenceNumber}</td> */}
                     <td>
                       <Button
-                        bg="green"
+                        bg="cyan"
                         color="white"
                         onClick={() =>
                           document
@@ -221,7 +221,7 @@ export default function TableList(props) {
                     </td>
                     <td>
                       <Button
-                        bg="red"
+                        bg="scarlet"
                         color="white"
                         onClick={() =>
                           document.getElementById(`cancel_shipping_${e.id}`).showModal()
