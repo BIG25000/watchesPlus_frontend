@@ -33,14 +33,15 @@ export default function SearchContextProvider({ children }) {
       setProducts(response.data.data);
     } else {
       const response = await allWatches();
+      setShowSearch('')
       setProducts(response.data.data);
     }
   }
-  
+
 
   useEffect(() => {
     fetchData();
-  }, [querySearch]);
+  }, [querySearch, window.location.pathname]);
 
   // dropdown-search
   const handleFilter = (value) => {

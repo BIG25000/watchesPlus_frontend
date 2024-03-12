@@ -1,6 +1,5 @@
 import React from "react";
 import MessageForm from "../../features/admins/messages/MessageForm";
-import MessageAdminContextProvider from "../../features/admins/messages/contexts/MessageAdminContext";
 
 function MessagePage() {
   return (
