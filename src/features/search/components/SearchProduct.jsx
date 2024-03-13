@@ -8,13 +8,13 @@ export default function SearchProduct() {
     const { showSearch, querySearch, products, brands, selectBrand, handleSelectBrand } = useSearch()
 
     return (
-        <div className=" mx-auto w-[1200px] min-h-56 flex flex-col gap-4 mt-4 mb-8">
+        <div className=" mx-auto w-[1200px] min-h-56 flex flex-col gap-4 py-4 px-8 bg-gray-100">
             <div className="text-2xl font-bold">WatchesPlus - Gallery</div>
             {showSearch || querySearch ? <p>Search keyword: '{showSearch}'</p> : ''}
             <div className='flex gap-4 justify-end'>
                 <SelectionForm items={brands} onClick={handleSelectBrand} />
             </div>
-            <div className='flex flex-wrap gap-4'>
+            <div className='flex flex-wrap justify-between gap-8'>
                 {products.length > 0
                     ? selectBrand !== null && selectBrand !== 'All brand'
                         ? (products.filter(product => product.brand.name === selectBrand).map(product => <CardProduct data={product} key={product.id} />))

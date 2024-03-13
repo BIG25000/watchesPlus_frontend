@@ -31,7 +31,10 @@ export default function LoginForm() {
           return toast.error(validateErr.password);
         }
       }
+
       await login(input);
+
+      // console.log(res.data.user.role);
     } catch (error) {
       toast.error(error.message);
     }

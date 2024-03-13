@@ -1,19 +1,11 @@
 import { useEffect, useState } from "react";
 import Icon from "../../../components/Icon";
-import Title from "../../../components/Title";
 import useProfile from "../../../hooks/useProfile";
-import useSearch from "../../../hooks/useSearch";
-import SelectionForm from "../../product/components/SelectionForm";
+import Title from '../../../components/Title'
 import TableList from "./TableList";
-import Loading from "../../../components/Loading";
-import { useWishlist } from "../../wishlist/context/WishlistContext";
-import CardProduct from "../../product/components/CardProduct";
-// import inventorySign from "../../../assets/wishlist-removebg-preview"
 
 export default function InventoryDetail() {
-  const { brands, handleSelectBrand, selectBrand } = useSearch();
-  
-  const { getMyInventory , myShipping } = useProfile();
+  const { getMyInventory, myShipping } = useProfile();
   const [inventory, setInventory] = useState([]);
   const [pendingData, setPendingData] = useState([]);
   const [waitingData, setWaitingData] = useState([]);
@@ -23,13 +15,13 @@ export default function InventoryDetail() {
   const [loading, setLoading] = useState(false);
   const getData = async () => {
     const res = await getMyInventory();
-    const shipData = await myShipping()
+    const shipData = await myShipping();
     const data = res.data;
     setInventory(() => data); // data ใน inventory ทั้งหมด
     setPendingData(() => data.filter((e) => e.status === "PENDING")); //show pending
     setWaitingData(() => data.filter((e) => e.status === "WAITING")); //show waiting
     setActiveData(() => data.filter((e) => e.status === "AVAILABLE")); //show inventory
-    setShippingData(()=> shipData)
+    setShippingData(() => shipData);
   };
 
   const handleTab = (index) => {
@@ -41,8 +33,10 @@ export default function InventoryDetail() {
   }, [loading]);
   return (
     <>
-      <div className="mx-auto w-[1200px]  min-h-screen  flex flex-col gap-10 py-12">
-        <Title>My Inventory</Title>
+      <div className="mx-auto w-[1200px]  min-h-screen  flex flex-col gap-10 pt-4  px-8 bg-gray-100">
+        <div className="text-2xl font-bold mb-4">
+          WatchesPlus - My Inventory
+        </div>
         <>
           {inventory?.length > 0 ? (
             <>
@@ -54,7 +48,7 @@ export default function InventoryDetail() {
                     type="radio"
                     name="my_tabs_2"
                     role="tab"
-                    className="tab"
+                    className="tab  p-4"
                     style={{ width: "200px" }}
                     aria-label="Pending Lists"
                     value={0}
@@ -68,11 +62,7 @@ export default function InventoryDetail() {
                     {pendingData?.length > 0 ? (
                       <div className="flex flex-col">
                         <div className="flex items-center justify-between mb-8">
-                          <div>Waiting For Approve</div>
-                          <SelectionForm
-                            items={brands}
-                            onClick={handleSelectBrand}
-                          />
+                          <Title>Waiting For Approve</Title>
                         </div>
                         <div className="flex flex-col my-8 ">
                           <TableList
@@ -82,9 +72,9 @@ export default function InventoryDetail() {
                         </div>
                       </div>
                     ) : (
-                      <div className="w-full flex flex-col justify-center items-center">
+                      <div className="w-full flex flex-col justify-center items-center my-8 gap-4">
                         <Icon name="FileSearch" size="100" />
-                        <div>No Pending Lists In Your Inventory</div>
+                        <Title>No Pending Lists</Title>
                       </div>
                     )}
                   </div>
@@ -96,7 +86,7 @@ export default function InventoryDetail() {
                     type="radio"
                     name="my_tabs_2"
                     role="tab"
-                    className="tab"
+                    className="tab p-4"
                     aria-label="Waiting Lists"
                     value={1}
                     checked={activeTab === 1}
@@ -109,11 +99,7 @@ export default function InventoryDetail() {
                     {waitingData?.length > 0 ? (
                       <div className="flex flex-col">
                         <div className="flex items-center justify-between">
-                          <div>Waiting Lists</div>
-                          <SelectionForm
-                            items={brands}
-                            onClick={handleSelectBrand}
-                          />
+                        <Title>Waiting For Approve</Title>
                         </div>
                         <div>
                           <TableList
@@ -124,9 +110,9 @@ export default function InventoryDetail() {
                         </div>
                       </div>
                     ) : (
-                      <div className="w-full flex flex-col justify-center items-center">
+                      <div className="w-full flex flex-col justify-center items-center my-8 gap-4">
                         <Icon name="FileSearch" size="100" />
-                        <div>No Shipping Lists</div>
+                        <Title>No Waiting Lists</Title>
                       </div>
                     )}
                   </div>
@@ -151,11 +137,7 @@ export default function InventoryDetail() {
                     {shippingData?.length > 0 ? (
                       <div className="flex flex-col">
                         <div className="flex items-center justify-between">
-                          <div>My Shipping Lists</div>
-                          <SelectionForm
-                            items={brands}
-                            onClick={handleSelectBrand}
-                          />
+                          <Title>My Shipping Lists</Title>
                         </div>
                         <div>
                           <TableList
@@ -166,9 +148,9 @@ export default function InventoryDetail() {
                         </div>
                       </div>
                     ) : (
-                      <div className="w-full flex flex-col justify-center items-center">
+                      <div className="w-full flex flex-col justify-center items-center my-8 gap-4">
                         <Icon name="FileSearch" size="100" />
-                        <div>No Shipping Lists</div>
+                        <Title>No Shipping Lists</Title>
                       </div>
                     )}
                   </div>
@@ -178,8 +160,7 @@ export default function InventoryDetail() {
               {activeData?.length > 0 ? (
                 <div className="flex flex-col">
                   <div className="flex items-center justify-between mb-8">
-                    <div>Watch In Inventory</div>
-                    <SelectionForm items={brands} onClick={handleSelectBrand} />
+                    <div className="text-2xl font-bold mb-4">My Inventory</div>
                   </div>
                   <div>
                     <TableList
@@ -189,16 +170,16 @@ export default function InventoryDetail() {
                   </div>
                 </div>
               ) : (
-                <div className="w-full flex flex-col justify-center items-center">
+                <div className="w-full flex flex-col justify-center items-center my-8">
                   <Icon name="FileSearch" size="100" />
-                  <div>No item in your Inventory</div>
+                  <Title>No item in your Inventory</Title>
                 </div>
               )}
             </>
           ) : (
-            <div className="w-full flex flex-col justify-center items-center">
+            <div className="w-full flex flex-col justify-center items-center my-8">
               <Icon name="FileSearch" size="100" />
-              <div>No item in your Inventory</div>
+              <Title>No item in your Inventory</Title>
             </div>
           )}
         </>
