@@ -49,7 +49,7 @@ export default function MyMarketHistory() {
                     {
                         orders.history.myBuyHistory.length > 0
                             ? ordersBySort.slice(0, 3).map(el => <HistoryTransactionItem key={el.id} el={el} />)
-                            : <div className="p-4 border-l border-r">No result</div>
+                            : <div className="p-4 border-l border-r bg-white">No result</div>
                     }
                 </ul>
                 <div className='flex justify-end font-light '>
@@ -70,7 +70,7 @@ export default function MyMarketHistory() {
                     {
                         orders.history.mySaleHistory.length > 0
                             ? saleBySort.slice(0, 3).map(el => <HistoryTransactionItem key={el.id} el={el} />)
-                            : <div className="p-4 border-l border-r">No result</div>
+                            : <div className="p-4 border-l border-r bg-white">No result</div>
                     }
                 </ul>
                 <div className='flex justify-end font-light '>

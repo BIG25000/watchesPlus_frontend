@@ -48,7 +48,7 @@ export default function HistoryTransaction() {
         {
           orders.history.myBuyHistory.length > 0
             ? buyOrderBySort.map(el => <HistoryTransactionItem key={el.id} el={el} />)
-            : <div className='p-4'>No result</div>
+            : <div className='p-4 bg-white'>No result</div>
         }
       </ul>
       <div className='text-xl font-bold  rounded-full py-4'>Sale orders</div>
@@ -65,7 +65,7 @@ export default function HistoryTransaction() {
         {
           orders.history.mySaleHistory.length > 0
             ? saleOrderBySort.map(el => <HistoryTransactionItem key={el.id} el={el} />)
-            : <div className='p-4'>No result</div>
+            : <div className='p-4 bg-white'>No result</div>
         }
       </ul>
     </div>
