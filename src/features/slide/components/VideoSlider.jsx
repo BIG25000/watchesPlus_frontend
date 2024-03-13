@@ -50,7 +50,7 @@ function VideoCustom(props) {
   }, [isSelected]);
 
   const videoOptions = {
-    height: "630",
+    height: "595",
     width: "0",
     playerVars: {
       autoplay: 0,
