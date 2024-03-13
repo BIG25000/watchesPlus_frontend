@@ -12,7 +12,7 @@ function EditBrandForm({ id }) {
   const fileInputEl = useRef(null);
   const [loading, setLoading] = useState(false);
 
-  const filterBrands = brands.filter((e) => e.id == id)[0];
+  const filterBrands = brands?.filter((e) => e.id == id)[0];
 
   const handleFormSubmit = async (e) => {
     try {
@@ -25,6 +25,9 @@ function EditBrandForm({ id }) {
 
       setLoading(true);
       const formData = new FormData();
+      // for (let i in input) {
+      //   formData.append(i, input[i]);
+      // }
       if (input.name) {
         formData.append("name", input.name);
       }
@@ -32,7 +35,10 @@ function EditBrandForm({ id }) {
       if (image) {
         formData.append("brandImage", image);
       }
+
       await editBrand(formData, id);
+
+      console.log(brands, "XXXXXXXXXXXXXXXXXXx");
 
       const data = {};
       for (let i in input) {

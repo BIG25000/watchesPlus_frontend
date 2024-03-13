@@ -3,12 +3,16 @@ import { toast } from "react-toastify";
 
 import * as authAPI from "../../../apis/auth";
 import { setToken, removeToken, getToken } from "../../../utils/local-storage";
-import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
 
+const promise = wrapPromise(authAPI.getMe());
+
 export default function AuthContextProvider({ children }) {
-  const [authUser, setAuthUser] = useState(null);
+  const {
+    data: { user },
+  } = promise.read();
+  const [authUser, setAuthUser] = useState(user);
 
   const register = async (user) => {
     try {
@@ -68,9 +72,45 @@ export default function AuthContextProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ authUser, register, login, changePassword, logout }}
+      value={{
+        authUser,
+        register,
+        login,
+        changePassword,
+        logout,
+        fetchAuthUser,
+        setAuthUser,
+      }}
     >
       {children}
     </AuthContext.Provider>
   );
+}
+
+function wrapPromise(promise) {
+  let status = "pending";
+  let response;
+
+  const suspender = promise.then(
+    (res) => {
+      status = "success";
+      response = res;
+    },
+    (err) => {
+      status = "error";
+      response = err;
+    }
+  );
+  const read = () => {
+    switch (status) {
+      case "pending":
+        throw suspender;
+      case "error":
+        throw response;
+      default:
+        return response;
+    }
+  };
+
+  return { read };
 }

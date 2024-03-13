@@ -8,8 +8,6 @@ import { toast } from "react-toastify";
 export default function MainChatInput({ setLoading }) {
   const [message, setMessage] = useState("");
 
-  // console.log(message);
-
   const { chatRoom } = useChat();
 
   const sendMessage = async () => {
