@@ -128,11 +128,11 @@ export default function TableList(props) {
       )}
       {/* {watch in inventory} */}
       {activeData && (
-        <div className="overflow-x-auto">
-          <table className="table">
+        <div className="overflow-x-auto bg-white  rounded-lg ">
+          <table className="table ">
             {/* head */}
-            <thead>
-              <tr>
+            <thead className="bg-egg ">
+              <tr className="font-bold text-black">
                 <th>No</th>
                 <th>Image</th>
                 <th>Model Name</th>
@@ -145,14 +145,14 @@ export default function TableList(props) {
               {/* row 1 */}
               {activeData.map((e, i) => {
                 return (
-                  <tr className="hover cursor-pointer" key={e.id} >
+                  <tr className="hover:bg-gray-200 cursor-pointer" key={e.id} >
                     <th>{i + 1}</th>
                     <td>
                       <img className="w-20" src={e.watch.watchImage} onClick={() => navigate(`/watch/${e.watch.id}`)} />
                     </td>
-                    <td>{e.watch.modelName}</td>
-                    <td>{e.watch.brand.name}</td>
-                    <td>{e.referenceNumber}</td>
+                    <td onClick={() => navigate(`/watch/${e.watch.id}`)}>{e.watch.modelName}</td>
+                    <td onClick={() => navigate(`/watch/${e.watch.id}`)}>{e.watch.brand.name}</td>
+                    <td onClick={() => navigate(`/watch/${e.watch.id}`)}>{e.referenceNumber}</td>
                     <td>
                       <Button
                         bg="cyan"

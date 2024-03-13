@@ -3,14 +3,13 @@ import { baht } from "../../../constants/baht";
 import BuyModal from "./BuyModal";
 import SellModal from "./SellModal";
 import Button from "../../../components/Button";
-import Loading from "../../../components/Loading";
 import { formatNum } from "../../../utils/formatNumber";
 
 export default function OrderContainer(props) {
   const { children, id, dataBuy, dataSale, watch, setLoading, loading } = props;
 
   return (
-    <div className="border-solid border-2 w-96 border-black text-center px-6 py-4 rounded-2xl">
+    <div className="border-solid border-2 w-96 border-black text-center px-6 py-4 rounded-2xl shadow-xl bg-white">
       {/* header */}
       <div className="text-lg flex flex-col gap-8 items-center">
         {dataBuy?.length > 0 ? (
@@ -71,7 +70,7 @@ export default function OrderContainer(props) {
               ? dataBuy?.map((e, index) => {
                   if (index < 6) {
                     return (
-                      <tr key={e.id}>
+                      <tr key={e.id} className="hover:bg-gray-200">
                         <td>{`${baht} ${formatNum(e.price)}`}</td>
                         <td>1</td>
                       </tr>
@@ -89,7 +88,7 @@ export default function OrderContainer(props) {
               ? dataSale?.map((e, index) => {
                   if (index < 6) {
                     return (
-                      <tr key={e.id}>
+                      <tr key={e.id} className="hover">
                         <td>{`${baht} ${formatNum(e.price)}`}</td>
                         <td>1</td>
                       </tr>

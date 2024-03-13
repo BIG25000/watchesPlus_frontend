@@ -32,12 +32,12 @@ export default function ActiveTransaction() {
             return 0;
         });
     return (
-        <div className="w-[1200px] rounded-xl p-8 flex flex-col justify-between items-center gap-4">
+        <div className="w-[1200px] rounded-xl p-8 flex flex-col justify-between  gap-4">
             <div className="w-full">
-                <span className="text-4xl font-bold">Active</span>
+                <span className="text-4xl font-bold">My Active Order</span>
             </div>
-            <div className='text-xl font-bold  rounded-full p-4'>Buy orders</div>
-            <ul className="w-full border border-t-0 border-l-0 border-r-0 border-b">
+            <div className='text-xl font-bold  rounded-full py-4'>Buy orders</div>
+            <ul className="w-full border border-t-0 border-l-0 border-r-0 border-b bg-white">
                 <div className="w-full flex font-bold p-4 bg-egg">
                     <span className="flex-1">Item</span>
                     <span className="w-32 flex items-center justify-center">Brand</span>
@@ -54,7 +54,7 @@ export default function ActiveTransaction() {
                 }
             </ul>
             <div className='text-xl font-bold rounded-full p-4'>Sale orders</div>
-            <ul className="w-full border border-t-0 border-l-0 border-r-0 border-b">
+            <ul className="w-full border border-t-0 border-l-0 border-r-0 border-b bg-white">
                 <div className="w-full flex font-bold p-4 bg-egg">
                     <span className="flex-1">Item</span>
                     <span className="w-32 flex items-center justify-center">Brand</span>

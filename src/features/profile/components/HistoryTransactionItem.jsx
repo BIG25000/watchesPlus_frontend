@@ -4,7 +4,7 @@ import formatTimeAgo from "../../../utils/time-ago";
 export default function HistoryTransactionItem({ el }) {
   const timeAgo = formatTimeAgo(el?.createdAt);
   return (
-    <li className="px-4 py-2 border border-b-0 flex bg-white">
+    <li className="px-4 py-2 border border-b-0 flex bg-white hover:bg-gray-200">
       <div className="flex-1 flex items-center">
         <div className=" flex items-center gap-2">
           <img

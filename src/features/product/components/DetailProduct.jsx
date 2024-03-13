@@ -42,25 +42,25 @@ export default function DetailProduct() {
 
 
   return (
-    <div  className="mx-auto w-[1200px]  min-h-screen">
+    <div  className="mx-auto w-[1200px]  min-h-screen bg-gray-100">
       {loading ? (
         <Loading />
       ) : (
         <>
           {watch && allBuyOrder && allSaleOrder ? (
-            <div className="flex flex-col gap-10 py-12">
-              <div className="flex gap-10">
+            <div className="flex flex-col gap-10 py-12 px-8">
+              <div className="flex gap-10 ">
                 <div className="flex flex-col items-center w-[600px] justify-center">
                   <img
                     className="rounded-2xl"
                     src={watch?.watchImage}
                   />
                 </div>
-                <div className="flex flex-col px-6 gap-10 ">
-                  <Title>{watch?.modelName}</Title>
-                  <Description label="Description">
-                    {watch?.description}
-                  </Description>
+                <div className="flex flex-col justify-between p-6 gap-10 bg-white rounded-xl">
+                  <div className="text-2xl font-bold mb-4">{watch?.modelName}</div>
+                    <Description label="Description">
+                      {watch?.description}
+                    </Description>
                   <div className="grid grid-cols-2 gap-6">
                     <Description label="Brand">{watch?.brand}</Description>
                     <Description label="Movement">
@@ -115,8 +115,8 @@ export default function DetailProduct() {
                   Sell
                 </OrderContainer>
               </div>
-              <div className="flex flex-col gap-4">
-                <Title>History</Title>
+              <div className="flex flex-col gap-4 bg-white p-4 rounded-lg">
+                <div className="text-2xl font-bold mb-4">History</div>
                 <>
                   {allHistory?.map((e,i) => {
                     return <OrderList key={i} data={e} type={e.type} watch={watch} />;
