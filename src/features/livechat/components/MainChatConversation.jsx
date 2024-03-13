@@ -37,6 +37,7 @@ export default function MainChatConversation({ loading }) {
               createdAt={chat.createdAt}
               ownMessage={chat.senderId === authUser?.id}
               loading={loading}
+              src={chat.sender?.profileImage}
             />
           </div>
         );
