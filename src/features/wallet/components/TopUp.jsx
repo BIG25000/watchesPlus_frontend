@@ -89,6 +89,7 @@ export default function TopUp() {
         pattern="[1-9][0-9]*"
         min={0}
         max={200000}
+        maxLength={6}
       >
         <WalletIcon />
       </Input>

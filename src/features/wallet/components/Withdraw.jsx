@@ -14,7 +14,7 @@ export default function Withdraw() {
 
   const { getWallet, getWalletTransaction, wallet } = useWallet();
 
-  console.log(wallet);
+
 
   const hdlChange = (e) => {
     setAmount(e.target.value);
@@ -57,6 +57,7 @@ export default function Withdraw() {
           pattern="[1-9][0-9]*"
           min={0}
           max={200000}
+          maxLength={6}
         >
           <WalletIcon />
         </Input>
