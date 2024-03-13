@@ -12,7 +12,7 @@ import { formatNum } from "../../../utils/formatNumber";
 
 export default function SellModal(props) {
   const { watchId } = useParams();
-  const { watch, dataSale , setLoading , watchIdFromInventory } = props;
+  const { watch, dataSale, setLoading, watchIdFromInventory } = props;
   const [watchAvailable, setWatchAvailable] = useState([]);
   const [input, setInput] = useState(null);
   const { watchToSell } = useProfile();
@@ -25,7 +25,7 @@ export default function SellModal(props) {
   };
 
   const handleSaleOrder = async (e) => {
-    try{
+    try {
       e.preventDefault();
       if (input?.price === 0 && !input?.inventoryId) {
         toast.error("Please Select Inventory And Insert Price");
@@ -34,35 +34,37 @@ export default function SellModal(props) {
         return;
       }
       const data = {
-        inventoryId : input?.inventoryId,
-        price : input?.price
-      }
-      if(!data.inventoryId){
-        toast.error('You dont have This Watch in Inventory')
+        inventoryId: input?.inventoryId,
+        price: input?.price,
+      };
+      if (!data.inventoryId) {
+        toast.error("You dont have This Watch in Inventory");
         document.getElementById("confirm_sell").close();
         document.getElementById("sell").close();
-        return
+        return;
       }
-      const validateErr = validateSaleOrder(data)
-      if(validateErr?.price){
-        toast.error(validateErr?.price)
-        return
+      const validateErr = validateSaleOrder(data);
+      if (validateErr?.price) {
+        toast.error(validateErr?.price);
+        return;
       }
-      setLoading(true)
+      setLoading(true);
       await sendSaleOrder(data);
       setInput(null);
       document.getElementById("confirm_sell").close();
       document.getElementById("sell").close();
-    }catch(err){
-      console.log(err)
-      toast.error(err.response?.data?.message)
-    }finally{
-    setLoading(false)
+    } catch (err) {
+      console.log(err);
+      toast.error(err.response?.data?.message);
+    } finally {
+      setLoading(false);
     }
   };
 
   const getData = async () => {
-    const inventory = await watchToSell(watchId ? +watchId : watchIdFromInventory);
+    const inventory = await watchToSell(
+      watchId ? +watchId : watchIdFromInventory
+    );
     setWatchAvailable(inventory.data);
   };
 
@@ -104,7 +106,7 @@ export default function SellModal(props) {
               watchAvailable.map((e) => {
                 return (
                   <InventoryList
-                  inventory={e}
+                    inventory={e}
                     key={e.id}
                     watch={watch}
                     id={e.id}
@@ -113,7 +115,9 @@ export default function SellModal(props) {
                 );
               })
             ) : (
-              <p className="text-center py-8">-------------- You dont have this Item --------------</p>
+              <p className="text-center py-8">
+                -------------- You dont have this Item --------------
+              </p>
             )}
           </div>
           <div className="grid grid-cols-2 ">
@@ -139,7 +143,9 @@ export default function SellModal(props) {
               <div className="flex h-8 gap-4 justify-between">
                 <label>Minimum Price:</label>
                 <div className="flex gap-2">
-                  <div>{formatNum(dataSale?.[0]?.price) || 0}</div>
+                  <div>
+                    {dataSale?.[0]?.price ? formatNum(dataSale?.[0]?.price) : 0}
+                  </div>
                   {baht}
                 </div>
               </div>
@@ -153,12 +159,7 @@ export default function SellModal(props) {
             </div>
           </div>
           <div className="flex justify-end">
-            <Button
-              type="button"
-              color="white"
-              bg="cyan"
-              onClick={handleClick}
-            >
+            <Button type="button" color="white" bg="cyan" onClick={handleClick}>
               PLACE ORDER
             </Button>
           </div>
@@ -173,14 +174,17 @@ export default function SellModal(props) {
             <h3 className="font-bold text-lg">Are You Confirm This Order ?</h3>
             <div>
               You Order is place on Market at Price{" "}
-              <span className="font-bold text-lg">{formatNum(input?.price) || 0}</span>{" "}
+              <span className="font-bold text-lg">
+                {dataSale?.[0]?.price ? formatNum(dataSale?.[0]?.price) : 0}
+              </span>{" "}
               {baht}
             </div>
             <div className="mt-4 flex justify-evenly">
-              <Button bg="cyan" onClick={handleSaleOrder}>
+              <Button bg="cyan" color="white" onClick={handleSaleOrder}>
                 YES
               </Button>
               <Button
+                color="white"
                 bg="scarlet"
                 onClick={() => document.getElementById("confirm_sell").close()}
               >

@@ -6,13 +6,13 @@ import { setToken, removeToken, getToken } from "../../../utils/local-storage";
 
 export const AuthContext = createContext();
 
-const promise = wrapPromise(authAPI.getMe());
+const promise = wrapPromise(
+  getToken() ? authAPI.getMe() : Promise.resolve(null)
+);
 
 export default function AuthContextProvider({ children }) {
-  const {
-    data: { user },
-  } = promise.read();
-  const [authUser, setAuthUser] = useState(user);
+  const res = promise.read();
+  const [authUser, setAuthUser] = useState(res?.data?.user);
 
   const register = async (user) => {
     try {
@@ -65,9 +65,6 @@ export default function AuthContextProvider({ children }) {
     // console.log(res.data);
   };
 
-  useEffect(() => {
-    fetchAuthUser();
-  }, []);
   //
 
   return (

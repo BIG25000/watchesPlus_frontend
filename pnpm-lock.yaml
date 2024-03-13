@@ -32,6 +32,9 @@ dependencies:
   react-dom:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
+  react-error-boundary:
+    specifier: ^4.0.13
+    version: 4.0.13(react@18.2.0)
   react-icons:
     specifier: ^4.4.0
     version: 4.12.0(react@18.2.0)
@@ -2801,6 +2804,15 @@ packages:
     engines: {node: '>= 6'}
     dependencies:
       prop-types: 15.8.1
+    dev: false
+
+  /react-error-boundary@4.0.13(react@18.2.0):
+    resolution: {integrity: sha512-b6PwbdSv8XeOSYvjt8LpgpKrZ0yGdtZokYwkwV2wlcZbxgopHX/hgPl5VgpnoVOWd868n1hktM8Qm4b+02MiLQ==}
+    peerDependencies:
+      react: '>=16.13.1'
+    dependencies:
+      '@babel/runtime': 7.24.0
+      react: 18.2.0
     dev: false
 
   /react-icons@4.12.0(react@18.2.0):
