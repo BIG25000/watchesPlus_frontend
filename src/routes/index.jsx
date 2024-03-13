@@ -160,7 +160,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
-        element: <HomePageInAdmin />,
+        element: <BrandPage />,
       },
       {
         path: "brand",

@@ -1,5 +1,6 @@
 import React from "react";
 import inventoryAdmin from "./hooks/inventoryAdmin";
+import { useState } from "react";
 
 function VerifyForm({ id }) {
   const { inventorys, verifyInventory } = inventoryAdmin();
@@ -17,6 +18,7 @@ function VerifyForm({ id }) {
           </div>
           <div>Brand : {filterInventory.watch?.brand.name}</div>
           <div>Model : {filterInventory.watch?.modelName}</div>
+          <div>referenceNumber : {filterInventory.referenceNumber}</div>
 
           <div className="flex gap-4">
             <button
@@ -24,6 +26,7 @@ function VerifyForm({ id }) {
               onClick={(e) => {
                 e.preventDefault();
                 verifyInventory(id);
+
                 document.getElementById(`verify${id}`).close();
               }}
             >

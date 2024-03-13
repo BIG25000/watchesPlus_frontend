@@ -22,6 +22,7 @@ function WatchAdminContextProvider({ children }) {
       await watchApi.createWatch(formData);
       toast.success("create success");
     } catch (error) {
+      toast.error(error);
       console.log(error);
     }
   };

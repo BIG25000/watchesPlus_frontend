@@ -51,7 +51,6 @@ function ProductForm() {
                 <th>NAME_MODEL</th>
                 <th>MOVEMENT</th>
                 <th></th>
-                <th></th>
               </tr>
             </thead>
             <tbody>
@@ -70,25 +69,25 @@ function ProductForm() {
                     <td>{el.modelName}</td>
                     <td>{el.movement}</td>
                     <td>
-                      <button
-                        className="btn btn-sm"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          navigate(`edit/${el.id}`);
-                        }}
-                      >
-                        EDIT
-                      </button>
-                    </td>
-                    <td>
-                      <Modal
-                        title="delete"
-                        id={`deleteWatch${el.id}`}
-                        // id="editBrand"
-                        button="btn btn-sm bg-gray-400 text-black"
-                      >
-                        <DeleteWatchForm id={el.id} />
-                      </Modal>
+                      <div className="flex items-center gap-5">
+                        <button
+                          className="btn btn-sm"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            navigate(`edit/${el.id}`);
+                          }}
+                        >
+                          EDIT
+                        </button>
+                        {/* <Modal
+                          title="delete"
+                          id={`deleteWatch${el.id}`}
+                          // id="editBrand"
+                          button="btn btn-sm bg-gray-400 text-black"
+                        >
+                          <DeleteWatchForm id={el.id} />
+                        </Modal> */}
+                      </div>
                     </td>
                   </tr>
                 ))}
