@@ -108,7 +108,7 @@ export default function EditProfileForm({ setIsEdit }) {
 
         {image ? (
           <div
-            className="flex justify-between items-center"
+            className="flex flex-col gap-4 justify-between items-center"
             onClick={() => fileInputEl.current.click()}
           >
             <img
@@ -138,7 +138,7 @@ export default function EditProfileForm({ setIsEdit }) {
             <span className="text-xs">Add Photo</span>
           </div>
         )}
-        <Button bg="black" color="white" type="submit" width='full'>
+        <Button bg="black" color="white" type="submit" width="full">
           Save
         </Button>
       </div>
