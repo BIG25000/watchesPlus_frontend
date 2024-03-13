@@ -110,7 +110,7 @@ export default function TopUp() {
           id="credit-card"
           onClick={hdlClick}
           className=" px-4 py-2 rounded-lg"
-          bg="green"
+          bg="cyan"
         >
           Pay with Credit Card
         </Button>

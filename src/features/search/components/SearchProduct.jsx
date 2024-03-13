@@ -2,6 +2,7 @@ import CardProduct from '../../product/components/CardProduct'
 import SelectionForm from '../../product/components/SelectionForm'
 import useSearch from '../../../hooks/useSearch'
 import Icon from '../../../components/Icon'
+import gallerlySign from '../../../assets/Gallery-removebg-preview.png'
 
 
 export default function SearchProduct() {
@@ -9,7 +10,9 @@ export default function SearchProduct() {
 
     return (
         <div className=" mx-auto w-[1200px] min-h-56 flex flex-col gap-4 py-4 px-8 bg-gray-100">
-            <div className="text-2xl font-bold">WatchesPlus - Gallery</div>
+            <div className="flex justify-center">
+          <img className="w-72 pt-8" src={gallerlySign} />
+        </div>
             {showSearch || querySearch ? <p>Search keyword: '{showSearch}'</p> : ''}
             <div className='flex gap-4 justify-end'>
                 <SelectionForm items={brands} onClick={handleSelectBrand} />

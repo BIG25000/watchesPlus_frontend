@@ -40,7 +40,7 @@ export default function Navbar() {
         )}
         {!authUser ? (
           <Link to="/login">
-            <Button bg="brown">Login</Button>
+            <Button bg="gold">Login</Button>
           </Link>
         ) : (
           <DropdownNavbar />

@@ -6,11 +6,12 @@ const bgClass = {
     "bg-gradient-to-tr from-rose-600 to-red-800 hover:bg-gradient-to-tr hover:from-rose-700 hover:to-red-900",
   red: "bg-red-500 hover:bg-red-600",
   cyan: "bg-gradient-to-tr from-teal-500 to-emerald-800 hover:bg-gradient-to-tr hover:from-teal-600 hover:to-emerald-900",
+  gold: "bg-gradient-to-tr from-yellow-300 to-yellow-700 hover:bg-gradient-to-tr hover:from-yellow-400 hover:to-yellow-800",
   green: "bg-green-600 hover:bg-green-700",
   remove: "hover:bg-egg hover:text-black",
   black: "bg-black hover:bg-gray-700",
 };
-
+    
 const colorClass = {
   black: "text-black",
   white: "text-white",
