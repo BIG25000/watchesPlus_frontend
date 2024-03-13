@@ -49,10 +49,10 @@ export default function CardProduct(props) {
 
   return (
     <div
-      className="w-72 h-96 flex flex-col rounded-md bg-gradient-to-b from-slate-500 to-slate-800 cursor-pointer shadow-xl hover:scale-110 transition"
+      className="w-64 h-96 flex flex-col rounded-md bg-gradient-to-b from-slate-500 to-slate-800 cursor-pointer shadow-xl hover:scale-110 transition"
       onClick={() => navigate(`/watch/${data.id}`)}
     >
-      <div className="relative h-60 flex justify-center items-center">
+      <div className="relative h-56 flex justify-center items-center">
         <img className="h-full w-full object-cover rounded-t-md" src={data?.watchImage} />
         <div
           className="absolute right-2 top-2 "

@@ -19,7 +19,7 @@ export default function ActiveTransactionItem({ name, el }) {
   switch (name) {
     case "BUYORDER":
       return (
-        <li className="px-4 py-2 border border-b-0 flex">
+        <li className="px-4 py-2 border border-b-0 flex bg-white">
           <div className="flex-1 flex items-center">
             <div className=" flex items-center gap-2">
               <img className="w-20" src={el.watch?.watchImage} />
@@ -49,7 +49,7 @@ export default function ActiveTransactionItem({ name, el }) {
 
     case "SALEORDER":
       return (
-        <li key={el.id} className="px-4 py-2 border border-b-0 flex">
+        <li key={el.id} className="px-4 py-2 border border-b-0 flex bg-white">
           <div className="flex-1 flex items-center">
             <div className=" flex items-center gap-2">
               <img className="w-20" src={el.inventory.watch?.watchImage} />

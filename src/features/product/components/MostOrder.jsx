@@ -22,7 +22,7 @@ export default function MostOrder() {
     return (
         <div>
             <div className="text-xl font-semibold">Recommend</div>
-            <div style={{ padding: `0 ${chevronWidth}px` }} className="w-[1200px] mx-auto">
+            <div style={{ padding: `0 ${chevronWidth}px` }} className="w-full mx-auto">
                 <ItemsCarousel
                     requestToChangeActive={setActiveItemIndex}
                     activeItemIndex={activeItemIndex}

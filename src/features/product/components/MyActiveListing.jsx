@@ -55,7 +55,7 @@ export default function MyActiveListing() {
                     {
                         orders.activity?.myBuyOrder.length > 0
                             ? buyOrderBySort.slice(0, 3).map(el => <ActiveTransactionItem key={el.id} name={BUYORDER} el={el} />)
-                            : <div className="p-4 border-l border-r">No result</div>
+                            : <div className="p-4 border-l border-r bg-white">No result</div>
                     }
                 </ul>
             </div>
@@ -77,7 +77,7 @@ export default function MyActiveListing() {
                     {
                         orders.activity?.mySaleOrder.length > 0
                             ? saleOrderBySort.slice(0, 3).map(el => <ActiveTransactionItem key={el.id} name={SALEORDER} el={el} />)
-                            : <div className="p-4 border-l border-r">No result</div>
+                            : <div className="p-4 border-l border-r bg-white">No result</div>
                     }
                 </ul>
             </div>
