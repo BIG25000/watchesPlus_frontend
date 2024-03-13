@@ -25,8 +25,8 @@ function EditBrandForm({ id }) {
 
       setLoading(true);
       const formData = new FormData();
-      for (let i in input) {
-        formData.append(i, input[i]);
+      if (input.name) {
+        formData.append("name", input.name);
       }
 
       if (image) {
