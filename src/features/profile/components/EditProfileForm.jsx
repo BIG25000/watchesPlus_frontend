@@ -91,7 +91,7 @@ export default function EditProfileForm({ setIsEdit }) {
           />
         </label>
       </div>
-      <div className="flex-1 p-4 flex flex-col gap-4">
+      <div className="flex-1 p-4 flex flex-col gap-4 items-center">
         <label className="flex flex-col gap-2">
           Profile Image
           <input
@@ -138,7 +138,7 @@ export default function EditProfileForm({ setIsEdit }) {
             <span className="text-xs">Add Photo</span>
           </div>
         )}
-        <Button bg="black" color="white" type="submit">
+        <Button bg="black" color="white" type="submit" width='full'>
           Save
         </Button>
       </div>
