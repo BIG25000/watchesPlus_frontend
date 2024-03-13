@@ -10,29 +10,38 @@ import ProfileContextProvider from "../features/profile/contexts/ProfileContext"
 import ProductContextProvider from "../features/product/contexts/ProductContext";
 import WalletContextProvider from "../features/wallet/contexts/WalletContext";
 import useAuth from "../hooks/useAuth";
-import Background from "../components/Background";
+// import Background from "../components/Background";
 
 export default function Container() {
   const { authUser } = useAuth();
   return (
-    <div style={{backgroundImage:`url("https://st2.depositphotos.com/2013817/6206/v/950/depositphotos_62061569-stock-illustration-sketch-watches-background.jpg")`}}>
-      <ProfileContextProvider>
-        <WalletContextProvider>
-          <ProductContextProvider>
-            <SearchContextProvider>
-              <WishlistContextProvider>
-                <Navbar />
-                {/* <Background/> */}
-                <ChatContextProvider>
-                  {authUser ? <LiveChat /> : ""}
-                </ChatContextProvider>
-                <Outlet />
-                <Footer />
-              </WishlistContextProvider>
-            </SearchContextProvider>
-          </ProductContextProvider>
-        </WalletContextProvider>
-      </ProfileContextProvider>
+    <div
+      style={{
+        backgroundImage: `url("https://ychef.files.bbci.co.uk/1280x720/p0bzmxtx.jpg")`,
+        backgroundSize: "cover",
+        backgroundRepeat: "no-repeat",
+        backgroundAttachment: "fixed",
+      }}
+    >
+      <div style={{ backgroundColor: "rgba(255, 255, 255, 0.6)" }}>
+        <ProfileContextProvider>
+          <WalletContextProvider>
+            <ProductContextProvider>
+              <SearchContextProvider>
+                <WishlistContextProvider>
+                  <Navbar />
+                  {/* <Background/> */}
+                  <ChatContextProvider>
+                    {authUser ? <LiveChat /> : ""}
+                  </ChatContextProvider>
+                  <Outlet />
+                  <Footer />
+                </WishlistContextProvider>
+              </SearchContextProvider>
+            </ProductContextProvider>
+          </WalletContextProvider>
+        </ProfileContextProvider>
+      </div>
     </div>
   );
 }

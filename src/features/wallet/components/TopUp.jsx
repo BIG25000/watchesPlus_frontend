@@ -55,9 +55,11 @@ export default function TopUp() {
         toast.success(response.data.message);
         getWallet();
         getWalletTransaction();
+        navigate("/profile/wallet");
       },
       onFormClosed: () => {
         /* Handler on form closure. */
+        navigate("/profile/wallet");
       },
     });
   };
@@ -70,6 +72,7 @@ export default function TopUp() {
     }
     creditCardConfigure();
     hdlOmiseToken();
+    setAmount("");
   };
   return (
     <div className="bg-black text-white p-4 rounded-lg flex flex-col gap-4">
@@ -103,10 +106,11 @@ export default function TopUp() {
       <Script url="https://cdn.omise.co/omise.js" onLoad={handleLoadScript} />
       <form className="flex flex-col gap-4">
         <Button
+          type="button"
           id="credit-card"
           onClick={hdlClick}
           className=" px-4 py-2 rounded-lg"
-          bg="green"
+          bg="cyan"
         >
           Pay with Credit Card
         </Button>

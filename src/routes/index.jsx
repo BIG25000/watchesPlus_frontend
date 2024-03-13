@@ -41,6 +41,7 @@ import ProtectRouteUser from "../features/auth/components/ProtectRouteUser";
 import ProtectRouteAdmin from "../features/auth/components/ProtectRouteAdmin";
 import RedirectWhenAdminLogin from "../features/auth/components/RedirectWhenAdminLogin";
 import ScrollToTop from "../utils/ScrollToTop";
+import * as authAPI from "../apis/auth";
 
 const router = createBrowserRouter([
   {

@@ -12,7 +12,9 @@ import { formatNum } from "../../../utils/formatNumber";
 export default function Withdraw() {
   const [amount, setAmount] = useState("");
 
-  const { getWallet, getWalletTransaction } = useWallet();
+  const { getWallet, getWalletTransaction, wallet } = useWallet();
+
+  console.log(wallet);
 
   const hdlChange = (e) => {
     setAmount(e.target.value);
@@ -29,6 +31,9 @@ export default function Withdraw() {
   };
 
   const hdlClick = () => {
+    if (wallet.amount < amount) {
+      return toast.error("Your wallet is not enough");
+    }
     const validateErr = validateAmount({ amount });
     if (validateErr) {
       return toast.error(validateErr.amount);
@@ -60,27 +65,33 @@ export default function Withdraw() {
         ) : (
           <span>You will receive {formatNum(amount - 30)}</span>
         )}
-        <Button type="button" bg="green" className="btn" onClick={hdlClick}>
+        <Button type="button" bg="cyan" className="btn" onClick={hdlClick}>
           Withdraw
         </Button>
         <dialog id="my_modal_1" className="modal text-black">
           <div className="modal-box">
-            <h3 className="font-bold text-lg text-center">Confirm withdraw</h3>
-            <p className="py-4">Amount : {amount}</p>
-            <small className="text-xs font-light">
+            <h3 className="font-bold text-xl text-center">Confirm withdraw</h3>
+            <p className="py-4 text-xl">Amount : {formatNum(amount)}</p>
+            <small className="text-xl font-light">
               You will receive {formatNum(amount - 30)} THB
             </small>
             <div className="modal-action">
-              <button type="button" className="btn" onClick={hdlSubmit}>
-                Confirm
-              </button>
-              <button
+              <Button
+                bg="cyan"
                 type="button"
                 className="btn"
+                onClick={hdlSubmit}
+              >
+                Confirm
+              </Button>
+              <Button
+                bg="scarlet"
+                type="button"
+                className="btn bg-red-500 text-white hover:bg-red-600"
                 onClick={() => document.getElementById("my_modal_1").close()}
               >
                 Close
-              </button>
+              </Button>
             </div>
           </div>
         </dialog>

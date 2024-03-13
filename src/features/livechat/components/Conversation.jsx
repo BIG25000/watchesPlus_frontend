@@ -11,8 +11,6 @@ export default function Conversation({
   src,
   loading,
 }) {
-  // console.log(message);
-  // console.log(createdAt);
   return (
     <>
       {loading && <Loading />}
