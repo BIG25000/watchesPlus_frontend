@@ -15,11 +15,11 @@ export default function HistoryTransactionItem({ el }) {
                 : el.watch?.watchImage
             }
           />
-          <div>{el?.watch?.modelName}</div>
+          <div>{el?.watch?.modelName || el?.inventory?.watch?.modelName}</div>
         </div>
       </div>
       <div className="w-32 flex items-center justify-center">
-        {el?.watch?.brand?.name}
+        {el?.watch?.brand?.name ||el?.inventory?.watch?.brand?.name}
       </div>
       <div className="w-32 flex items-center justify-center">
         {el?.inventoryId ? "-" : formatNum(el.price)}
