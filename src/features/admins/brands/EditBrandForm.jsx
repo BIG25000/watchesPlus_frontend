@@ -17,23 +17,28 @@ function EditBrandForm({ id }) {
   const handleFormSubmit = async (e) => {
     try {
       e.preventDefault();
+
+      if (!input.name && !image) {
+        toast.error("Please enter brand or image name.");
+        return;
+      }
+
       setLoading(true);
       const formData = new FormData();
       for (let i in input) {
         formData.append(i, input[i]);
       }
-      console.log(image, "QQQQQQQQQQQQq");
+
       if (image) {
         formData.append("brandImage", image);
       }
       await editBrand(formData, id);
-      console.log("after eidt");
+
       const data = {};
       for (let i in input) {
         data[i] = "";
       }
 
-      // setInput({ name: "" });
       setInput(data);
 
       setImage(null);
@@ -120,11 +125,14 @@ function EditBrandForm({ id }) {
           </div>
         </div>
         <div className="flex justify-center gap-3 mt-5">
-          <button className="btn bg-blue-500 text-black" type="submit">
+          <button
+            className="btn hover:bg-gray-400 bg-gray-300 text-black"
+            type="submit"
+          >
             Edit Brand
           </button>
           <button
-            className="btn bg-red-400 text-black"
+            className="btn bg-gray-300 text-black"
             onClick={(e) => {
               e.stopPropagation();
               e.preventDefault();

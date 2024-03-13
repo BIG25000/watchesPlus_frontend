@@ -126,7 +126,7 @@ function CreateBrandForm() {
         </div>
         <div className="flex justify-center gap-3 mt-5">
           <button
-            className="btn hover:bg-gray-400 bg-green-400 text-black w-full"
+            className="btn hover:bg-gray-400 bg-gray-300 text-black w-full"
             type="submit"
           >
             Create Brand

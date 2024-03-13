@@ -44,7 +44,7 @@ function BrandForm() {
         <div className="overflow-x-auto">
           <table className="table w-full ">
             <thead>
-              <tr className="bg-black text-white">
+              <tr className="bg-gray-700 text-white">
                 <th>ID</th>
                 <th>IMAGE</th>
                 <th>NAME_BRAND</th>
@@ -73,7 +73,9 @@ function BrandForm() {
                         </div>
                       </div>
                     </td>
-                    <td>{el.name}</td>
+                    <td>
+                      <div>{el.name}</div>
+                    </td>
                     <td>
                       <div className="flex items-center gap-4 ">
                         <Modal
