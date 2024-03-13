@@ -10,7 +10,7 @@ import MostOrder from "../features/product/components/MostOrder"
 export default function HomePage() {
     const { authUser } = useAuth()
     return (
-        <div className=" mx-auto w-[1200px] min-h-56 flex flex-col gap-6 mt-4 mb-8">
+        <div className=" mx-auto w-[1200px] min-h-56 flex flex-col gap-6 py-4 px-8 bg-gray-100">
             <VideoCarousel />
             <Garuntee />
             {authUser ? <MyMarket /> : <></>}
