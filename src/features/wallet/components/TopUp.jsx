@@ -72,6 +72,7 @@ export default function TopUp() {
     }
     creditCardConfigure();
     hdlOmiseToken();
+    setAmount("");
   };
   return (
     <div className="bg-black text-white p-4 rounded-lg flex flex-col gap-4">

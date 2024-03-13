@@ -1,4 +1,3 @@
-
 import Button from "../../../components/Button";
 import { baht } from "../../../constants/baht";
 import { useState } from "react";
@@ -10,65 +9,65 @@ import { validateBuyOrder } from "../validations/validate-order";
 import { formatNum } from "../../../utils/formatNumber";
 
 export default function BuyModal(props) {
-  const {watchId } = useParams()
-  const { watch, dataBuy , setLoading , loading } = props;
-  const { profileInfo  } = useProfile();
-  const {sendBuyOrder } = useProduct()
+  const { watchId } = useParams();
+  const { watch, dataBuy, setLoading, loading } = props;
+  const { profileInfo } = useProfile();
+  const { sendBuyOrder } = useProduct();
   const [price, setPrice] = useState(0);
   const handleClick = async (e) => {
     e.preventDefault();
     document.getElementById("confirm_buy").showModal();
   };
 
-
-  const handleChange=(e)=> {
+  const handleChange = (e) => {
     let value = e.target.value;
-    if (value.length === 1 && value === '0') {
-      e.target.value = '';
+    if (value.length === 1 && value === "0") {
+      e.target.value = "";
       return;
     }
-    value = value.replace(/^-/, ''); // ลบเครื่องหมายลบที่อยู่ด้านหน้า
-    e.target.value = value.replace(/\D/g, ''); // ลบทุกอย่างนอกจากตัวเลข
-    if(e.target.value > 1_000_000){
-      e.target.value = 1000000
+    value = value.replace(/^-/, ""); // ลบเครื่องหมายลบที่อยู่ด้านหน้า
+    e.target.value = value.replace(/\D/g, ""); // ลบทุกอย่างนอกจากตัวเลข
+    if (e.target.value > 1_000_000) {
+      e.target.value = 1000000;
     }
-    setPrice(+e.target.value)
-  }
+    setPrice(+e.target.value);
+  };
 
   const handleBuyOrder = async (e) => {
-    try{
-      e.preventDefault()
-      if(profileInfo.wallet.amount < price){
-        toast.error('Your Amount Is not Enough')
-        return
+    try {
+      e.preventDefault();
+      if (profileInfo.wallet.amount < price) {
+        toast.error("Your Amount Is not Enough");
+        document.getElementById("confirm_buy").close();
+        document.getElementById("buy").close();
+        return;
       }
       const data = {
-        watchId : +watchId,
-        walletId : profileInfo.wallet.id,
-        price : price || 0
+        watchId: +watchId,
+        walletId: profileInfo.wallet.id,
+        price: price || 0,
+      };
+
+      const validateErr = validateBuyOrder(data);
+      console.log(validateErr);
+      if (validateErr?.price) {
+        toast.error(validateErr.price);
+        return;
       }
-      
-      const validateErr = validateBuyOrder(data)
-      console.log(validateErr)
-      if(validateErr?.price){
-        toast.error(validateErr.price)
-        return
-      }
-      setLoading(true)
-      await sendBuyOrder(data)
-      
-      setPrice(0)
-      document.getElementById("confirm_buy").close()
-      document.getElementById("buy").close()
-     
-    }catch(err){
-      console.log(err)
-      toast.error(err.response?.data?.message)
-    }finally{
-      setLoading(false)
+      setLoading(true);
+      await sendBuyOrder(data);
+
+      setPrice(0);
+      document.getElementById("confirm_buy").close();
+      document.getElementById("buy").close();
+    } catch (err) {
+      console.log(err);
+      toast.error(err.response?.data?.message);
+    } finally {
+      setLoading(false);
     }
-  }
-  
+  };
+
   return (
     <>
       <dialog id="buy" className="modal">
@@ -76,8 +75,8 @@ export default function BuyModal(props) {
           <div
             className="absolute right-5 top-3 text-xl font-bold cursor-pointer"
             onClick={() => {
-              document.getElementById("buy").close()
-              setPrice(0)
+              document.getElementById("buy").close();
+              setPrice(0);
             }}
           >
             X
@@ -85,7 +84,7 @@ export default function BuyModal(props) {
           <h3 className="font-bold text-lg pb-8">Buy - {watch?.modelName}</h3>
           <div className="grid grid-cols-2">
             <div className="w-36  flex gap-8">
-              <img src={watch?.watchImage}/>
+              <img src={watch?.watchImage} />
               <div className="text-sm min-w-40 text-start flex flex-col gap-5 font-bold">
                 <p>{watch?.modelName}</p>
                 <p>{watch?.brand}</p>
@@ -106,7 +105,7 @@ export default function BuyModal(props) {
                     onChange={handleChange}
                     value={formatNum(price)}
                   />
-                
+
                   {baht}
                 </div>
               </div>
@@ -120,25 +119,24 @@ export default function BuyModal(props) {
               <div className="flex h-8 gap-4 justify-between">
                 <label>Total Price:</label>
                 <div>
-                  <input disabled className="w-24 text-end p-2" value={formatNum(price)} />
+                  <input
+                    disabled
+                    className="w-24 text-end p-2"
+                    value={formatNum(price)}
+                  />
                   {baht}
                 </div>
               </div>
             </div>
           </div>
           <div className="flex justify-end">
-            <Button
-              type="button"
-              color="white"
-              bg="cyan"
-              onClick={handleClick}
-            >
+            <Button type="button" color="white" bg="cyan" onClick={handleClick}>
               PLACE ORDER
             </Button>
           </div>
         </div>
         <form method="dialog" className="modal-backdrop">
-          <button onClick={()=>setPrice(0)}>close</button>
+          <button onClick={() => setPrice(0)}>close</button>
         </form>
       </dialog>
       <dialog id="confirm_buy" className="modal">
@@ -147,10 +145,13 @@ export default function BuyModal(props) {
             <h3 className="font-bold text-lg">Are You Confirm This Order ?</h3>
             <div>
               You Order is place on Market at Price{" "}
-              <span className="font-bold text-lg">{formatNum(price) || 0}</span> {baht}
+              <span className="font-bold text-lg">{formatNum(price) || 0}</span>{" "}
+              {baht}
             </div>
             <div className="mt-4 flex justify-evenly">
-              <Button bg="cyan" onClick={handleBuyOrder}>YES</Button>
+              <Button bg="cyan" onClick={handleBuyOrder}>
+                YES
+              </Button>
               <Button
                 bg="scarlet"
                 onClick={() => document.getElementById("confirm_buy").close()}
@@ -161,7 +162,7 @@ export default function BuyModal(props) {
           </div>
         </div>
         <form method="dialog" className="modal-backdrop">
-          <button >close</button>
+          <button>close</button>
         </form>
       </dialog>
     </>
