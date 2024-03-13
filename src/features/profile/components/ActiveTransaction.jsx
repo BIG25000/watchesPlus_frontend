@@ -50,7 +50,7 @@ export default function ActiveTransaction() {
                 {
                     orders.activity?.myBuyOrder.length > 0
                         ? buyOrderBySort.map(el => <ActiveTransactionItem key={el.id} name={BUYORDER} el={el} />)
-                        : <div className='p-4'>No result</div>
+                        : <div className='p-4 bg-white'>No result</div>
                 }
             </ul>
             <div className='text-xl font-bold rounded-full p-4'>Sale orders</div>
@@ -67,7 +67,7 @@ export default function ActiveTransaction() {
                 {
                     orders.activity?.mySaleOrder.length > 0
                         ? saleOrderBySort.map(el => <ActiveTransactionItem key={el.id} name={SALEORDER} el={el} />)
-                        : <div className='p-4'>No result</div>
+                        : <div className='p-4 bg-white'>No result</div>
                 }
             </ul>
         </div>
