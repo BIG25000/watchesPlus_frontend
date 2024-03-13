@@ -40,7 +40,9 @@ export default function MainChatInput({ setLoading }) {
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      sendMessage();
+      if (message.trim() !== "") {
+        sendMessage();
+      }
     }
   };
 

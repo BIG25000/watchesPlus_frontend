@@ -15,8 +15,6 @@ function CreateProductForm() {
   const fileInputEl = useRef(null);
   const { brands } = brandAdmin();
   const { createWatch } = watchAdmin();
-
-  // const handleSubmitForm = async (e) => {
   //   try {
   //     e.preventDefault();
   //     setLoading(true);
@@ -218,7 +216,7 @@ function CreateProductForm() {
                     </span>
                   </div>
                   <input
-                    type="text"
+                    type="Number"
                     placeholder="120"
                     className="input input-bordered w-full"
                     name="powerReserve"
@@ -233,7 +231,7 @@ function CreateProductForm() {
                     <span className="label-text text-md">Case material</span>
                   </div>
                   <input
-                    type="text"
+                    type="Number"
                     value={input.caseMaterial}
                     placeholder="Stainless Steel"
                     className="input input-bordered w-full"
