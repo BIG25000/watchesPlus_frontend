@@ -49,7 +49,9 @@ function MessageIdForm() {
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
-      sendMessage();
+      if (message.trim() !== "") {
+        sendMessage();
+      }
     }
   };
 
