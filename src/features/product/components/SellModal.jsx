@@ -175,7 +175,7 @@ export default function SellModal(props) {
             <div>
               You Order is place on Market at Price{" "}
               <span className="font-bold text-lg">
-                {dataSale?.[0]?.price ? formatNum(dataSale?.[0]?.price) : 0}
+                {input?.price ? formatNum(input?.price) : 0}
               </span>{" "}
               {baht}
             </div>

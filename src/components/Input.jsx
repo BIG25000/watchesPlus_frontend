@@ -13,6 +13,7 @@ export default function Input({
   pattern,
   min,
   max,
+  maxLength
 }) {
   return (
     <div className="relative">
@@ -29,6 +30,7 @@ export default function Input({
         onChange={onChange}
         className={` border-white border-2 pl-12 bg-white bg-opacity-0  text-white placeholder:text-white px-6 w-[350px] h-[45px] rounded-2xl focus:outline-none ${extendClassName}`}
         onKeyDown={onKeyDown}
+        maxLength={maxLength}
       />
     </div>
   );
