@@ -17,7 +17,6 @@ export default function MainChatConversation({ loading }) {
   return (
     <div className="flex flex-col gap-3">
       {conversation.map((chat) => {
-        // console.log(chat, "********");
         return (
           <div ref={scrollRef}>
             <Conversation
