@@ -10,7 +10,6 @@ import wishlistSign from "../../../assets/wishlist-removebg-preview.png"
 
 export default function WishlistList() {
   const { wishlist } = useWishlist();
-  console.log(wishlist);
   const { showSearch, querySearch, brands, selectBrand, handleSelectBrand } =
     useSearch();
 
