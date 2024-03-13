@@ -7,6 +7,8 @@ function AddTrackingForm({ id }) {
   const [input, setInput] = useState({});
   const { shippings, updateTracking } = shippingAdmin();
 
+  console.log(shippings, "sssssssssssss");
+
   const filterShippings = shippings?.filter((e) => e.id == id)[0];
 
   // const handleFormSubmit = async (e) => {
@@ -59,40 +61,33 @@ function AddTrackingForm({ id }) {
     <>
       <form onSubmit={handleFormSubmit}>
         <h1 className="text-center font-medium">Add tracking </h1>
-        <div className="grid grid-cols-3 items-center gap-2">
-          <div className="col-span-2">
-            <label className="form-control w-full max-w-xs">
-              <div className="label flex">
-                <span className="label-text">tracking number</span>
-                <span className="label-text">
-                  {filterShippings.inventory?.user?.firstName}
-                </span>
-                <span className="label-text">
-                  {filterShippings.inventory?.user?.lastName}
-                </span>
-                <span className="label-text">
-                  {filterShippings.inventory?.watch?.modelName}
-                </span>
-                <span className="label-text">
-                  {filterShippings.inventory?.watch?.brand?.name}
-                </span>
-                <span className="label-text">{filterShippings.id}</span>
-              </div>
-              <input
-                type="text"
-                placeholder="EF582621151TH"
-                name="trackingNumber"
-                value={input.trackingNumber}
-                className="input input-bordered w-full max-w-xs"
-                onChange={handleChangeInput}
-              />
-              <div className="label"></div>
-            </label>
+
+        <div className="flex flex-col justify-center items-center gap-3 mt-5">
+          <div className="label-text">
+            FIRSTNAME : {filterShippings.inventory?.user?.firstName}
           </div>
-        </div>
-        <div className="flex justify-center gap-3">
+          <div className="label-text">
+            LASTNAME : {filterShippings.inventory?.user?.lastName}
+          </div>
+          <div className="label-text">
+            MODELNAME : {filterShippings.inventory?.watch?.modelName}
+          </div>
+          <div className="label-text">
+            BRANDNAME : {filterShippings.inventory?.watch?.brand?.name}
+          </div>
+          <div className="label-text">
+            referenceNumber : {filterShippings.inventory?.referenceNumber}
+          </div>
+          <input
+            type="text"
+            placeholder="EF582621151TH"
+            name="trackingNumber"
+            value={input.trackingNumber}
+            className="input input-bordered w-full max-w-xs"
+            onChange={handleChangeInput}
+          />
           <button className="btn" type="submit">
-            add
+            ADD TRACKING NUMBER
           </button>
         </div>
       </form>

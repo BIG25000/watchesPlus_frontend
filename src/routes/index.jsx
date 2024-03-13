@@ -40,11 +40,17 @@ import TrackingTest from "../pages/admins/TrackingTest";
 import ProtectRouteUser from "../features/auth/components/ProtectRouteUser";
 import ProtectRouteAdmin from "../features/auth/components/ProtectRouteAdmin";
 import RedirectWhenAdminLogin from "../features/auth/components/RedirectWhenAdminLogin";
+import ScrollToTop from "../utils/scrollToTop";
 
 const router = createBrowserRouter([
   {
     path: "",
-    element: <Outlet />,
+    element: (
+      <>
+        <ScrollToTop />
+        <Outlet />
+      </>
+    ),
     children: [
       {
         path: "/",
@@ -147,13 +153,14 @@ const router = createBrowserRouter([
     path: "/admin",
     element: (
       <ProtectRouteAdmin>
+        <ScrollToTop />
         <SideBarAdmin />
       </ProtectRouteAdmin>
     ),
     children: [
       {
         path: "",
-        element: <HomePageInAdmin />,
+        element: <BrandPage />,
       },
       {
         path: "brand",

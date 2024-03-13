@@ -15,7 +15,9 @@ function MessageAdminContextProvider({ children }) {
   const [conversation, setConversation] = useState([]);
 
   const { authUser } = useAuth();
-  const { chatroomId } = useParams();
+  const { chatroomId, senderId } = useParams();
+
+  // console.log(senderId);
 
   useEffect(() => {
     getAllConversation();
@@ -23,7 +25,10 @@ function MessageAdminContextProvider({ children }) {
 
   useEffect(() => {
     socket.on("message1", (msg) => {
-      setConversation([...conversation, msg]);
+      console.log(msg.senderId, senderId, "dsadasdasdsa");
+      if (senderId == msg.senderId) {
+        setConversation([...conversation, msg]);
+      }
     });
   }, [conversation]);
 
