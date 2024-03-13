@@ -16,7 +16,6 @@ export default function MostOrder() {
         setShowSearch('')
         navigate("/search")
     }
-    console.log(mostOrders);
     const [activeItemIndex, setActiveItemIndex] = useState(0);
     const chevronWidth = 60;
     return (
@@ -34,7 +33,7 @@ export default function MostOrder() {
                     chevronWidth={chevronWidth}
                 >
                     {mostOrders.slice(0, 8).map((product, index) => (
-                        <div className="py-8 px-8">
+                        <div className="py-8 px-8" key={index}>
                             <CardProduct data={product.watch} key={index} />
                         </div>
                     ))}

@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import Icon from "../../../components/Icon";
 import useProfile from "../../../hooks/useProfile";
-import Title from '../../../components/Title'
+import Title from "../../../components/Title";
 import TableList from "./TableList";
+import inventorySign from "../../../assets/inventory-removebg-preview.png";
 
 export default function InventoryDetail() {
   const { getMyInventory, myShipping } = useProfile();
@@ -34,8 +35,11 @@ export default function InventoryDetail() {
   return (
     <>
       <div className="mx-auto w-[1200px]  min-h-screen  flex flex-col gap-10 pt-4  px-8 bg-gray-100">
-        <div className="text-2xl font-bold mb-4">
+        {/* <div className="text-2xl font-bold mb-4">
           WatchesPlus - My Inventory
+        </div> */}
+        <div className="flex justify-center">
+          <img className="w-[330px] pt-2" src={inventorySign} />
         </div>
         <>
           {inventory?.length > 0 ? (
@@ -99,7 +103,7 @@ export default function InventoryDetail() {
                     {waitingData?.length > 0 ? (
                       <div className="flex flex-col">
                         <div className="flex items-center justify-between">
-                        <Title>Waiting For Approve</Title>
+                          <Title>Waiting For Approve</Title>
                         </div>
                         <div>
                           <TableList
