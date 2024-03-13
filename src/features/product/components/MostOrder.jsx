@@ -28,8 +28,8 @@ export default function MostOrder() {
                     activeItemIndex={activeItemIndex}
                     numberOfCards={3}
                     gutter={15}
-                    leftChevron={<div className="bg-egg rounded-full"><Icon name='ArrowLeft' size='40' /></div>}
-                    rightChevron={<div className="bg-egg rounded-full"><Icon name='ArrowRight' size='40' /></div>}
+                    leftChevron={<div className="bg-white rounded-full"><Icon name='ArrowLeft' size='40' /></div>}
+                    rightChevron={<div className="bg-white rounded-full"><Icon name='ArrowRight' size='40' /></div>}
                     outsideChevron
                     chevronWidth={chevronWidth}
                 >
