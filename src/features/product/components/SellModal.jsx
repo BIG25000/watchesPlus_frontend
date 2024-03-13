@@ -146,7 +146,7 @@ export default function SellModal(props) {
               <div className="flex h-8 gap-4 justify-between">
                 <label>Total Price:</label>
                 <div className="flex gap-2">
-                  <div>{formatNum(input?.price)}</div>
+                  <div>{input?.price ? formatNum(input?.price) : 0}</div>
                   {baht}
                 </div>
               </div>

@@ -14,8 +14,8 @@ export default function ProfileInfo() {
   }, []);
 
   return (
-    <div className="w-screen flex flex-col gap-4 items-center">
-      <div className="relative w-2/3 rounded-xl p-12 flex flex-col gap-6 justify-center items-center">
+    <div className=" flex flex-col gap-4 items-center bg-white w-full mb-8 relative">
+      <div className="  rounded-xl p-12 flex flex-col gap-6 justify-center items-center">
         <div className="w-48 h-48 bg-gray-300 rounded-full flex justify-center items-center">
           {profileInfo?.profileImage ? (
             <img

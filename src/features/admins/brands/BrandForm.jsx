@@ -25,7 +25,7 @@ function BrandForm() {
             value={search}
           />
           <button
-            className="btn bg-egg text-greenTwo"
+            className="btn btn-sm bg-gray-400 text-black"
             onClick={() => setSearch("")}
           >
             RESET
@@ -35,7 +35,7 @@ function BrandForm() {
         <Modal
           title="createBrand"
           id="createBrand"
-          button="btn btn-sm hover:bg-gray-400"
+          button="btn btn-sm bg-gray-400 text-black"
         >
           <CreateBrandForm />
         </Modal>
@@ -73,9 +73,11 @@ function BrandForm() {
                         </div>
                       </div>
                     </td>
-                    <td>{el.name}</td>
                     <td>
-                      <div className="flex items-center gap-4">
+                      <div>{el.name}</div>
+                    </td>
+                    <td>
+                      <div className="flex items-center gap-4 ">
                         <Modal
                           title="editBrand"
                           id={`editBrand${el.id}`}

@@ -19,7 +19,7 @@ export default function ActiveTransactionItem({ name, el }) {
   switch (name) {
     case "BUYORDER":
       return (
-        <li className="px-4 py-2 border border-b-0 flex">
+        <li className="px-4 py-2 border border-b-0 flex bg-white hover:bg-gray-200">
           <div className="flex-1 flex items-center">
             <div className=" flex items-center gap-2">
               <img className="w-20" src={el.watch?.watchImage} />

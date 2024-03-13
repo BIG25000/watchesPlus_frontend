@@ -23,6 +23,11 @@ export default function AuthContextProvider({ children }) {
   const login = async (input) => {
     try {
       const res = await authAPI.login(input);
+
+      if (res.data.user.status === "INACTIVE") {
+        return toast.error("YOU HAS BEEN BLOCKED");
+      }
+
       setAuthUser(res.data.user);
       setToken(res.data.accessToken);
       toast.success(res.data.message);
