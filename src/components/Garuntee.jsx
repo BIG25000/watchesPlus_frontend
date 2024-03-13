@@ -4,8 +4,7 @@ export default function Garuntee() {
     return (
         <>
             <div className="navbar text-white font-semibold flex justify-between rounded-md w-full">
-                <div className="flex flex-col p-12 gap-8">
-                    <div>test</div>
+                <div className="flex flex-col p-12 gap-8 items-start">
                     <div className="text-2xl font-semibold">WatchesPlus+ Buyer Protection</div>
                     <div className="flex gap-2 items-start"><Icon name='SearchCheck' color='#20830c' size='25' />Payment via the Escrow Service</div>
                     <div className="flex gap-2"><Icon name='SearchCheck' color='#20830c' size='25' />Authenticity Guarantee</div>

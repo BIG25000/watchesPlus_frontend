@@ -8,6 +8,7 @@ import TableList from "./TableList";
 import Loading from "../../../components/Loading";
 import { useWishlist } from "../../wishlist/context/WishlistContext";
 import CardProduct from "../../product/components/CardProduct";
+// import inventorySign from "../../../assets/wishlist-removebg-preview"
 
 export default function InventoryDetail() {
   const { brands, handleSelectBrand, selectBrand } = useSearch();

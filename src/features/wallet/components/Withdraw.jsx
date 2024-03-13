@@ -60,7 +60,7 @@ export default function Withdraw() {
         ) : (
           <span>You will receive {formatNum(amount - 30)}</span>
         )}
-        <Button type="button" bg="green" className="btn" onClick={hdlClick}>
+        <Button type="button" bg="cyan" className="btn" onClick={hdlClick}>
           Withdraw
         </Button>
         <dialog id="my_modal_1" className="modal text-black">
@@ -71,16 +71,22 @@ export default function Withdraw() {
               You will receive {formatNum(amount - 30)} THB
             </small>
             <div className="modal-action">
-              <button type="button" className="btn" onClick={hdlSubmit}>
+              <Button
+                bg="cyan"
+                type="button"
+                className="btn"
+                onClick={hdlSubmit}
+              >
                 Confirm
-              </button>
-              <button
+              </Button>
+              <Button
+                bg="scarlet"
                 type="button"
                 className="btn"
                 onClick={() => document.getElementById("my_modal_1").close()}
               >
                 Close
-              </button>
+              </Button>
             </div>
           </div>
         </dialog>

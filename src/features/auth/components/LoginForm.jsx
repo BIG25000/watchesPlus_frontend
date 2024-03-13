@@ -71,7 +71,7 @@ export default function LoginForm() {
           Login
         </button>
       </form>
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center gap-2">
         <span className="text-xs font-light">Not a member yet? </span>
         <Link to="/register" className="text-xs font-light text-white">
           Register?
