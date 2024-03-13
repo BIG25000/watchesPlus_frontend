@@ -2,11 +2,20 @@ import Button from "../../../components/Button";
 import useProfile from "../../../hooks/useProfile";
 import { formatNum } from "../../../utils/formatNumber";
 import formatTimeAgo from "../../../utils/time-ago";
+import useWallet from "../../../hooks/useWallet";
+import { useState } from "react";
 
 export default function ActiveTransactionItem({ name, el }) {
   const { handleClickCancelBuyOrder, handleClickCancelSaleOrder } =
     useProfile();
+  const { getWallet } = useWallet();
   const timeAgo = formatTimeAgo(el.createdAt);
+
+  const hdlClick = async () => {
+    await handleClickCancelBuyOrder(el.id);
+    await getWallet();
+  };
+
   switch (name) {
     case "BUYORDER":
       return (
@@ -31,11 +40,7 @@ export default function ActiveTransactionItem({ name, el }) {
             {el?.createdAt.split("T")[0]}
           </div>
           <div className="w-32 flex items-center justify-center">
-            <Button
-              bg="black"
-              color="white"
-              onClick={() => handleClickCancelBuyOrder(el.id)}
-            >
+            <Button bg="scarlet" color="white" onClick={hdlClick}>
               Cancel
             </Button>
           </div>
@@ -60,7 +65,7 @@ export default function ActiveTransactionItem({ name, el }) {
           <div className="w-32 flex items-center justify-center">
             {el.status}
           </div>
-          <div className="w-32 flex items-center justify-center">-</div>
+          <div className="w-32 flex items-center justify-center">{timeAgo}</div>
           <div className="w-32 flex items-center justify-center">
             {el.createdAt.split("T")[0]}
           </div>

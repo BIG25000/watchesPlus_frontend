@@ -31,7 +31,7 @@ export default function Footer() {
         </label> 
         <div className="join">
           <input type="text" placeholder="username@site.com" className="input input-bordered join-item" /> 
-          <button className=" btn-primary join-item text-white bg-yellow-600 hover:bg-yellow-700 w-[8rem] flex items-center justify-center">Subscribe</button>
+          <button className=" btn-primary join-item text-white bg-gradient-to-tr from-rose-700 to-red-900 w-[8rem] flex items-center justify-center">Subscribe</button>
         </div>
       </fieldset>
     </form>

@@ -7,13 +7,30 @@ const SALEORDER = 'SALEORDER'
 
 export default function ActiveTransaction() {
     const { orders, getAllOrder } = useProfile()
-
     useEffect(() => {
         getAllOrder()
     }, []);
 
-    console.log(orders);
-
+    const buyOrderBySort = orders.activity?.myBuyOrder
+        .sort((a, b) => {
+            if (a.createdAt > b.createdAt) {
+                return -1;
+            }
+            if (a.createdAt < b.createdAt) {
+                return 1;
+            }
+            return 0;
+        });
+    const saleOrderBySort = orders.activity?.mySaleOrder
+        .sort((a, b) => {
+            if (a.createdAt > b.createdAt) {
+                return -1;
+            }
+            if (a.createdAt < b.createdAt) {
+                return 1;
+            }
+            return 0;
+        });
     return (
         <div className="w-[1200px] rounded-xl p-8 flex flex-col justify-between items-center gap-4">
             <div className="w-full">
@@ -32,7 +49,7 @@ export default function ActiveTransaction() {
                 </div>
                 {
                     orders.activity?.myBuyOrder.length > 0
-                        ? orders.activity?.myBuyOrder.reverse().map(el => <ActiveTransactionItem key={el.id} name={BUYORDER} el={el} />)
+                        ? buyOrderBySort.map(el => <ActiveTransactionItem key={el.id} name={BUYORDER} el={el} />)
                         : <div className='p-4'>No result</div>
                 }
             </ul>
@@ -49,7 +66,7 @@ export default function ActiveTransaction() {
                 </div>
                 {
                     orders.activity?.mySaleOrder.length > 0
-                        ? orders.activity?.mySaleOrder.reverse().map(el => <ActiveTransactionItem key={el.id} name={SALEORDER} el={el} />)
+                        ? saleOrderBySort.map(el => <ActiveTransactionItem key={el.id} name={SALEORDER} el={el} />)
                         : <div className='p-4'>No result</div>
                 }
             </ul>
