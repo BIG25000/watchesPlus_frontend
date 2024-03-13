@@ -103,10 +103,6 @@ const router = createBrowserRouter([
                 path: "wallet",
                 element: <WalletPage />,
                 lazy: () => import("../pages/User/WalletPage"),
-                loader: async () => {
-                  const authUser = await authAPI.getMe();
-                  return authUser.data.user;
-                },
               },
             ],
           },
