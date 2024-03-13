@@ -11,7 +11,7 @@
 .navbar {
   background-image: url(https://inkstickmedia.com/wp-content/uploads/2021/10/wolfgang-hasselmann-pVr6wvUneMk-unsplash-scaled-e1635730773197.jpg);
   background-size: cover; /* ปรับขนาดรูปให้เต็มพื้นที่ของ .navbar */
-  background-position: center bottom 38%
+  background-position: center bottom 35%;
   /* เพิ่มคุณสมบัติอื่น ๆ ตามต้องการ */
 }
 
@@ -22,7 +22,7 @@
   /* background-image: url(https://cdn.midjourney.com/a8c7ee02-5f8f-4072-a3dc-494f0e331dfe/0_0.webp);  */
   /* background-size: cover; */
   /* background-repeat: no-repeat; */
-   /* background-position: center bottom 6%;  เลื่อนภาพไปที่ด้านล่างสุด  */
+  /* background-position: center bottom 6%;  เลื่อนภาพไปที่ด้านล่างสุด  */
   /* background-color: rgba(114, 89, 54, 0.6); สีหลัก หรือสีสุดบนของ linear gradient */
   /* opacity: 0.6; */
 }
