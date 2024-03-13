@@ -17,24 +17,22 @@ function MessageAdminContextProvider({ children }) {
   const { authUser } = useAuth();
   const { chatroomId, senderId } = useParams();
 
-  // console.log(senderId);
-
   useEffect(() => {
     getAllConversation();
   }, []);
 
   useEffect(() => {
     socket.on("message1", (msg) => {
-      console.log(msg.senderId, senderId, "dsadasdasdsa");
-      if (senderId == msg.senderId) {
-        setConversation([...conversation, msg]);
-      }
+      console.log(msg, "msg-*-----");
+      // if (senderId == msg.receiverId) {
+      // console.log("---------");
+      setConversation([...conversation, msg]);
+      // }
     });
   }, [conversation]);
 
   useEffect(() => {
     if (authUser) {
-      // console.log(authUser, "authUserrrrrrrrrrrrrrrrrr");
       socket.auth = { senderId: authUser?.id };
       socket.connect();
       return () => socket.disconnect();
@@ -51,7 +49,6 @@ function MessageAdminContextProvider({ children }) {
   };
 
   const getConversationContext = async () => {
-    // console.log(chatRoom, "chatroommmmmmmmmmmmmmmmmmmmmmmmmm");
     try {
       if (!chatroomId) {
         return;
