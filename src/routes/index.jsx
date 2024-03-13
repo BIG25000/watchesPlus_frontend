@@ -163,10 +163,10 @@ const router = createBrowserRouter([
         path: "",
         element: <BrandPage />,
       },
-      {
-        path: "brand",
-        element: <BrandPage />,
-      },
+      // {
+      //   path: "brand",
+      //   element: <BrandPage />,
+      // },
       {
         path: "products",
         element: (
