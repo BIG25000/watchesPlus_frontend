@@ -57,7 +57,7 @@ function BrandForm() {
                   el.name.toLowerCase().includes(search.toLowerCase())
                 )
                 .map((el) => (
-                  <tr>
+                  <tr key={el.id}>
                     <th>{el.id}</th>
                     <td>
                       <div className="flex items-center gap-3">
