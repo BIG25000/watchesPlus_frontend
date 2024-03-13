@@ -42,6 +42,7 @@ function MessageIdForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (message.trim() !== "") {
+      // console.log("--------");
       sendMessage();
     }
   };
@@ -50,6 +51,7 @@ function MessageIdForm() {
     if (e.key === "Enter") {
       e.preventDefault();
       if (message.trim() !== "") {
+        // console.log("---------");
         sendMessage();
       }
     }
@@ -87,9 +89,9 @@ function MessageIdForm() {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             class="lucide lucide-undo-2"
           >
             <path d="M9 14 4 9l5-5" />
@@ -111,9 +113,9 @@ function MessageIdForm() {
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
             class="lucide lucide-undo-2"
             className="invisible"
           >
@@ -124,28 +126,30 @@ function MessageIdForm() {
         {/* HIDDEN ICON */}
       </div>
       <div className="flex h-[60vh]  overflow-auto mb-3 flex-col">
-        {conversation?.map((chat) => {
-          // console.log(chat, "********");
-          return (
-            <div ref={scrollRef}>
-              <Conversation
-                key={chat.id}
-                chatRoomId={chatroomId}
-                senderFirstName={chat.sender?.firstName}
-                senderLastName={chat.sender?.lastName}
-                senderId={chat.senderId}
-                receiverFirstName={chat.receiver?.firstName}
-                receiverLastName={chat.receiver?.lastName}
-                receiverId={chat.receiverId}
-                src={chat.sender?.profileImage}
-                message={chat.message}
-                createdAt={chat.createdAt}
-                ownMessage={chat.senderId === authUser?.id}
-                loading={loading}
-              />
-            </div>
-          );
-        })}
+        {conversation
+          ?.filter((el) => el.chatRoomId == chatroomId)
+          .map((chat) => {
+            // console.log(chat, "********");
+            return (
+              <div ref={scrollRef}>
+                <Conversation
+                  key={chat.id}
+                  chatRoomId={chatroomId}
+                  senderFirstName={chat.sender?.firstName}
+                  senderLastName={chat.sender?.lastName}
+                  senderId={chat.senderId}
+                  receiverFirstName={chat.receiver?.firstName}
+                  receiverLastName={chat.receiver?.lastName}
+                  receiverId={chat.receiverId}
+                  src={chat.sender?.profileImage}
+                  message={chat.message}
+                  createdAt={chat.createdAt}
+                  ownMessage={chat.senderId === authUser?.id}
+                  loading={loading}
+                />
+              </div>
+            );
+          })}
       </div>
       <div className="flex flex-row gap-3 h-[10vh]">
         <input

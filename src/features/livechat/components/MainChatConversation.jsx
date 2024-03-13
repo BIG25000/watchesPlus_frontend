@@ -4,15 +4,20 @@ import useChat from "../../../hooks/useChat";
 import useAuth from "../../../hooks/useAuth";
 import { useRef } from "react";
 import { useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 export default function MainChatConversation({ loading }) {
   const { conversation } = useChat();
   const { authUser } = useAuth();
   const scrollRef = useRef();
 
+  const { chatRoomId } = useParams();
+
   useEffect(() => {
     scrollRef?.current?.scrollIntoView({ behavior: "smooth" });
   }, [conversation]);
+
+  // console.log(conversation, "conversation------------------");
 
   return (
     <div className="flex flex-col gap-3">
