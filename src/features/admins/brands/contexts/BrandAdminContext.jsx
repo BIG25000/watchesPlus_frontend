@@ -29,7 +29,6 @@ function BrandAdminContextProvider({ children }) {
 
   const editBrand = async (data, id) => {
     try {
-      console.log(data, "DATA EDIT BRAND");
       await brandApi.editBrand(data, id);
       const res = await brandApi.getAllBrand();
       setBrands(res.data.data); // ท่าโอม

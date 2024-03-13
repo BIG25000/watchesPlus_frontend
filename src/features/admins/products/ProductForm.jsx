@@ -27,7 +27,9 @@ function ProductForm() {
               Pick search
             </option>
             {brands?.map((el) => (
-              <option value={el.name}>{el.name}</option>
+              <option value={el.name} key={el.id}>
+                {el.name}
+              </option>
             ))}
             <option value="">ALL</option>
           </select>

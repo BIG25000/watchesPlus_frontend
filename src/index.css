@@ -9,12 +9,54 @@
 }
 
 .navbar {
-  background-image: linear-gradient(to top, #725936, #634e2f, #544329, #463822, #392e1c, #312818, #292215, #221c11, #1d180e, #19140a, #140f05, #0d0901);
+  background-image: url(https://inkstickmedia.com/wp-content/uploads/2021/10/wolfgang-hasselmann-pVr6wvUneMk-unsplash-scaled-e1635730773197.jpg);
+  background-size: cover; /* ปรับขนาดรูปให้เต็มพื้นที่ของ .navbar */
+  background-position: center bottom 35%;
+  /* เพิ่มคุณสมบัติอื่น ๆ ตามต้องการ */
 }
 
-.footer {
+/* .footer {
   background-image: linear-gradient(to bottom, #725936, #634e2f, #544329, #463822, #392e1c, #312818, #292215, #221c11, #1d180e, #19140a, #140f05, #0d0901)
+}  */
+.footer {
+  /* background-image: url(https://cdn.midjourney.com/a8c7ee02-5f8f-4072-a3dc-494f0e331dfe/0_0.webp);  */
+  /* background-size: cover; */
+  /* background-repeat: no-repeat; */
+  /* background-position: center bottom 6%;  เลื่อนภาพไปที่ด้านล่างสุด  */
+  /* background-color: rgba(114, 89, 54, 0.6); สีหลัก หรือสีสุดบนของ linear gradient */
+  /* opacity: 0.6; */
 }
+
+.footerImg {
+  background-image: url(https://cdn.midjourney.com/a8c7ee02-5f8f-4072-a3dc-494f0e331dfe/0_0.webp);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center bottom 6%; /* เลื่อนภาพไปที่ด้านล่างสุด */
+}
+
+.footer > * {
+  color: white;
+}
+
+.footer h6 {
+  font-size: 1.2rem;
+}
+
+/* .footer {
+  position: relative;
+}
+
+.footer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-image: url(https://cdn.midjourney.com/a8c7ee02-5f8f-4072-a3dc-494f0e331dfe/0_0.webp);
+  background-size: cover;
+  opacity: 0.6; /* Adjust opacity as needed */
+/* } */
 
 .speech {
   /* (A1) FONT & COLORS */
@@ -58,11 +100,10 @@
   display: none;
 }
 
-.show:hover+.hide {
+.show:hover + .hide {
   display: block;
 }
 
 /* .side2 {
   background-color: blue;
 } */
-

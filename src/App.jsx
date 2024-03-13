@@ -6,7 +6,7 @@ import Loading from "./components/Loading";
 
 export default function App() {
   return (
-    <Suspense fallback={<Loading/>}>
+    <Suspense fallback={<Loading />}>
       <Router />
       <ToastContainer autoClose={1000} />
     </Suspense>

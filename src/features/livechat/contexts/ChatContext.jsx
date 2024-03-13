@@ -15,7 +15,6 @@ export default function ChatContextProvider({ children }) {
 
   useEffect(() => {
     if (authUser) {
-      // console.log(authUser, "authuserrrrrr");
       socket.auth = { senderId: authUser?.id };
       socket.connect();
       return () => socket.disconnect();
@@ -30,8 +29,6 @@ export default function ChatContextProvider({ children }) {
 
   const getChatRoomContext = async () => {
     try {
-      // console.log(authUser, "testing");
-
       const res = await livechatApi.getChatRoom(authUser?.id);
       setChatRoom(res.data.chatRoom);
       getConversationContext(res.data.chatRoom.id);
@@ -42,12 +39,10 @@ export default function ChatContextProvider({ children }) {
 
   const getConversationContext = async (id) => {
     try {
-      // console.log(chatRoom, "chatroommmmmmmmmmmmmmmmmmmmmmmmmm");
       if (!id) {
         return;
       }
       const res = await livechatApi.getConversation(+id);
-      // console.log(res.data.conversation, "conversationnnnnnnnnnnnnnnnnnnnnnn");
       setConversation(res.data.conversation);
     } catch (error) {
       console.log(error);

@@ -54,7 +54,7 @@ function ShipingForm() {
                   (el) => el.status !== "SUCCESS" && el.status !== "CANCELED"
                 )
                 .map((el) => (
-                  <tr>
+                  <tr key={el.id}>
                     <th>{el.id}</th>
                     <td
                       onClick={() =>
