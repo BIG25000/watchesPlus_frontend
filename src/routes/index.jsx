@@ -153,6 +153,7 @@ const router = createBrowserRouter([
     path: "/admin",
     element: (
       <ProtectRouteAdmin>
+        <ScrollToTop />
         <SideBarAdmin />
       </ProtectRouteAdmin>
     ),
