@@ -216,7 +216,7 @@ function CreateProductForm() {
                     </span>
                   </div>
                   <input
-                    type="Number"
+                    type="text"
                     placeholder="120"
                     className="input input-bordered w-full"
                     name="powerReserve"
@@ -231,7 +231,7 @@ function CreateProductForm() {
                     <span className="label-text text-md">Case material</span>
                   </div>
                   <input
-                    type="Number"
+                    type="text"
                     value={input.caseMaterial}
                     placeholder="Stainless Steel"
                     className="input input-bordered w-full"
