@@ -53,7 +53,10 @@ export default function LineChart(props) {
           />
         </div>
       ) : (
-        <Loading />
+        <div className="bg-white flex flex-col p-4 gap-4">
+          <h2 className="text-center text-2xl">Price History</h2>
+          <h2 className="text-center text-xl">----------- No Price History -----------</h2>
+        </div> 
       )}
     </>
   );
