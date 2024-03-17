@@ -42,6 +42,8 @@ import ProtectRouteAdmin from "../features/auth/components/ProtectRouteAdmin";
 import RedirectWhenAdminLogin from "../features/auth/components/RedirectWhenAdminLogin";
 import ScrollToTop from "../utils/ScrollToTop";
 import * as authAPI from "../apis/auth";
+import Dashboard from "../features/admins/homes/Dashboard";
+import DashboradAdminContextProvider from "../features/admins/homes/contexts/DashboradAdminContext";
 
 const router = createBrowserRouter([
   {
@@ -161,12 +163,16 @@ const router = createBrowserRouter([
     children: [
       {
         path: "",
+        element: (
+          <DashboradAdminContextProvider>
+            <Dashboard />
+          </DashboradAdminContextProvider>
+        ),
+      },
+      {
+        path: "brand",
         element: <BrandPage />,
       },
-      // {
-      //   path: "brand",
-      //   element: <BrandPage />,
-      // },
       {
         path: "products",
         element: (

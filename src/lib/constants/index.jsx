@@ -9,16 +9,16 @@ import { Truck } from "lucide-react";
 import { Tag } from "lucide-react";
 
 export const DASHBOARD_SIDEBAR_LINKS = [
-  // {
-  //   key: "home",
-  //   label: "home",
-  //   path: "/admin",
-  //   icon: <LayoutGrid />,
-  // },
+  {
+    key: "home",
+    label: "home",
+    path: "/admin",
+    icon: <LayoutGrid />,
+  },
   {
     key: "brand",
     label: "brand",
-    path: "/admin",
+    path: "/admin/brand",
     icon: <Tag />,
   },
   {
