@@ -112,7 +112,7 @@ export default function BuyModal(props) {
               <div className="flex h-8 gap-4 justify-between">
                 <label>Minimum Price:</label>
                 <div className="flex gap-2">
-                  <div>{formatNum(dataBuy?.[0]?.price) || 0}</div>
+                  <div>{dataBuy[0]?.price ? formatNum(dataBuy?.[0]?.price) : 0}</div>
                   {baht}
                 </div>
               </div>
