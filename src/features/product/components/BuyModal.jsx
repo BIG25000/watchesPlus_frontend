@@ -7,11 +7,13 @@ import { toast } from "react-toastify";
 import useProduct from "../../../hooks/useProduct";
 import { validateBuyOrder } from "../validations/validate-order";
 import { formatNum } from "../../../utils/formatNumber";
+import useWallet from "../../../hooks/useWallet";
 
 export default function BuyModal(props) {
   const { watchId } = useParams();
   const { watch, dataBuy, setLoading, loading } = props;
   const { profileInfo } = useProfile();
+  const { wallet } = useWallet()
   const { sendBuyOrder } = useProduct();
   const [price, setPrice] = useState(0);
   const handleClick = async (e) => {
@@ -36,7 +38,7 @@ export default function BuyModal(props) {
   const handleBuyOrder = async (e) => {
     try {
       e.preventDefault();
-      if (profileInfo.wallet.amount < price) {
+      if (wallet.amount < price) {
         toast.error("Your Amount Is not Enough");
         document.getElementById("confirm_buy").close();
         document.getElementById("buy").close();
@@ -44,7 +46,7 @@ export default function BuyModal(props) {
       }
       const data = {
         watchId: +watchId,
-        walletId: profileInfo.wallet.id,
+        walletId: wallet.id,
         price: price || 0,
       };
 
